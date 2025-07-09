@@ -20,7 +20,7 @@ import { Badge } from "./badge"
 import languageColors from '@/utils/colors.json'
 
 interface ProjectCardProps {
-	title: string
+	name: string
 	description: string
 	html_url: string
 	stars: number
@@ -32,7 +32,7 @@ interface ProjectCardProps {
 }
 
 export default function ProjectCard({
-	title,
+	name,
 	description,
 	html_url,
 	stars,
@@ -46,7 +46,6 @@ export default function ProjectCard({
 	const getLanguageColor = (lang: string | undefined): string => {
 		if (!lang) return '#64748b' // Default gray color
 		
-		// Type assertion to handle potential null colors
 		const colors = languageColors as Record<string, { color: string | null; url: string }>
 		const languageData = colors[lang]
 		
@@ -55,7 +54,7 @@ export default function ProjectCard({
 	return (
 		<Card className="flex w-full min-w-[15rem] max-w-[25rem] flex-col overflow-hidden">
 			<CardHeader>
-				<CardTitle className="text-primary text-lg">{title}</CardTitle>
+				<CardTitle className="text-primary text-lg">{name}</CardTitle>
 				<CardDescription>{description}</CardDescription>
 				<CardAction>
 						<Link
@@ -90,7 +89,10 @@ export default function ProjectCard({
 							{language}
 						</span>
 					</div>
-					<Separator orientation="vertical" />
+
+					<div className="">
+						<Separator orientation="vertical" className="h-6" />
+					</div>
 
 					<div className="flex items-center gap-1 hover:text-primary transition-colors">
 						<GitFork className="h-4" />

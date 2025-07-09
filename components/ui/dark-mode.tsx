@@ -44,12 +44,13 @@ export function ModeToggle() {
 			}}
 		>
 			<motion.div
+			className="flex items-center justify-center"
 				initial={false}
-				animate={{ rotate: theme === "dark" ? 360 : 0 }}
+				animate={{ rotate: theme === "dark" ? 0 : 180 }}
 				transition={{ duration: 0.5, ease: "easeOut", type: "spring", bounce: 0.1 }}
 			>
-				<Sun className="h-[1.2rem] w-[1.2rem] scale-100 dark:scale-0" />
-				<Moon className="absolute h-[1.2rem] w-[1.2rem] scale-0 dark:scale-100 top-0 left-0 rotate-0" />
+				<Sun className="h-[1.2rem] w-[1.2rem] dark:hidden" />
+				<Moon className="h-[1.2rem] w-[1.2rem] hidden dark:block" />
 			</motion.div>
 			<span className="sr-only">Toggle theme</span>
 		</Button>
