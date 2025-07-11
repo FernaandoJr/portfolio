@@ -8,16 +8,10 @@ import {
 	CardHeader,
 	CardTitle,
 } from "./card"
-import { 
-	Eye,
-	GitFork,
-	Github, 
-	Link2Icon, 
-	Star,
-} from "lucide-react" 
+import { ExternalLink, Eye, GitFork, Github, Star } from "lucide-react"
 import Link from "next/link"
 import { Badge } from "./badge"
-import languageColors from '@/utils/colors.json'
+import languageColors from "@/utils/colors.json"
 
 interface ProjectCardProps {
 	name: string
@@ -28,7 +22,7 @@ interface ProjectCardProps {
 	homepage?: string
 	topics?: string[]
 	watchers?: number
-	language?: string,
+	language?: string
 }
 
 export default function ProjectCard({
@@ -42,14 +36,16 @@ export default function ProjectCard({
 	watchers,
 	language,
 }: ProjectCardProps) {
-
 	const getLanguageColor = (lang: string | undefined): string => {
-		if (!lang) return '#64748b' // Default gray color
-		
-		const colors = languageColors as Record<string, { color: string | null; url: string }>
+		if (!lang) return "#64748b" // Default gray color
+
+		const colors = languageColors as Record<
+			string,
+			{ color: string | null; url: string }
+		>
 		const languageData = colors[lang]
-		
-		return languageData?.color || '#64748b' // Default gray if language not found or color is null
+
+		return languageData?.color || "#64748b" // Default gray if language not found or color is null
 	}
 	return (
 		<Card className="flex w-full min-w-[15rem] max-w-[25rem] flex-col overflow-hidden">
@@ -57,20 +53,23 @@ export default function ProjectCard({
 				<CardTitle className="text-primary text-lg">{name}</CardTitle>
 				<CardDescription>{description}</CardDescription>
 				<CardAction>
-						<Link
-							href={html_url}
-							target="_blank"
-							className="flex items-center gap-2 hover:text-secondary  transition-colors"
-							rel="noopener noreferrer">
-							<Github />
-						</Link>
+					<Link
+						href={html_url}
+						target="_blank"
+						className="flex items-center gap-2 hover:text-secondary  transition-colors"
+						rel="noopener noreferrer">
+						<Github />
+					</Link>
 				</CardAction>
 			</CardHeader>
 			<CardContent>
 				{topics && topics.length > 0 && (
 					<div className="mb-4 flex flex-wrap items-center gap-2 select-none">
 						{topics.map((topic, index) => (
-							<Badge key={index} variant={'outline'} className="text-xs text-secondary dark:text-accent-foreground"> 
+							<Badge
+								key={index}
+								variant={"outline"}
+								className="text-xs text-secondary dark:text-accent-foreground">
 								{topic}
 							</Badge>
 						))}
@@ -81,13 +80,12 @@ export default function ProjectCard({
 			<CardFooter className="flex flex-row items-start justify-between">
 				<div className="flex flex-wrap justify-between gap-2 select-none h-auto">
 					<div className="flex items-center gap-1 text-xs">
-						<div 
+						<div
 							className="rounded-full h-3 aspect-square"
-							style={{ backgroundColor: getLanguageColor(language) }}
-						></div>
-						<span>
-							{language}
-						</span>
+							style={{
+								backgroundColor: getLanguageColor(language),
+							}}></div>
+						<span>{language}</span>
 					</div>
 
 					<div className="">
@@ -109,8 +107,12 @@ export default function ProjectCard({
 				</div>
 				{homepage && (
 					<div className="">
-						<Link href={homepage} target="_blank" className="flex items-center gap-2 hover:text-secondary transition-colors" rel="noopener noreferrer">
-							<Link2Icon />
+						<Link
+							href={homepage}
+							target="_blank"
+							className="flex items-center gap-2 hover:text-secondary transition-colors"
+							rel="noopener noreferrer">
+							<ExternalLink />
 						</Link>
 					</div>
 				)}
