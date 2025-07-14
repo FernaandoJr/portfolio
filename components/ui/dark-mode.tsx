@@ -6,8 +6,13 @@ import { useTheme } from "next-themes"
 import { motion } from "framer-motion"
 
 import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
 
-export function ModeToggle() {
+interface DarkModeProps {
+	readonly rounded?: boolean
+}
+
+export function ModeToggle({ rounded = false }: DarkModeProps) {
 	const { theme, setTheme } = useTheme()
 	const [mounted, setMounted] = React.useState(false)
 
@@ -38,7 +43,7 @@ export function ModeToggle() {
 		<Button 
 			variant="outline" 
 			size="icon" 
-			className="cursor-pointer" 
+			className={cn("cursor-pointer", { "rounded-full": rounded })} 
 			onClick={() => {
 				setTheme(theme === "dark" ? "light" : "dark")
 			}}

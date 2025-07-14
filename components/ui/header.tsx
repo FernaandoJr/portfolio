@@ -73,7 +73,7 @@ export const Header = () => {
 														"text-foreground hover:text-accent-foreground block duration-150",
 														pathName ===
 															item.href &&
-															"text-primary"
+															"text-primary hover:text-primary font-medium"
 													)}>
 													<span>{item.name}</span>
 												</Link>

@@ -3,41 +3,53 @@ import { Outfit, Merriweather } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "next-themes"
 import { Header } from "@/components/ui/header"
+import Footer from "@/components/ui/footer"
 
 const outfitSans = Outfit({
-  variable: "--font-outfit-sans",
-  subsets: ["latin"],
+	variable: "--font-outfit-sans",
+	subsets: ["latin"],
 })
 
 const merriweather = Merriweather({
-  variable: "--font-merriweather",
-  subsets: ["latin"],
-  weight: ["400"], 
+	variable: "--font-merriweather",
+	subsets: ["latin"],
+	weight: ["400"],
 })
 
 export const metadata: Metadata = {
-  title: "Fernando Jr",
-  description: "Portfolio of Fernando Jr",
+	title: "Fernando Jr",
+	description: "Portfolio of Fernando Jr",
+	icons: {
+		icon: "/favicon.ico",
+	},
+	openGraph: {
+		title: "Fernando Jr",
+		description: "Portfolio of Fernando Jr",
+		url: "https://fernaandojr.dev",
+		siteName: "Fernando Jr",
+		type: "website",
+	},
 }
 
 export default function RootLayout({
-  children,
+	children,
 }: Readonly<{
-  children: React.ReactNode
+	children: React.ReactNode
 }>) {
-  return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`${outfitSans.variable} ${merriweather.variable} antialiased`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-					<Header/>
-          {children}
-        </ThemeProvider>
-      </body>
-    </html>
-  )
+	return (
+		<html lang="en" suppressHydrationWarning>
+			<body
+				className={`${outfitSans.variable} ${merriweather.variable} antialiased`}>
+				<ThemeProvider
+					attribute="class"
+					defaultTheme="system"
+					enableSystem
+					disableTransitionOnChange>
+					<Header />
+					{children}
+					<Footer />
+				</ThemeProvider>
+			</body>
+		</html>
+	)
 }
