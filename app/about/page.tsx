@@ -4,14 +4,14 @@ export default function Home() {
 	return (
 		<div className="container mx-auto py-18 sx:px-3 sx:px-3 sm:px-6 lg:px-8">
 			<div className="flex justify-center flex-col gap-2 items-center my-10">
-				<h1 className="text-5xl font-bold my-8">About me</h1>
+				<h1 className="text-4xl font-bold my-8">About me</h1>
 				<article className="text-md max-w-2xl leading-8 text-justify flex flex-col gap-6">
 					<p>
 						I was born in
 						<Href
 							href="https://pt.wikipedia.org/wiki/Mogi_Gua%C3%A7u"
 							space>
-							Mogi Guaçu, São Paulo.
+							Mogi Guaçu, São Paulo, Brazil.
 						</Href>
 						Since I was very young, I&apos;ve always been fascinated
 						by technology, especially the internet. As the years

@@ -26,7 +26,7 @@ const socials = [
 export default function Socials() {
 	return (
 		<div className="container mx-auto py-10 flex flex-col items-center justify-center">
-			<h1 className="text-3xl font-bold">Socials</h1>
+			<h1 className="text-4xl my-2 font-bold">Socials</h1>
 			<p>{"let's connect!"}</p>
 			<div className="flex flex-col justify-between mt-6 bg-card border-border border rounded-lg overflow-hidden min-w-[40rem] max-w-[60rem]  select-none">
 				{socials.map((social, index) => (
@@ -49,8 +49,8 @@ export default function Socials() {
 								{social.message}
 							</p>
 						</div>
-						<div className="">
-							<ExternalLink className="w-4 h-4" />
+						<div className="flex items-center gap-2 hover:text-accent-foreground transition-colors">
+							<ExternalLink className="w-5 h-5" />
 						</div>
 					</Link>
 				))}

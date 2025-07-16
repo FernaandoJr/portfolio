@@ -59,6 +59,7 @@ export default function Home() {
 					"nexcpu",
 					"flit",
 					"reactjs-portfolio",
+					"synthwave-remix-min-darker",
 				]
 
 				const repoPromises = repoNames.map((repoName) =>
@@ -121,7 +122,7 @@ export default function Home() {
 				</div>
 			) : (
 				<>
-					<div className="text-3xl font-bold text-center mb-4">
+					<div className="text-4xl font-bold text-center my-8">
 						Personal Projects
 					</div>
 					<div className="flex flex-wrap justify-center gap-x-3 gap-y-3">

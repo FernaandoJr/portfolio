@@ -21,40 +21,39 @@ export function ModeToggle({ rounded = false }: DarkModeProps) {
 	}, [])
 
 	React.useEffect(() => {
-		const userTheme = localStorage.getItem("theme") || "system"
+		const userTheme = localStorage.getItem("theme") || "dark"
 		setTheme(userTheme)
 	}, [setTheme])
 
 	// Prevent hydration mismatch by not rendering until mounted
 	if (!mounted) {
 		return (
-			<Button 
-				variant="outline" 
-				size="icon" 
-				className="cursor-pointer"
-			>
-				<Sun className="h-[1.2rem] w-[1.2rem]" />
+			<Button variant="outline" size="icon" className="cursor-pointer">
+				<Moon className="h-[1.2rem] w-[1.2rem]" />
 				<span className="sr-only">Toggle theme</span>
 			</Button>
 		)
 	}
 
 	return (
-		<Button 
-			variant="outline" 
-			size="icon" 
-			className={cn("cursor-pointer", { "rounded-full": rounded })} 
+		<Button
+			variant="outline"
+			size="icon"
+			className={cn("cursor-pointer", { "rounded-full": rounded })}
 			onClick={() => {
 				setTheme(theme === "dark" ? "light" : "dark")
-			}}
-		>
+			}}>
 			<motion.div
-			className="flex items-center justify-center"
+				className="flex items-center justify-center"
 				initial={false}
 				animate={{ rotate: theme === "dark" ? 0 : 180 }}
-				transition={{ duration: 0.5, ease: "easeOut", type: "spring", bounce: 0.1 }}
-			>
-				<Sun className="h-[1.2rem] w-[1.2rem] dark:hidden" />
+				transition={{
+					duration: 0.5,
+					ease: "easeOut",
+					type: "spring",
+					bounce: 0.1,
+				}}>
+				<Sun className="h-[1.2rem] w-[1.2rem] dark:hidden " />
 				<Moon className="h-[1.2rem] w-[1.2rem] hidden dark:block" />
 			</motion.div>
 			<span className="sr-only">Toggle theme</span>

@@ -1,8 +1,7 @@
 "use client"
-import { useScroll } from "framer-motion"
 import { Coffee, Menu, X } from "lucide-react"
 import Link from "next/link"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { Button } from "./button"
 import { cn } from "@/lib/utils"
 import { ModeToggle } from "./dark-mode"
@@ -10,8 +9,6 @@ import { usePathname } from "next/navigation"
 
 export const Header = () => {
 	const [menuState, setMenuState] = useState(false)
-	const [scrolled, setScrolled] = useState(false)
-	const { scrollYProgress } = useScroll()
 	const pathName = usePathname()
 
 	const menuItems = [
@@ -20,20 +17,12 @@ export const Header = () => {
 		{ name: "/about", href: "/about" },
 	]
 
-	useEffect(() => {
-		const unsubscribe = scrollYProgress.on("change", (latest) => {
-			setScrolled(latest > 0.05)
-		})
-		return () => unsubscribe()
-	}, [scrollYProgress])
-
 	return (
 		<header className="select-none">
 			<nav
 				data-state={menuState && "active"}
 				className={cn(
-					"group fixed z-20 w-full border-b transition-colors duration-150",
-					scrolled && "bg-background/50 backdrop-blur-3xl"
+					"group fixed z-20 w-full border-b transition-colors duration-150 bg-background/50 backdrop-blur-3xl"
 				)}>
 				<div className="mx-auto max-w-5xl px-6 transition-all duration-300">
 					<div className="relative flex flex-wrap items-center justify-between gap-6 py-3 md:gap-0 md:py-4">
@@ -58,8 +47,8 @@ export const Header = () => {
 
 							<div className="hidden md:block">
 								<ul className="flex gap-8 text-sm">
-									{menuItems.map((item, index) => (
-										<li key={index}>
+									{menuItems.map((item) => (
+										<li key={item.href}>
 											<Button
 												variant={"link"}
 												className={cn(
@@ -87,8 +76,8 @@ export const Header = () => {
 						<div className="bg-background mb-6 hidden w-full flex-wrap items-center justify-end space-y-8 rounded-3xl border p-6 shadow-2xl shadow-zinc-300/20 group-data-[state=active]:block md:m-0 md:flex md:w-fit md:flex-nowrap md:gap-6 md:space-y-0 md:border-transparent md:bg-transparent md:p-0 md:shadow-none md:group-data-[state=active]:flex dark:shadow-none dark:md:bg-transparent">
 							<div className="md:hidden">
 								<ul className="space-y-6 text-base">
-									{menuItems.map((item, index) => (
-										<li key={index}>
+									{menuItems.map((item) => (
+										<li key={item.href}>
 											<Link
 												href={item.href}
 												className="text-muted-foreground hover:text-accent-foreground block duration-150">

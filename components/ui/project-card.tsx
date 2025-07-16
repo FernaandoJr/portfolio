@@ -14,15 +14,15 @@ import { Badge } from "./badge"
 import languageColors from "@/utils/colors.json"
 
 interface ProjectCardProps {
-	name: string
-	description: string
-	html_url: string
-	stars: number
-	forks: number
-	homepage?: string
-	topics?: string[]
-	watchers?: number
-	language?: string
+	readonly name: string
+	readonly description: string
+	readonly html_url: string
+	readonly stars: number
+	readonly forks: number
+	readonly homepage?: string
+	readonly topics?: string[]
+	readonly watchers?: number
+	readonly language?: string
 }
 
 export default function ProjectCard({
@@ -48,7 +48,7 @@ export default function ProjectCard({
 		return languageData?.color || "#64748b" // Default gray if language not found or color is null
 	}
 	return (
-		<Card className="flex w-full min-w-[15rem] max-w-[25rem] flex-col overflow-hidden">
+		<Card className="flex w-full min-w-[15rem] max-w-[25rem] flex-col overflow-hidden ">
 			<CardHeader>
 				<CardTitle className="text-primary text-lg">{name}</CardTitle>
 				<CardDescription>{description}</CardDescription>
@@ -65,9 +65,9 @@ export default function ProjectCard({
 			<CardContent>
 				{topics && topics.length > 0 && (
 					<div className="mb-4 flex flex-wrap items-center gap-2 select-none">
-						{topics.map((topic, index) => (
+						{topics.map((topic) => (
 							<Badge
-								key={index}
+								key={topic}
 								variant={"outline"}
 								className="text-xs text-secondary dark:text-accent-foreground">
 								{topic}
