@@ -2,7 +2,7 @@ import Href from "@/components/ui/href"
 
 export default function Home() {
 	return (
-		<div className="container mx-auto py-18 sx:px-3 sx:px-3 sm:px-6 lg:px-8">
+		<div className="container mx-auto pt-18 px-4 sm:px-6 lg:px-8">
 			<div className="flex justify-center flex-col gap-2 items-center my-10">
 				<h1 className="text-4xl font-bold my-8">About me</h1>
 				<article className="text-md max-w-2xl leading-8 text-justify flex flex-col gap-6">

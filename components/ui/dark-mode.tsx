@@ -10,9 +10,10 @@ import { cn } from "@/lib/utils"
 
 interface DarkModeProps {
 	readonly rounded?: boolean
+	readonly menuState?: boolean
 }
 
-export function ModeToggle({ rounded = false }: DarkModeProps) {
+export function ModeToggle({ rounded = false, menuState }: DarkModeProps) {
 	const { theme, setTheme } = useTheme()
 	const [mounted, setMounted] = React.useState(false)
 
@@ -39,7 +40,15 @@ export function ModeToggle({ rounded = false }: DarkModeProps) {
 		<Button
 			variant="outline"
 			size="icon"
-			className={cn("cursor-pointer", { "rounded-full": rounded })}
+			className={cn(
+				"cursor-pointer ",
+				{
+					"rounded-full": rounded,
+				},
+				{
+					"w-full": menuState,
+				}
+			)}
 			onClick={() => {
 				setTheme(theme === "dark" ? "light" : "dark")
 			}}>
@@ -53,7 +62,7 @@ export function ModeToggle({ rounded = false }: DarkModeProps) {
 					type: "spring",
 					bounce: 0.1,
 				}}>
-				<Sun className="h-[1.2rem] w-[1.2rem] dark:hidden " />
+				<Sun className="h-[1.2rem] w-[1.2rem] dark:hidden" />
 				<Moon className="h-[1.2rem] w-[1.2rem] hidden dark:block" />
 			</motion.div>
 			<span className="sr-only">Toggle theme</span>
