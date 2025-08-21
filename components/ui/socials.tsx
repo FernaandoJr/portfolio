@@ -28,7 +28,7 @@ export default function Socials() {
 		<div className="container mx-auto py-10 flex flex-col items-center justify-center px-4">
 			<h1 className="text-4xl my-2 font-bold">Socials</h1>
 			<p>{"let's connect!"}</p>
-			<div className="flex flex-col justify-between mt-6 bg-card border-border border rounded-lg overflow-hidden md:min-w-[40rem] w-full  max-w-[60rem] select-none">
+			<div className="flex flex-col justify-between mt-6 bg-card border-border border rounded-lg overflow-hidden md:min-w-[40rem] w-full max-w-[40rem] select-none">
 				{socials.map((social, index) => (
 					<Link
 						key={index}

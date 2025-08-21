@@ -56,7 +56,7 @@ export default function ProjectCard({
 					<Link
 						href={html_url}
 						target="_blank"
-						className="flex items-center gap-2 hover:text-secondary  transition-colors"
+						className="flex items-center gap-2 hover:text-secondary transition-colors"
 						rel="noopener noreferrer">
 						<Github />
 					</Link>
