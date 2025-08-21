@@ -114,7 +114,7 @@ export default function Home() {
 		)
 	}
 	return (
-		<div className="container mx-auto py-26 sx:px-3 sx:px-3 sm:px-6 lg:px-8">
+		<div className="container mx-auto py-26 px-4 sm:px-6 lg:px-8">
 			{loading ? (
 				<div className="flex justify-center flex-col gap-2 items-center h-screen">
 					<Spinner />

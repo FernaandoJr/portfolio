@@ -48,7 +48,7 @@ export default function ProjectCard({
 		return languageData?.color || "#64748b" // Default gray if language not found or color is null
 	}
 	return (
-		<Card className="flex w-full min-w-[15rem] max-w-[25rem] flex-col overflow-hidden ">
+		<Card className="flex w-full min-w-[15rem] max-w-[25rem] flex-col overflow-hidden justify-between">
 			<CardHeader>
 				<CardTitle className="text-primary text-lg">{name}</CardTitle>
 				<CardDescription>{description}</CardDescription>
@@ -75,47 +75,55 @@ export default function ProjectCard({
 						))}
 					</div>
 				)}
-				<Separator />
 			</CardContent>
-			<CardFooter className="flex flex-row items-start justify-between">
-				<div className="flex flex-wrap justify-between gap-2 select-none h-auto">
-					<div className="flex items-center gap-1 text-xs">
-						<div
-							className="rounded-full h-3 aspect-square"
-							style={{
-								backgroundColor: getLanguageColor(language),
-							}}></div>
-						<span>{language}</span>
+			<CardFooter className="flex justify-between flex-col items-start">
+				<Separator className="my-8" />
+				<div className="flex gap-2 justify-between flex-row w-full">
+					<div className={`flex`}>
+						<div className="flex items-center gap-1 text-xs">
+							{language ? (
+								<>
+									<div
+										className="rounded-full h-3 aspect-square"
+										style={{
+											backgroundColor:
+												getLanguageColor(language),
+										}}></div>
+									<span>{language}</span>
+									<Separator
+										orientation="vertical"
+										className="h-6 mx-1"
+									/>
+								</>
+							) : null}
+						</div>
+						<div className="flex items-center gap-1 transition-colors">
+							<div className="flex items-center gap-1 hover:text-primary transition-colors">
+								<GitFork className="h-4" />
+								<span className="text-sm">{forks}</span>
+							</div>
+							<div className="flex items-center gap-1 hover:text-primary transition-colors">
+								<Star className="h-4" />
+								<span className="text-sm">{stars}</span>
+							</div>
+							<div className="flex items-center gap-1 hover:text-primary transition-colors">
+								<Eye className="h-4" />
+								<span className="text-sm">{watchers}</span>
+							</div>
+						</div>
 					</div>
-
-					<div className="">
-						<Separator orientation="vertical" className="h-6" />
-					</div>
-
-					<div className="flex items-center gap-1 hover:text-primary transition-colors">
-						<GitFork className="h-4" />
-						<span className="text-sm">{forks}</span>
-					</div>
-					<div className="flex items-center gap-1 hover:text-primary transition-colors">
-						<Star className="h-4" />
-						<span className="text-sm">{stars}</span>
-					</div>
-					<div className="flex items-center gap-1 hover:text-primary transition-colors">
-						<Eye className="h-4" />
-						<span className="text-sm">{watchers}</span>
-					</div>
+					{homepage && (
+						<div className="">
+							<Link
+								href={homepage}
+								target="_blank"
+								className="flex items-center gap-2 hover:text-secondary transition-colors"
+								rel="noopener noreferrer">
+								<ExternalLink />
+							</Link>
+						</div>
+					)}
 				</div>
-				{homepage && (
-					<div className="">
-						<Link
-							href={homepage}
-							target="_blank"
-							className="flex items-center gap-2 hover:text-secondary transition-colors"
-							rel="noopener noreferrer">
-							<ExternalLink />
-						</Link>
-					</div>
-				)}
 			</CardFooter>
 		</Card>
 	)
