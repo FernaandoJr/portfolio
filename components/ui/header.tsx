@@ -6,6 +6,7 @@ import { Button } from "./button"
 import { cn } from "@/lib/utils"
 import { ModeToggle } from "./dark-mode"
 import { usePathname } from "next/navigation"
+import ChangeLanguage from "./change-language"
 
 export const Header = () => {
 	const [menuState, setMenuState] = useState(false)
@@ -19,6 +20,13 @@ export const Header = () => {
 
 		const handlePointer = (e: MouseEvent | TouchEvent) => {
 			const target = e.target as Node
+			// Ignore clicks inside Radix DropdownMenu portal/content so the navbar stays open
+			if (target instanceof Element) {
+				const insideDropdown =
+					target.closest('[data-slot^="dropdown-menu"]') ||
+					target.closest("[data-radix-portal]")
+				if (insideDropdown) return
+			}
 			if (
 				!mobileMenuRef.current?.contains(target) &&
 				!toggleBtnRef.current?.contains(target)
@@ -126,6 +134,7 @@ export const Header = () => {
 							</div>
 							<div className="flex w-full items-center flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit">
 								<ModeToggle menuState={menuState} />
+								<ChangeLanguage />
 							</div>
 						</div>
 					</div>
