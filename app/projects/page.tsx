@@ -106,7 +106,7 @@ export default function Home() {
 		}
 
 		fetchRepositories()
-	}, [])
+	}, [t])
 
 	if (error) {
 		return (
