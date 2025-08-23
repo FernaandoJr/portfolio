@@ -7,10 +7,12 @@ import { cn } from "@/lib/utils"
 import { ModeToggle } from "./dark-mode"
 import { usePathname } from "next/navigation"
 import ChangeLanguage from "./change-language"
+import { useTranslation } from "react-i18next"
 
 export const Header = () => {
 	const [menuState, setMenuState] = useState(false)
 	const pathName = usePathname()
+	const { t } = useTranslation()
 
 	const toggleBtnRef = useRef<HTMLButtonElement>(null)
 	const mobileMenuRef = useRef<HTMLDivElement>(null)
@@ -52,9 +54,9 @@ export const Header = () => {
 	}, [menuState])
 
 	const menuItems = [
-		{ name: "/projects", href: "/projects" },
-		{ name: "/articles", href: "/articles" },
-		{ name: "/about", href: "/about" },
+		{ name: t("/projects"), href: "/projects" },
+		{ name: t("/articles"), href: "/articles" },
+		{ name: t("/about"), href: "/about" },
 	]
 
 	return (
