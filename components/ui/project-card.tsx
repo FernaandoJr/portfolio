@@ -80,7 +80,7 @@ export default function ProjectCard({
 				<Separator className="my-8" />
 				<div className="flex gap-2 justify-between flex-row w-full ">
 					<div className={`flex`}>
-						<div className="flex items-center gap-1 text-xs">
+						<div className="flex items-center gap-1 text-xs select-none">
 							{language ? (
 								<>
 									<div
