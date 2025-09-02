@@ -6,6 +6,7 @@ import { Spinner } from "@/components/ui/spinner"
 import axios from "axios"
 import Link from "next/link"
 import { useEffect, useState } from "react"
+import { useTranslation } from "react-i18next"
 interface Repository {
 	id: number
 	name: string
@@ -23,6 +24,7 @@ export default function Home() {
 	const [repositories, setRepositories] = useState<Repository[]>([])
 	const [loading, setLoading] = useState(true)
 	const [error, setError] = useState<string | null>(null)
+	const { t } = useTranslation()
 
 	useEffect(() => {
 		const fetchRepositories = async () => {
@@ -97,14 +99,14 @@ export default function Home() {
 					return
 				}
 
-				setError("Failed to load projects. Please try again later.")
+				setError(t("projectsError"))
 			} finally {
 				setLoading(false)
 			}
 		}
 
 		fetchRepositories()
-	}, [])
+	}, [t])
 
 	if (error) {
 		return (
@@ -114,16 +116,16 @@ export default function Home() {
 		)
 	}
 	return (
-		<div className="container mx-auto py-26 sx:px-3 sx:px-3 sm:px-6 lg:px-8">
+		<div className="container mx-auto py-26 px-4 sm:px-6 lg:px-8">
 			{loading ? (
 				<div className="flex justify-center flex-col gap-2 items-center h-screen">
 					<Spinner />
-					<div className="text-lg">Loading projects...</div>
+					<div className="text-lg">{t("loadingProjects")}</div>
 				</div>
 			) : (
 				<>
 					<div className="text-4xl font-bold text-center my-8 select-none">
-						Personal Projects
+						{t("personalProjects")}
 					</div>
 					<div className="flex flex-wrap justify-center gap-x-3 gap-y-3">
 						{repositories.map((repo) => (
@@ -146,7 +148,7 @@ export default function Home() {
 							href="https://github.com/FernaandoJr?tab=repositories"
 							className="flex justify-center mt-6">
 							<Button className="cursor-pointer">
-								View More Projects
+								{t("viewMoreProjects")}
 							</Button>
 						</Link>
 					</div>

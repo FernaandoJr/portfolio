@@ -1,24 +1,66 @@
 "use client"
 import { Coffee, Menu, X } from "lucide-react"
 import Link from "next/link"
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { Button } from "./button"
 import { cn } from "@/lib/utils"
 import { ModeToggle } from "./dark-mode"
 import { usePathname } from "next/navigation"
+import ChangeLanguage from "./change-language"
+import { useTranslation } from "react-i18next"
 
 export const Header = () => {
 	const [menuState, setMenuState] = useState(false)
 	const pathName = usePathname()
+	const { t } = useTranslation()
+
+	const toggleBtnRef = useRef<HTMLButtonElement>(null)
+	const mobileMenuRef = useRef<HTMLDivElement>(null)
+
+	useEffect(() => {
+		if (!menuState) return
+
+		const handlePointer = (e: MouseEvent | TouchEvent) => {
+			const target = e.target as Node
+			// Ignore clicks inside Radix DropdownMenu portal/content so the navbar stays open
+			if (target instanceof Element) {
+				const insideDropdown =
+					target.closest('[data-slot^="dropdown-menu"]') ||
+					target.closest("[data-radix-portal]")
+				if (insideDropdown) return
+			}
+			if (
+				!mobileMenuRef.current?.contains(target) &&
+				!toggleBtnRef.current?.contains(target)
+			) {
+				setMenuState(false)
+			}
+		}
+
+		const handleKey = (e: KeyboardEvent) => {
+			if (e.key === "Escape") setMenuState(false)
+		}
+
+		document.addEventListener("mousedown", handlePointer)
+		document.addEventListener("touchstart", handlePointer, {
+			passive: true,
+		})
+		document.addEventListener("keydown", handleKey)
+		return () => {
+			document.removeEventListener("mousedown", handlePointer)
+			document.removeEventListener("touchstart", handlePointer)
+			document.removeEventListener("keydown", handleKey)
+		}
+	}, [menuState])
 
 	const menuItems = [
-		{ name: "/projects", href: "/projects" },
-		{ name: "/articles", href: "/articles" },
-		{ name: "/about", href: "/about" },
+		{ name: t("/projects"), href: "/projects" },
+		{ name: t("/articles"), href: "/articles" },
+		{ name: t("/about"), href: "/about" },
 	]
 
 	return (
-		<header className="select-none">
+		<header className="select-none" ref={mobileMenuRef}>
 			<nav
 				data-state={menuState && "active"}
 				className={cn(
@@ -36,10 +78,12 @@ export const Header = () => {
 							</Link>
 
 							<button
+								ref={toggleBtnRef}
 								onClick={() => setMenuState(!menuState)}
 								aria-label={
 									menuState ? "Close Menu" : "Open Menu"
 								}
+								aria-expanded={menuState}
 								className="relative z-20 -m-2.5 -mr-4 block cursor-pointer p-2.5 md:hidden">
 								<Menu className="m-auto size-6 duration-200 group-data-[state=active]:scale-0 group-data-[state=active]:rotate-180 group-data-[state=active]:opacity-0" />
 								<X className="absolute inset-0 m-auto size-6 scale-0 -rotate-180 opacity-0 duration-200 group-data-[state=active]:scale-100 group-data-[state=active]:rotate-0 group-data-[state=active]:opacity-100" />
@@ -80,6 +124,9 @@ export const Header = () => {
 										<li key={item.href}>
 											<Link
 												href={item.href}
+												onClick={() =>
+													setMenuState(false)
+												}
 												className="text-muted-foreground hover:text-accent-foreground block duration-150">
 												<span>{item.name}</span>
 											</Link>
@@ -88,7 +135,8 @@ export const Header = () => {
 								</ul>
 							</div>
 							<div className="flex w-full items-center flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit">
-								<ModeToggle />
+								<ModeToggle menuState={menuState} />
+								<ChangeLanguage />
 							</div>
 						</div>
 					</div>
