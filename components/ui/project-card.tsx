@@ -1,4 +1,8 @@
 import { Separator } from "@/components/ui/separator"
+import languageColors from "@/utils/colors.json"
+import { ExternalLink, Eye, GitFork, Github, Star } from "lucide-react"
+import Link from "next/link"
+import { Badge } from "./badge"
 import {
 	Card,
 	CardAction,
@@ -8,10 +12,6 @@ import {
 	CardHeader,
 	CardTitle,
 } from "./card"
-import { ExternalLink, Eye, GitFork, Github, Star } from "lucide-react"
-import Link from "next/link"
-import { Badge } from "./badge"
-import languageColors from "@/utils/colors.json"
 
 interface ProjectCardProps {
 	readonly name: string
@@ -78,7 +78,7 @@ export default function ProjectCard({
 				<Separator />
 			</CardContent>
 			<CardFooter className="flex flex-row items-start justify-between">
-				<div className="flex flex-wrap justify-between gap-2 select-none h-auto">
+				<div className="flex flex-wrap justify-between gap-2 select-none h-auto ">
 					<div className="flex items-center gap-1 text-xs">
 						<div
 							className="rounded-full h-3 aspect-square"
@@ -92,21 +92,21 @@ export default function ProjectCard({
 						<Separator orientation="vertical" className="h-6" />
 					</div>
 
-					<div className="flex items-center gap-1 hover:text-primary transition-colors">
+					<div className="flex items-center gap-1 hover:text-primary transition-colors select-none ">
 						<GitFork className="h-4" />
 						<span className="text-sm">{forks}</span>
 					</div>
-					<div className="flex items-center gap-1 hover:text-primary transition-colors">
+					<div className="flex items-center gap-1 hover:text-primary transition-colors select-none ">
 						<Star className="h-4" />
 						<span className="text-sm">{stars}</span>
 					</div>
-					<div className="flex items-center gap-1 hover:text-primary transition-colors">
+					<div className="flex items-center gap-1 hover:text-primary transition-colors select-none ">
 						<Eye className="h-4" />
 						<span className="text-sm">{watchers}</span>
 					</div>
 				</div>
 				{homepage && (
-					<div className="">
+					<div className="select-none">
 						<Link
 							href={homepage}
 							target="_blank"

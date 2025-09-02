@@ -122,7 +122,7 @@ export default function Home() {
 				</div>
 			) : (
 				<>
-					<div className="text-4xl font-bold text-center my-8">
+					<div className="text-4xl font-bold text-center my-8 select-none">
 						Personal Projects
 					</div>
 					<div className="flex flex-wrap justify-center gap-x-3 gap-y-3">
@@ -141,7 +141,7 @@ export default function Home() {
 							/>
 						))}
 					</div>
-					<div className="">
+					<div className="select-none">
 						<Link
 							href="https://github.com/FernaandoJr?tab=repositories"
 							className="flex justify-center mt-6">
