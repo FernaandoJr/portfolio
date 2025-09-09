@@ -1,10 +1,10 @@
-# Instruções para Imagens Open Graph
+# Instruções para Imagem Open Graph
 
-## Imagens necessárias para SEO
+## Imagem necessária para SEO
 
-Crie as seguintes imagens no diretório `public/` com as especificações abaixo:
+Crie uma única imagem no diretório `public/` com as especificações abaixo:
 
-### 1. og-home.jpg (1200x630px)
+### og_image.jpg (1200x630px)
 
 -   **Título**: "Fernando Jr - Desenvolvedor Full Stack"
 -   **Subtítulo**: "Especialista em React, Next.js, TypeScript e Node.js"
@@ -13,43 +13,14 @@ Crie as seguintes imagens no diretório `public/` com as especificações abaixo
     -   Ícones das tecnologias (React, Next.js, TypeScript, Node.js)
     -   Cores: Azul (#3B82F6) e gradiente
     -   Fundo: Escuro com elementos tech
-
-### 2. og-about.jpg (1200x630px)
-
--   **Título**: "Sobre Fernando Jr"
--   **Subtítulo**: "Desenvolvedor Full Stack apaixonado por tecnologia"
--   **Elementos visuais**:
-    -   Foto profissional do Fernando Jr
-    -   Ícones de tecnologias (React, Next.js, TypeScript, JavaScript)
-    -   Cores: Verde (#10B981) e gradiente
-    -   Fundo: Claro com elementos minimalistas
-
-### 3. og-projects.jpg (1200x630px)
-
--   **Título**: "Projetos Pessoais"
--   **Subtítulo**: "Explore meus projetos em React, Next.js e TypeScript"
--   **Elementos visuais**:
-    -   Ícones de projetos (GitHub, código, terminal)
-    -   Grid de cards representando projetos
-    -   Cores: Roxo (#8B5CF6) e gradiente
-    -   Fundo: Escuro com elementos de código
-
-### 4. og-articles.jpg (1200x630px)
-
--   **Título**: "Artigos & Blog"
--   **Subtítulo**: "Dicas e tutoriais sobre desenvolvimento web"
--   **Elementos visuais**:
-    -   Ícones de blog (artigo, lápis, código)
-    -   Elementos de texto e código
-    -   Cores: Laranja (#F59E0B) e gradiente
-    -   Fundo: Claro com elementos de escrita
+    -   Elementos de código e tecnologia
 
 ## Especificações técnicas:
 
 -   **Formato**: JPG
 -   **Dimensões**: 1200x630px (proporção 1.91:1)
 -   **Qualidade**: Alta resolução
--   **Tamanho**: Máximo 1MB por imagem
+-   **Tamanho**: Máximo 1MB
 -   **Fonte**: Use fontes modernas e legíveis
 -   **Contraste**: Garanta boa legibilidade
 
@@ -61,9 +32,8 @@ Crie as seguintes imagens no diretório `public/` com as especificações abaixo
 -   **Destaque**: #F59E0B (laranja)
 -   **Texto**: #1F2937 (cinza escuro) / #FFFFFF (branco)
 
-## URLs das imagens:
+## URL da imagem:
 
--   https://fernaandojr.dev/og-home.jpg
--   https://fernaandojr.dev/og-about.jpg
--   https://fernaandojr.dev/og-projects.jpg
--   https://fernaandojr.dev/og-articles.jpg
+-   https://fernaandojr.dev/og_image.jpg
+
+**Nota**: Esta imagem será usada em todas as páginas do site (home, about, projects, articles).

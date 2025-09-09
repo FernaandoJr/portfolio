@@ -50,10 +50,10 @@ export const metadata: Metadata = {
 		locale: "pt_BR",
 		images: [
 			{
-				url: "https://fernaandojr.dev/og-articles.jpg",
+				url: "https://fernaandojr.dev/og_image.jpg",
 				width: 1200,
 				height: 630,
-				alt: "Artigos - Fernando Jr Blog",
+				alt: "Fernando Jr - Desenvolvedor Full Stack",
 			},
 		],
 	},
@@ -62,7 +62,7 @@ export const metadata: Metadata = {
 		title: "Artigos - Fernando Jr | Blog de Desenvolvimento",
 		description:
 			"Leia artigos sobre desenvolvimento web, React, Next.js, TypeScript, JavaScript e outras tecnologias modernas.",
-		images: ["https://fernaandojr.dev/og-articles.jpg"],
+		images: ["https://fernaandojr.dev/og_image.jpg"],
 		creator: "@fernaandojr",
 	},
 	alternates: {
