@@ -4,7 +4,7 @@
 
 Crie uma única imagem no diretório `public/` com as especificações abaixo:
 
-### og_image.jpg (1200x630px)
+### og_image.png (1200x630px)
 
 -   **Título**: "Fernando Jr - Desenvolvedor Full Stack"
 -   **Subtítulo**: "Especialista em React, Next.js, TypeScript e Node.js"
@@ -34,6 +34,6 @@ Crie uma única imagem no diretório `public/` com as especificações abaixo:
 
 ## URL da imagem:
 
--   https://fernaandojr.dev/og_image.jpg
+-   https://fernaandojr.dev/og_image.png
 
 **Nota**: Esta imagem será usada em todas as páginas do site (home, about, projects, articles).

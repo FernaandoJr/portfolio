@@ -48,7 +48,7 @@ export const metadata: Metadata = {
 		locale: "pt_BR",
 		images: [
 			{
-				url: "https://fernaandojr.dev/og_image.jpg",
+				url: "https://fernaandojr.dev/og_image.png",
 				width: 1200,
 				height: 630,
 				alt: "Fernando Jr - Desenvolvedor Full Stack",
@@ -60,7 +60,7 @@ export const metadata: Metadata = {
 		title: "Sobre Fernando Jr - Desenvolvedor Full Stack",
 		description:
 			"Conheça a história de Fernando Jr, desenvolvedor full stack apaixonado por tecnologia. Formado em Análise e Desenvolvimento de Sistemas.",
-		images: ["https://fernaandojr.dev/og_image.jpg"],
+		images: ["https://fernaandojr.dev/og_image.png"],
 		creator: "@fernaandojr",
 	},
 	alternates: {
