@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button"
 import ProjectCard from "@/components/ui/project-card"
 import { Spinner } from "@/components/ui/spinner"
+import { useProjectsMetadata } from "@/hooks/use-projects-metadata"
 import axios from "axios"
 import Link from "next/link"
 import { useEffect, useState } from "react"
@@ -25,6 +26,7 @@ export default function Home() {
 	const [loading, setLoading] = useState(true)
 	const [error, setError] = useState<string | null>(null)
 	const { t } = useTranslation()
+	useProjectsMetadata()
 
 	useEffect(() => {
 		const fetchRepositories = async () => {

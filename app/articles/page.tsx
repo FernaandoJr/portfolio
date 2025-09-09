@@ -1,8 +1,10 @@
 "use client"
+import { useArticlesMetadata } from "@/hooks/use-articles-metadata"
 import { Construction } from "lucide-react"
 import { useTranslation } from "react-i18next"
 export default function Home() {
 	const { t } = useTranslation()
+	useArticlesMetadata()
 	return (
 		<div className="container mx-auto py-18 sx:px-3 sx:px-3 sm:px-6 lg:px-8">
 			<div className="flex flex-col items-center justify-center h-screen">

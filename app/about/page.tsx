@@ -1,10 +1,12 @@
 "use client"
 
 import Href from "@/components/ui/href"
+import { useAboutMetadata } from "@/hooks/use-about-metadata"
 import { Trans, useTranslation } from "react-i18next"
 
 export default function AboutPage() {
 	const { t } = useTranslation()
+	useAboutMetadata()
 
 	return (
 		<div className="container mx-auto pt-18 px-4 sm:px-6 lg:px-8">
