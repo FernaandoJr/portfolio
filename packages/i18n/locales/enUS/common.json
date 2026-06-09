@@ -1,0 +1,20 @@
+{
+  "navAbout": "About",
+  "navProjects": "Projects",
+  "navContact": "Contact",
+  "heroRole": "Full Stack Developer",
+  "aboutTitle": "About",
+  "aboutSoon": "Coming soon...",
+  "projectsTitle": "Projects",
+  "projectsSoon": "Coming soon...",
+  "contactTitle": "Contact",
+  "contactSoon": "Coming soon...",
+  "languages": "Language",
+  "english": "English",
+  "portuguese": "Portuguese",
+  "darkMode": "Dark mode",
+  "lightMode": "Light mode",
+  "systemMode": "System mode",
+  "toggleTheme": "Toggle theme",
+  "openMenu": "Open menu"
+}

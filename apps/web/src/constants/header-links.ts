@@ -1,5 +1,5 @@
 export const headerLinks = [
-  { key: 'Sobre', href: '#about' },
-  { key: 'Projetos', href: '#projects' },
-  { key: 'Contato', href: '#contact' },
+  { key: 'navAbout', href: '#about' },
+  { key: 'navProjects', href: '#projects' },
+  { key: 'navContact', href: '#contact' },
 ] as const;

@@ -1,11 +1,13 @@
 "use client";
 
 import { MenuToggleIcon } from "@/components/header/menu-toggle-icon";
+import { LanguageSwitcher } from "@/components/language-switcher";
 import { ModeToggle } from "@/components/mode-toggle";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { headerLinks } from "@/constants/header-links";
-import { cn } from "@/lib/utils";
 import { useScroll } from "@/lib/use-scroll";
+import { cn } from "@/lib/utils";
+import { useTranslation } from "@repo/i18n";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
@@ -21,6 +23,7 @@ export function Header({
 }: HeaderProps) {
   const [open, setOpen] = useState(false);
   const scrolled = useScroll(10);
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (open) {
@@ -36,7 +39,7 @@ export function Header({
   return (
     <header
       className={cn(
-        "z-50 w-full border-b border-transparent",
+        "z-50 w-full border-b border-transparent ",
         !disableSticky && "fixed top-0 right-0 left-0",
         disableSticky && "relative",
         {
@@ -60,13 +63,14 @@ export function Header({
                 )}
                 href={link.href}
               >
-                {link.key}
+                {t(link.key)}
               </Link>
             ))}
           </div>
         </div>
 
         <div className="hidden items-center gap-2 md:flex">
+          <LanguageSwitcher />
           <ModeToggle />
         </div>
 
@@ -77,7 +81,7 @@ export function Header({
           className="md:hidden"
           aria-expanded={open}
           aria-controls="mobile-menu"
-          aria-label="Toggle menu"
+          aria-label={t("openMenu")}
         >
           <MenuToggleIcon open={open} className="size-5" duration={300} />
         </Button>
@@ -98,9 +102,13 @@ export function Header({
               href={link.href}
               onClick={() => setOpen(false)}
             >
-              {link.key}
+              {t(link.key)}
             </Link>
           ))}
+        </div>
+        <div className="flex items-center gap-2 p-1">
+          <LanguageSwitcher />
+          <ModeToggle />
         </div>
       </MobileMenu>
     </header>

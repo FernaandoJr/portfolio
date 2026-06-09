@@ -1,23 +1,35 @@
-import type { Metadata } from 'next';
-import { Geist, JetBrains_Mono, Merriweather } from 'next/font/google';
-import { ThemeProvider } from 'next-themes';
-import { Header } from '@/components/header';
-import { BGPattern } from '@/components/ui/bg-pattern';
-import { TooltipProvider } from '@/components/ui/tooltip';
-import './globals.css';
+import type { Metadata } from "next";
+import { Geist, JetBrains_Mono, Merriweather } from "next/font/google";
+import { cookies } from "next/headers";
+import { ThemeProvider } from "next-themes";
+import { Header } from "@/components/header";
+import { I18nProvider } from "@/components/providers/i18n-provider";
+import { BGPattern } from "@/components/ui/bg-pattern";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import "./globals.css";
 
-const geist = Geist({ subsets: ['latin'], variable: '--font-sans' });
-const merriweather = Merriweather({ subsets: ['latin'], weight: ['300', '400', '700', '900'], variable: '--font-serif' });
-const jetbrainsMono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono' });
+const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
+const merriweather = Merriweather({
+  subsets: ["latin"],
+  weight: ["300", "400", "700", "900"],
+  variable: "--font-serif",
+});
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+});
 
 export const metadata: Metadata = {
-  title: 'Fernando Jr — Portfolio',
-  description: 'Portfolio de desenvolvimento web',
+  title: "Fernando Jr — Portfolio",
+  description: "Portfolio de desenvolvimento web",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+  const cookieStore = await cookies();
+  const locale = cookieStore.get("NEXT_LOCALE")?.value ?? "ptBR";
+
   return (
     <html
       lang="pt-BR"
@@ -25,19 +37,23 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body>
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-          <TooltipProvider>
-            <BGPattern
-              variant="grid"
-              mask="fade-edges"
-              fill="color-mix(in oklch, var(--border) 40%, transparent)"
-              size={96}
-              className="fixed"
-            />
-            <Header />
-            {children}
-          </TooltipProvider>
-        </ThemeProvider>
+        <I18nProvider locale={locale}>
+          <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+            <TooltipProvider>
+              <BGPattern
+                variant="grid"
+                mask="fade-edges"
+                fill="color-mix(in oklch, var(--border) 40%, transparent)"
+                size={96}
+                className="fixed"
+              />
+              <Header />
+              <div className="min-h-screen md:pt-36 pt-30 mb-0 pb-12 w-full max-w-3xl mx-auto px-6 lg:px-0">
+                {children}
+              </div>
+            </TooltipProvider>
+          </ThemeProvider>
+        </I18nProvider>
       </body>
     </html>
   );
