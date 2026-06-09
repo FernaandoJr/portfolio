@@ -51,6 +51,12 @@ export default async function RootLayout({
               <div className="min-h-screen md:pt-36 pt-30 mb-0 pb-12 w-full max-w-3xl mx-auto px-6 lg:px-0">
                 {children}
               </div>
+              <div
+                className="pointer-events-none fixed inset-x-0 bottom-0 z-50"
+                aria-hidden
+              >
+                <div className="h-24 bg-linear-to-b from-transparent to-background [mask-image:linear-gradient(to_top,var(--background)_25%,transparent)] backdrop-blur-[1px]" />
+              </div>
             </TooltipProvider>
           </ThemeProvider>
         </I18nProvider>
