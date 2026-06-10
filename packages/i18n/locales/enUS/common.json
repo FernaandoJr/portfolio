@@ -16,5 +16,22 @@
   "lightMode": "Light mode",
   "systemMode": "System mode",
   "toggleTheme": "Toggle theme",
-  "openMenu": "Open menu"
+  "openMenu": "Open menu",
+  "softwareBuilder": "Software Builder",
+  "frontEndDeveloper": "Front End Developer",
+  "interfaceCreator": "Interface creator",
+  "technologyEnthusiast": "Technology enthusiast",
+  "detailObsessed": "Detail obsessed",
+  "designEngineer": "Design Engineer",
+  "passionateAboutProgramming": "Passionate about programming",
+  "bioIntro": "Front-end Developer passionate about building modern, functional interfaces with an eye for the details that make a real difference in the user experience.",
+  "bioCurrently": "Working with",
+  "and": "and",
+
+  "location": "Location",
+  "email": "Email",
+  "localTime": "Local time",
+  "sameTime": "same time",
+  "ahead": "ahead",
+  "behind": "behind"
 }

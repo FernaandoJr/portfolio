@@ -1,37 +1,43 @@
-"use client";
+"use client"
 
-import { useTranslation } from "@repo/i18n";
-import HeroSection from "@/components/heroSection";
+import InfoSection from "@/components/infoSection"
+import { useTranslation } from "@repo/i18n"
 
 export default function Home() {
-  const { t } = useTranslation();
+	const { t } = useTranslation()
 
-  return (
-    <main className="flex flex-col">
-      <section id="hero" className="">
-        <HeroSection />
-      </section>
+	return (
+		<main className="flex flex-col">
+			<section id="hero" className="">
+				<InfoSection />
+			</section>
 
-      <section id="about" className="min-h-screen py-24">
-        <div className="w-full max-w-3xl mx-auto px-6 lg:px-0">
-          <h2 className="text-3xl font-bold">{t("aboutTitle")}</h2>
-          <p className="mt-4 text-muted-foreground">{t("aboutSoon")}</p>
-        </div>
-      </section>
+			<section id="about" className="min-h-screen py-24">
+				<div className="w-full max-w-3xl mx-auto px-6 lg:px-0">
+					<h2 className="text-3xl font-bold">{t("aboutTitle")}</h2>
+					<p className="mt-4 text-muted-foreground">
+						{t("aboutSoon")}
+					</p>
+				</div>
+			</section>
 
-      <section id="projects" className="min-h-screen py-24">
-        <div className="w-full max-w-3xl mx-auto px-6 lg:px-0">
-          <h2 className="text-3xl font-bold">{t("projectsTitle")}</h2>
-          <p className="mt-4 text-muted-foreground">{t("projectsSoon")}</p>
-        </div>
-      </section>
+			<section id="projects" className="min-h-screen py-24">
+				<div className="w-full max-w-3xl mx-auto px-6 lg:px-0">
+					<h2 className="text-3xl font-bold">{t("projectsTitle")}</h2>
+					<p className="mt-4 text-muted-foreground">
+						{t("projectsSoon")}
+					</p>
+				</div>
+			</section>
 
-      <section id="contact" className="min-h-screen py-24">
-        <div className="w-full max-w-3xl mx-auto px-6 lg:px-0">
-          <h2 className="text-3xl font-bold">{t("contactTitle")}</h2>
-          <p className="mt-4 text-muted-foreground">{t("contactSoon")}</p>
-        </div>
-      </section>
-    </main>
-  );
+			<section id="contact" className="min-h-screen py-24">
+				<div className="w-full max-w-3xl mx-auto px-6 lg:px-0">
+					<h2 className="text-3xl font-bold">{t("contactTitle")}</h2>
+					<p className="mt-4 text-muted-foreground">
+						{t("contactSoon")}
+					</p>
+				</div>
+			</section>
+		</main>
+	)
 }
