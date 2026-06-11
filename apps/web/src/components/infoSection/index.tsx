@@ -4,15 +4,10 @@ import { useTranslation } from "@repo/i18n"
 import { AnimatePresence, motion } from "framer-motion"
 import { CheckIcon, MailIcon, MapPinIcon } from "lucide-react"
 import Image from "next/image"
-import Link from "next/link"
 import { useState } from "react"
 
-const techStack = [
-	{ label: "React", href: "https://react.dev" },
-	{ label: "Next.js", href: "https://nextjs.org" },
-	{ label: "TypeScript", href: "https://www.typescriptlang.org" },
-	{ label: "Tailwind CSS", href: "https://tailwindcss.com" },
-]
+import SkillsSection from "@/components/skillsSection"
+import { GithubHeatmap } from "./github-heatmap"
 import { LocalTime } from "./local-time"
 import { RotatingSubtitle } from "./rotating-subtitle"
 import { SocialLinks } from "./social-links"
@@ -92,25 +87,9 @@ export default function InfoSection() {
 				<LocalTime />
 			</div>
 
-			<p className="text-muted-foreground text-sm leading-relaxed w-full">
-				{t("bioIntro")}{" "}
-				{t("bioCurrently")}{" "}
-				{techStack.map((tech, i) => (
-					<span key={tech.label}>
-						<Link
-							href={tech.href}
-							target="_blank"
-							rel="noopener noreferrer"
-							className="text-foreground underline underline-offset-2 hover:text-muted-foreground transition-colors"
-						>
-							{tech.label}
-						</Link>
-						{i < techStack.length - 2 ? ", " : i === techStack.length - 2 ? ` ${t("and")} ` : "."}
-					</span>
-				))}
-			</p>
-
 			<SocialLinks />
+			<GithubHeatmap />
+			<SkillsSection />
 		</>
 	)
 }

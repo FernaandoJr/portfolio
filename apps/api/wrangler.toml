@@ -1,0 +1,15 @@
+name = "portfolio-api"
+main = "src/index.ts"
+compatibility_date = "2025-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+[[d1_databases]]
+binding = "portfolio_cache"
+database_name = "portfolio-cache"
+database_id = "8b731d0f-410e-4b04-aef3-708c1e923ab1"
+
+[triggers]
+crons = ["0 3 * * *"]
+
+[vars]
+ALLOWED_ORIGIN = "https://seudominio.com"
