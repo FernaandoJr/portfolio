@@ -7,12 +7,11 @@ import Image from "next/image"
 import { useState } from "react"
 
 import SkillsSection from "@/components/skillsSection"
+import { EMAIL, LOCATION, NAME } from "@/constants/profile"
 import { GithubHeatmap } from "./github-heatmap"
 import { LocalTime } from "./local-time"
 import { RotatingSubtitle } from "./rotating-subtitle"
 import { SocialLinks } from "./social-links"
-
-const EMAIL = "fernaando.divino@gmail.com"
 
 export default function InfoSection() {
 	const { t } = useTranslation()
@@ -36,12 +35,12 @@ export default function InfoSection() {
 					/>
 				</div>
 				<div className="flex flex-col gap-0.5">
-					<p className="text-3xl font-bold">FernaandoJr</p>
+					<p className="text-3xl font-bold">{NAME}</p>
 					<RotatingSubtitle />
 				</div>
 			</div>
 
-			<div className="flex flex-row gap-12 justify-start my-12">
+			<div className="flex flex-col sm:flex-row sm:flex-wrap gap-y-6 sm:gap-x-12 justify-start my-12">
 				<div className="flex flex-col gap-2">
 					<p className="text-muted-foreground uppercase font-bold text-sm">
 						{t("location")}
@@ -49,7 +48,7 @@ export default function InfoSection() {
 					<div className="flex items-center gap-2">
 						<MapPinIcon className="size-4 text-foreground" />
 						<p className="text-foreground uppercase font-normal text-sm">
-							São Paulo, Brazil
+							{LOCATION}
 						</p>
 					</div>
 				</div>

@@ -1,14 +1,13 @@
 "use client"
 
 import { useTranslation } from "@repo/i18n"
+import { TIMEZONE } from "@/constants/profile"
 import { ClockIcon } from "lucide-react"
 import { useEffect, useState } from "react"
 
-const SP_TIMEZONE = "America/Sao_Paulo"
-
 function getTime() {
 	return new Intl.DateTimeFormat("en-US", {
-		timeZone: SP_TIMEZONE,
+		timeZone: TIMEZONE,
 		hour: "2-digit",
 		minute: "2-digit",
 		hour12: false,
@@ -17,9 +16,10 @@ function getTime() {
 
 export function LocalTime() {
 	const { t } = useTranslation()
-	const [time, setTime] = useState(getTime)
+	const [time, setTime] = useState<string | null>(null)
 
 	useEffect(() => {
+		setTime(getTime())
 		const interval = setInterval(() => setTime(getTime()), 1000)
 		return () => clearInterval(interval)
 	}, [])

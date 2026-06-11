@@ -40,10 +40,7 @@ export default async function RootLayout({
 			lang="pt-BR"
 			className={`${geist.variable} ${merriweather.variable} ${jetbrainsMono.variable} antialiased`}
 			suppressHydrationWarning>
-			<head>
-				<script src="https://tweakcn.com/live-preview.min.js" />
-			</head>
-			<body>
+			<body suppressHydrationWarning>
 				<I18nProvider locale={locale}>
 					<QueryProvider>
 						<ThemeProvider

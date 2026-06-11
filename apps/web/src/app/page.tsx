@@ -2,6 +2,7 @@
 
 import AboutSection from "@/components/aboutSection"
 import InfoSection from "@/components/infoSection"
+import ProjectsSection from "@/components/projectsSection"
 import { useTranslation } from "@repo/i18n"
 
 export default function Home() {
@@ -20,12 +21,10 @@ export default function Home() {
 				</div>
 			</section>
 
-			<section id="projects" className="min-h-screen py-24">
+			<section id="projects" className="py-24">
 				<div className="w-full max-w-3xl mx-auto px-6 lg:px-0">
 					<h2 className="text-3xl font-bold">{t("projectsTitle")}</h2>
-					<p className="mt-4 text-muted-foreground">
-						{t("projectsSoon")}
-					</p>
+					<ProjectsSection />
 				</div>
 			</section>
 

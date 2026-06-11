@@ -1,16 +1,9 @@
 "use client"
 
 import { useTranslation } from "@repo/i18n"
+import { subtitleKeys } from "@/constants/rotating-subtitles"
 import { AnimatePresence, motion } from "framer-motion"
 import { useEffect, useState } from "react"
-
-const subtitleKeys = [
-	"technologyEnthusiast",
-	"passionateAboutProgramming",
-	"designEngineer",
-	"softwareBuilder",
-	"detailObsessed",
-] as const
 
 const duration = 0.7
 

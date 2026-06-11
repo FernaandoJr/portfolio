@@ -48,5 +48,16 @@
   "githubContributionTooltip_plural": "{{count}} contributions on {{date}}",
   "less": "Less",
   "more": "More",
-  "techStack": "Tech Stack"
+  "techStack": "Tech Stack",
+
+  "wip": "In progress",
+  "viewOnGitHub": "GitHub",
+  "viewSite": "Visit site",
+
+  "projectAstroVistaDesc": "Open source app that explores NASA's space images and videos, archiving daily APOD images dating back to 1995.",
+  "projectOrbitDashboardDesc": "Real-time analytics dashboard with interactive charts, data streaming, and advanced filters.",
+  "projectForgeApiDesc": "High-performance REST API with JWT authentication, rate limiting, and automatic OpenAPI documentation.",
+  "projectPixelCanvasDesc": "Collaborative real-time pixel art editor with public rooms, customizable palette, and PNG export.",
+  "projectStellarNotesDesc": "Notes app with rich text editor, workspace organization, semantic search, and cloud sync.",
+  "projectVoidCliDesc": "CLI tool for project scaffolding with custom templates, plugins, and npm integration."
 }
