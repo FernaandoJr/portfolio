@@ -59,5 +59,18 @@
   "projectForgeApiDesc": "API REST de alta performance com autenticação JWT, rate limiting e documentação automática via OpenAPI.",
   "projectPixelCanvasDesc": "Editor colaborativo de pixel art em tempo real com salas públicas, paleta customizável e exportação PNG.",
   "projectStellarNotesDesc": "App de notas com editor rich text, organização em workspaces, busca semântica e sincronização em nuvem.",
-  "projectVoidCliDesc": "Ferramenta CLI para scaffolding de projetos com templates personalizados, plugins e integração com npm."
+  "projectVoidCliDesc": "Ferramenta CLI para scaffolding de projetos com templates personalizados, plugins e integração com npm.",
+
+  "experienceTitle": "Experiência",
+  "fullTime": "Tempo integral",
+  "partTime": "Meio período",
+  "freelance": "Freelance",
+  "internship": "Estágio",
+  "remote": "Remoto",
+  "hybrid": "Híbrido",
+  "onSite": "Presencial",
+
+  "expNovatechDesc": "Desenvolvimento de interfaces web responsivas e sistemas de design com Next.js e TypeScript. Trabalhei em estreita colaboração com designers de UX para implementar interfaces pixel-perfect e melhorar a DX com ferramentas internas.",
+  "expPixelStudioDesc": "Construção e manutenção de front-ends de e-commerce e landing pages com React e MUI. Liderou a migração de componentes baseados em classes para hooks, reduzindo o bundle em 30%.",
+  "expDevShopDesc": "Apoio no desenvolvimento de páginas e componentes web para projetos de clientes. Experiência prática com HTML, CSS, JavaScript e React em ambiente de agência."
 }
