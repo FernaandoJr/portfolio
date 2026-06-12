@@ -58,9 +58,14 @@ export default function Footer() {
 							target="_blank"
 							rel="noopener noreferrer"
 							title={t("footerSource")}
-							className="inline-flex items-center hover:opacity-100 opacity-50 transition-opacity"
-						>
-							<Image src="/icons/github.svg" alt="GitHub" width={12} height={12} className="size-3 dark:invert" />
+							className="inline-flex items-center hover:opacity-100 opacity-50 transition-opacity">
+							<Image
+								src="/icons/github.svg"
+								alt="GitHub"
+								width={12}
+								height={12}
+								className="size-3 dark:invert"
+							/>
 						</Link>
 					</span>
 					<span className="text-xs text-muted-foreground/50 select-none flex items-center gap-1">
