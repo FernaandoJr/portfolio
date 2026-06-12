@@ -13,6 +13,8 @@
 	"dependencies": {
 		"@base-ui/react": "^1.5.0",
 		"@iconify/react": "^6.0.2",
+		"@radix-ui/react-hover-card": "^1.1.16",
+		"@radix-ui/react-slot": "^1.2.5",
 		"@tailwindcss/postcss": "^4.3.0",
 		"@tanstack/react-query": "^5.101.0",
 		"axios": "^1.17.0",
@@ -40,8 +42,8 @@
 		"vaul": "^1.1.2"
 	},
 	"devDependencies": {
-		"@repo/eslint-config": "workspace:*",
 		"@repo/api-client": "workspace:*",
+		"@repo/eslint-config": "workspace:*",
 		"@repo/i18n": "workspace:*",
 		"@repo/typescript-config": "workspace:*",
 		"@types/node": "^22.15.3",

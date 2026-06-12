@@ -1,4 +1,27 @@
 {
+  "footerRights": "Use as inspiration.",
+  "footerMadeWith": "made with",
+  "footerSource": "Source Code",
+
+  "quoteText": "Any fool can write code that a computer can understand. Good programmers write code that humans can understand.",
+  "quoteAuthor": "Martin Fowler",
+
+  "showMore": "show more",
+  "showLess": "show less",
+
+  "monthJan": "Jan",
+  "monthFeb": "Feb",
+  "monthMar": "Mar",
+  "monthApr": "Apr",
+  "monthMay": "May",
+  "monthJun": "Jun",
+  "monthJul": "Jul",
+  "monthAug": "Aug",
+  "monthSep": "Sep",
+  "monthOct": "Oct",
+  "monthNov": "Nov",
+  "monthDec": "Dec",
+
   "navAbout": "About",
   "navProjects": "Projects",
   "navContact": "Contact",
@@ -70,7 +93,13 @@
   "hybrid": "Hybrid",
   "onSite": "On-site",
 
-  "expNovatechDesc": "Development of responsive web interfaces and design systems using Next.js and TypeScript. Worked closely with UX designers to implement pixel-perfect interfaces and improve DX with internal tooling.",
-  "expPixelStudioDesc": "Building and maintaining e-commerce front-ends and landing pages with React and MUI. Led migration from class-based components to hooks, reducing bundle size by 30%.",
-  "expDevShopDesc": "Assisted in the development of web pages and components for client projects. Hands-on experience with HTML, CSS, JavaScript, and React in an agency environment."
+  "companyDolphinDesc": "Brazilian software company focused on technological solutions, developing AgroCRM, a complete platform for sales management and customer relationships for companies across various industries.",
+
+  "expDolphinFrontDesc": "Developing a new AgroCRM platform using modern architecture, building a rich component library including comboboxes, date inputs, and file uploads. Working collaboratively with multiple developers in a monorepo, while also building from scratch a cross-platform mobile app with offline-first support using Expo and React Native.",
+  "expDolphinFrontBullet1": "Built reusable form components and a cross-platform mobile app with offline sync from scratch",
+  "expDolphinFrontBullet2": "Collaborated with multiple developers in a structured monorepo with MVVM architecture and strong DX practices",
+
+  "expDolphinBackDesc": "Developed and maintained RESTful APIs using GeneXus, handling CRUD operations and backend optimizations in close collaboration with frontend and support teams.",
+  "expDolphinBackBullet1": "Created and maintained CRUD operations with performance-focused optimizations",
+  "expDolphinBackBullet2": "Worked closely with the frontend team to align API contracts and resolve integration issues"
 }

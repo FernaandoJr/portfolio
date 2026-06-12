@@ -1,4 +1,27 @@
 {
+  "footerRights": "Use como inspiração.",
+  "footerMadeWith": "feito com",
+  "footerSource": "Código Fonte",
+
+  "quoteText": "Qualquer um pode escrever um código que o computador entenda. Bons programadores escrevem códigos que os humanos entendam.",
+  "quoteAuthor": "Martin Fowler",
+
+  "showMore": "ver mais",
+  "showLess": "ver menos",
+
+  "monthJan": "Jan",
+  "monthFeb": "Fev",
+  "monthMar": "Mar",
+  "monthApr": "Abr",
+  "monthMay": "Mai",
+  "monthJun": "Jun",
+  "monthJul": "Jul",
+  "monthAug": "Ago",
+  "monthSep": "Set",
+  "monthOct": "Out",
+  "monthNov": "Nov",
+  "monthDec": "Dez",
+
   "navAbout": "Sobre",
   "navProjects": "Projetos",
   "navContact": "Contato",
@@ -70,7 +93,13 @@
   "hybrid": "Híbrido",
   "onSite": "Presencial",
 
-  "expNovatechDesc": "Desenvolvimento de interfaces web responsivas e sistemas de design com Next.js e TypeScript. Trabalhei em estreita colaboração com designers de UX para implementar interfaces pixel-perfect e melhorar a DX com ferramentas internas.",
-  "expPixelStudioDesc": "Construção e manutenção de front-ends de e-commerce e landing pages com React e MUI. Liderou a migração de componentes baseados em classes para hooks, reduzindo o bundle em 30%.",
-  "expDevShopDesc": "Apoio no desenvolvimento de páginas e componentes web para projetos de clientes. Experiência prática com HTML, CSS, JavaScript e React em ambiente de agência."
+  "companyDolphinDesc": "Empresa brasileira de software focada em soluções tecnológicas, desenvolvedora do AgroCRM, uma plataforma completa para gestão de vendas e relacionamento com clientes para empresas de diversos segmentos.",
+
+  "expDolphinFrontDesc": "Desenvolvimento de uma nova plataforma AgroCRM com arquiteturas modernas, construindo uma biblioteca rica de componentes de formulário como comboboxes, inputs de data e file upload. Trabalho colaborativo com múltiplos desenvolvedores em monorepo, além do desenvolvimento do zero de um aplicativo mobile multiplataforma com suporte offline usando Expo e React Native.",
+  "expDolphinFrontBullet1": "Criei componentes de formulário reutilizáveis e uma aplicação mobile multiplataforma com sincronização offline",
+  "expDolphinFrontBullet2": "Colaborei com múltiplos desenvolvedores em um monorepo estruturado com arquitetura MVVM e boas práticas de DX",
+
+  "expDolphinBackDesc": "Desenvolvi e mantive APIs RESTful com GeneXus, realizando operações CRUD e otimizações de backend em colaboração com os times de frontend e suporte.",
+  "expDolphinBackBullet1": "Criei e mantive operações CRUD com foco em performance e estabilidade",
+  "expDolphinBackBullet2": "Trabalhei em conjunto com o time de frontend para alinhar contratos de API e resolver integrações"
 }

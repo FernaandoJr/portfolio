@@ -32,6 +32,7 @@ export default function InfoSection() {
 						alt="Fernando Jr"
 						width={80}
 						height={80}
+						className="size-20"
 					/>
 				</div>
 				<div className="flex flex-col gap-0.5">

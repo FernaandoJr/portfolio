@@ -67,6 +67,12 @@ export const skills: Skill[] = [
 		icon: "/icons/skills/vite.svg",
 		href: "https://vitejs.dev",
 	},
+	{
+		id: "vitest",
+		label: "Vitest",
+		icon: "/icons/skills/vitest.svg",
+		href: "https://vitest.dev",
+	},
 	// Backend
 	{
 		id: "hono",
@@ -113,6 +119,12 @@ export const skills: Skill[] = [
 		label: "MUI",
 		icon: "/icons/skills/material-ui.svg",
 		href: "https://mui.com",
+	},
+	{
+		id: "genexus",
+		label: "GeneXus",
+		icon: "/icons/skills/genexus.png",
+		href: "https://www.genexus.com",
 	},
 	// Banco de dados
 	{

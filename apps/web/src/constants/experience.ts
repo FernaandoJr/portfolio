@@ -1,54 +1,65 @@
 export type Modality = "remote" | "hybrid" | "on-site"
 export type JobType = "full-time" | "part-time" | "freelance" | "internship"
 
+export type CompanyInfo = {
+	name: string
+	descKey: string
+	url: string
+	logo?: string
+}
+
 export type Experience = {
 	id: string
 	role: string
 	company: string
+	companyInfo?: CompanyInfo
 	modality: Modality
 	type: JobType
 	startDate: string
 	endDate: string | null
 	current: boolean
 	descKey: string
+	bulletKeys: string[]
 	stack: string[]
 }
 
 export const experiences: Experience[] = [
 	{
-		id: "novatech",
+		id: "dolphin-frontend",
 		role: "Frontend Developer",
-		company: "NovaTech Solutions",
+		company: "Dolphin Sistemas",
+		companyInfo: {
+			name: "Dolphin Sistemas",
+			descKey: "companyDolphinDesc",
+			url: "https://agrocrm.com.br",
+			logo: "/icons/companies/dolphin-brand.png",
+		},
 		modality: "remote",
 		type: "full-time",
-		startDate: "Mar 2024",
+		startDate: "May 2025",
 		endDate: null,
 		current: true,
-		descKey: "expNovatechDesc",
-		stack: ["Next.js", "TypeScript", "Tailwind", "React", "TanStack", "shadcn/ui"],
+		descKey: "expDolphinFrontDesc",
+		bulletKeys: ["expDolphinFrontBullet1", "expDolphinFrontBullet2"],
+		stack: ["TypeScript", "Node.js", "Bun", "React", "Expo", "Next.js", "Vite", "Vitest", "Tailwind", "shadcn/ui", "MUI", "Cursor", "Codex"],
 	},
 	{
-		id: "pixelstudio",
-		role: "Frontend Developer",
-		company: "Pixel Studio",
+		id: "dolphin-backend",
+		role: "Backend Developer",
+		company: "Dolphin Sistemas",
+		companyInfo: {
+			name: "Dolphin Sistemas",
+			descKey: "companyDolphinDesc",
+			url: "https://agrocrm.com.br",
+			logo: "/icons/companies/dolphin-brand.png",
+		},
 		modality: "hybrid",
 		type: "full-time",
-		startDate: "Aug 2022",
-		endDate: "Feb 2024",
+		startDate: "Sep 2024",
+		endDate: "May 2025",
 		current: false,
-		descKey: "expPixelStudioDesc",
-		stack: ["React", "JavaScript", "MUI", "Vite", "Redux"],
-	},
-	{
-		id: "devshop",
-		role: "Frontend Intern",
-		company: "DevShop Agency",
-		modality: "on-site",
-		type: "part-time",
-		startDate: "Jan 2022",
-		endDate: "Jul 2022",
-		current: false,
-		descKey: "expDevShopDesc",
-		stack: ["React", "JavaScript", "Tailwind"],
+		descKey: "expDolphinBackDesc",
+		bulletKeys: ["expDolphinBackBullet1", "expDolphinBackBullet2"],
+		stack: ["GeneXus", "MySQL", "Postman"],
 	},
 ]

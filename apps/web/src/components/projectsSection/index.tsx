@@ -130,11 +130,7 @@ function ProjectCard({ project }: { project: Project }) {
 										width={22}
 										height={22}
 										draggable={false}
-										className={
-											skill.darkInvert
-												? "dark:invert"
-												: ""
-										}
+										className={"size-[22px] cursor-pointer " + (skill.darkInvert ? "dark:invert" : "")}
 									/>
 								</TooltipTrigger>
 								<TooltipContent className="font-sans text-xs select-none">

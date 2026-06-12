@@ -1,3 +1,4 @@
+import Footer from "@/components/footer"
 import { Header } from "@/components/header"
 import { I18nProvider } from "@/components/providers/i18n-provider"
 import { QueryProvider } from "@/components/providers/query-provider"
@@ -59,6 +60,7 @@ export default async function RootLayout({
 								<div className="min-h-screen md:pt-36 pt-30 mb-0 pb-12 w-full max-w-3xl mx-auto px-6 lg:px-0">
 									{children}
 								</div>
+								<Footer />
 								<div
 									className="pointer-events-none fixed inset-x-0 bottom-0 z-50"
 									aria-hidden>

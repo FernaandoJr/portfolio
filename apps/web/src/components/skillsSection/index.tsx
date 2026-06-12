@@ -41,14 +41,14 @@ export default function SkillsSection() {
 								src={skill.icon}
 								alt={skill.label}
 								width={32}
-								draggable={false}
 								height={32}
+								draggable={false}
 								className={
-									skill.alwaysInvert
+									"size-8 " + (skill.alwaysInvert
 										? "invert"
 										: skill.darkInvert
 											? "dark:invert"
-											: ""
+											: "")
 								}
 							/>
 						</TooltipTrigger>
