@@ -25,6 +25,9 @@ export const config = [
     plugins: {
       onlyWarn,
     },
+    rules: {
+      "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_", varsIgnorePattern: "^_" }],
+    },
   },
   {
     ignores: ["dist/**"],

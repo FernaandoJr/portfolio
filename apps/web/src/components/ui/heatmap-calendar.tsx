@@ -128,7 +128,6 @@ function weekdayLabelForIndex(index: number, weekStartsOn: 0 | 1) {
 }
 
 export function HeatmapCalendar({
-  title = "Activity",
   data,
   rangeDays = 365,
   endDate = new Date(),

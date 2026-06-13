@@ -52,6 +52,10 @@ export const nextJsConfig = [
       ...pluginReactHooks.configs.recommended.rules,
       // React scope no longer necessary with new JSX transform.
       "react/react-in-jsx-scope": "off",
+      // TypeScript already handles prop type validation.
+      "react/prop-types": "off",
+      // React Compiler handles memoization automatically.
+      "react-hooks/exhaustive-deps": "off",
     },
   },
 ];

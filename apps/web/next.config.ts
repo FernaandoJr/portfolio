@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  experimental: {
+    reactCompiler: true,
+  },
   transpilePackages: ['@repo/i18n', '@repo/api-client'],
   images: {
     remotePatterns: [

@@ -8,6 +8,9 @@ importers:
 
   .:
     devDependencies:
+      husky:
+        specifier: ^9.1.7
+        version: 9.1.7
       prettier:
         specifier: ^3.7.4
         version: 3.7.4
@@ -89,7 +92,7 @@ importers:
         version: 1.17.0(react@19.2.0)
       next:
         specifier: 16.2.0
-        version: 16.2.0(@babel/core@7.29.7)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+        version: 16.2.0(@babel/core@7.29.7)(babel-plugin-react-compiler@19.0.0-beta-af1b7da-20250417)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       next-themes:
         specifier: ^0.4.6
         version: 0.4.6(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
@@ -151,6 +154,9 @@ importers:
       '@types/react-dom':
         specifier: 19.2.2
         version: 19.2.2(@types/react@19.2.2)
+      babel-plugin-react-compiler:
+        specifier: 19.0.0-beta-af1b7da-20250417
+        version: 19.0.0-beta-af1b7da-20250417
       eslint:
         specifier: ^9.39.1
         version: 9.39.1(jiti@2.7.0)
@@ -1556,6 +1562,9 @@ packages:
   axios@1.17.0:
     resolution: {integrity: sha512-J8SwNxprqqpbfenehxWYXE7CW+wM1BB4w3+N+g+/Wx40xM4rsLrfPmHHxSWIxJLYDgSY/HqlFPIYb2/S3rxafw==}
 
+  babel-plugin-react-compiler@19.0.0-beta-af1b7da-20250417:
+    resolution: {integrity: sha512-UyTCRmzpxa4H1EqJk8fWeUOzHdEA12NQZ5DrF5hyhCs+Y6f7B4pg1fkul49sRn9GPPGFgkrH4IxOtnQJ7tNXIA==}
+
   balanced-match@1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
 
@@ -2337,6 +2346,11 @@ packages:
     resolution: {integrity: sha512-eKCa6bwnJhvxj14kZk5NCPc6Hb6BdsU9DZcOnmQKSnO1VKrfV0zCvtttPZUsBvjmNDn8rpcJfpwSYnHBjc95MQ==}
     engines: {node: '>=18.18.0'}
 
+  husky@9.1.7:
+    resolution: {integrity: sha512-5gs5ytaNjBrh5Ow3zrvdUUY+0VxIuWVL4i9irt6friV+BqdCfmV11CQTWMiBYWHbXhco+J1kHfTOUkePhCDvMA==}
+    engines: {node: '>=18'}
+    hasBin: true
+
   i18next@25.10.10:
     resolution: {integrity: sha512-cqUW2Z3EkRx7NqSyywjkgCLK7KLCL6IFVFcONG7nVYIJ3ekZ1/N5jUsihHV6Bq37NfhgtczxJcxduELtjTwkuQ==}
     peerDependencies:
@@ -2986,10 +3000,6 @@ packages:
   picomatch@2.3.1:
     resolution: {integrity: sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==}
     engines: {node: '>=8.6'}
-
-  picomatch@4.0.3:
-    resolution: {integrity: sha512-5gTmgEY/sqK6gFXLIsQNH19lWb4ebPDLA4SdLP7dsWkIXHWlG66oPuVvXSGFPppYZz8ZDZq0dYYrbHfBCVUb1Q==}
-    engines: {node: '>=12'}
 
   picomatch@4.0.4:
     resolution: {integrity: sha512-QP88BAKvMam/3NxH6vj2o21R6MjxZUAd6nlwAS/pnGvN9IVLocLHxGYIzFhg6fUQ+5th6P4dv4eW9jX3DSIj7A==}
@@ -4904,6 +4914,10 @@ snapshots:
       - debug
       - supports-color
 
+  babel-plugin-react-compiler@19.0.0-beta-af1b7da-20250417:
+    dependencies:
+      '@babel/types': 7.29.7
+
   balanced-match@1.0.2: {}
 
   balanced-match@4.0.4: {}
@@ -5584,10 +5598,6 @@ snapshots:
     dependencies:
       reusify: 1.1.0
 
-  fdir@6.5.0(picomatch@4.0.3):
-    optionalDependencies:
-      picomatch: 4.0.3
-
   fdir@6.5.0(picomatch@4.0.4):
     optionalDependencies:
       picomatch: 4.0.4
@@ -5800,6 +5810,8 @@ snapshots:
   human-signals@2.1.0: {}
 
   human-signals@8.0.1: {}
+
+  husky@9.1.7: {}
 
   i18next@25.10.10(typescript@5.9.2):
     dependencies:
@@ -6207,7 +6219,7 @@ snapshots:
       react: 19.2.0
       react-dom: 19.2.0(react@19.2.0)
 
-  next@16.2.0(@babel/core@7.29.7)(react-dom@19.2.0(react@19.2.0))(react@19.2.0):
+  next@16.2.0(@babel/core@7.29.7)(babel-plugin-react-compiler@19.0.0-beta-af1b7da-20250417)(react-dom@19.2.0(react@19.2.0))(react@19.2.0):
     dependencies:
       '@next/env': 16.2.0
       '@swc/helpers': 0.5.15
@@ -6226,6 +6238,7 @@ snapshots:
       '@next/swc-linux-x64-musl': 16.2.0
       '@next/swc-win32-arm64-msvc': 16.2.0
       '@next/swc-win32-x64-msvc': 16.2.0
+      babel-plugin-react-compiler: 19.0.0-beta-af1b7da-20250417
       sharp: 0.34.5
     transitivePeerDependencies:
       - '@babel/core'
@@ -6382,8 +6395,6 @@ snapshots:
   picocolors@1.1.1: {}
 
   picomatch@2.3.1: {}
-
-  picomatch@4.0.3: {}
 
   picomatch@4.0.4: {}
 
@@ -6914,8 +6925,8 @@ snapshots:
 
   tinyglobby@0.2.15:
     dependencies:
-      fdir: 6.5.0(picomatch@4.0.3)
-      picomatch: 4.0.3
+      fdir: 6.5.0(picomatch@4.0.4)
+      picomatch: 4.0.4
 
   to-regex-range@5.0.1:
     dependencies:

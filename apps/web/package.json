@@ -49,6 +49,7 @@
 		"@types/node": "^22.15.3",
 		"@types/react": "19.2.2",
 		"@types/react-dom": "19.2.2",
+		"babel-plugin-react-compiler": "19.0.0-beta-af1b7da-20250417",
 		"eslint": "^9.39.1",
 		"typescript": "5.9.2"
 	}

@@ -1,0 +1,9 @@
+node_modules
+.next
+dist
+.turbo
+out
+build
+pnpm-lock.yaml
+*.min.js
+public

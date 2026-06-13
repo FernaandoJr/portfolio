@@ -130,7 +130,7 @@ export function GithubHeatmap() {
 								className="text-foreground underline underline-offset-2 hover:text-muted-foreground transition-colors"
 								href="https://github.com/FernaandoJr"
 								target="_blank"
-								rel="noopener">
+								rel="noopener noreferrer">
 								GitHub
 							</a>
 							.
