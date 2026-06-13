@@ -221,7 +221,7 @@ export function HeatmapCalendar({
 		let lastLabeledWeek = -999;
 		for (let i = 0; i < columns.length; i++) {
 			const col = columns[i];
-			const firstInCol = col.find((c) => !c.disabled)?.date ?? col[0].date;
+			const firstInCol = (col?.find((c) => !c.disabled)?.date ?? col?.[0]?.date) as Date;
 			const prevCol = i > 0 ? columns[i - 1] : null;
 			const prevFirst = prevCol?.find((c) => !c.disabled)?.date ?? prevCol?.[0]?.date;
 			const monthChanged = !prevFirst || !sameMonth(firstInCol, prevFirst);
@@ -293,7 +293,7 @@ export function HeatmapCalendar({
 
 	return (
 		<div className={cn(className)}>
-			<TooltipProvider delayDuration={80}>
+			<TooltipProvider delay={80}>
 				<div className={cn("flex gap-4 overflow-x-auto", placement === "bottom" && "flex-col")}>
 					<div className={cn("min-w-0", axisCfg.className)}>
 						{showAxis && showMonths ? (
@@ -354,7 +354,7 @@ export function HeatmapCalendar({
 											const cls = levels[clampLevel(cell.level, levels.length)];
 											return (
 												<Tooltip key={`${cell.key}-${i}`}>
-													<TooltipTrigger asChild>
+													<TooltipTrigger>
 														<button
 															type="button"
 															disabled={cell.disabled}

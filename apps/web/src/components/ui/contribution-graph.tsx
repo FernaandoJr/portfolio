@@ -193,7 +193,7 @@ export const ContributionGraph = ({
 	const LABEL_MARGIN = 8;
 	const labels = { ...DEFAULT_LABELS, ...labelsProp };
 	const labelHeight = fontSize + LABEL_MARGIN;
-	const year = data.length > 0 ? getYear(parseISO(data[0].date)) : new Date().getFullYear();
+	const year = data[0] ? getYear(parseISO(data[0].date)) : new Date().getFullYear();
 	const totalCount =
 		typeof totalCountProp === "number" ? totalCountProp : data.reduce((sum, a) => sum + a.count, 0);
 	const width = weeks.length * (blockSize + blockMargin) - blockMargin;
