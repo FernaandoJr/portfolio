@@ -11,6 +11,7 @@ export type CompanyInfo = {
 export type Experience = {
 	id: string
 	role: string
+	roleKey: string
 	company: string
 	companyInfo?: CompanyInfo
 	modality: Modality
@@ -27,6 +28,7 @@ export const experiences: Experience[] = [
 	{
 		id: "dolphin-frontend",
 		role: "Frontend Developer",
+		roleKey: "roleFrontendDeveloper",
 		company: "Dolphin Sistemas",
 		companyInfo: {
 			name: "Dolphin Sistemas",
@@ -46,6 +48,7 @@ export const experiences: Experience[] = [
 	{
 		id: "dolphin-backend",
 		role: "Backend Developer",
+		roleKey: "roleBackendDeveloper",
 		company: "Dolphin Sistemas",
 		companyInfo: {
 			name: "Dolphin Sistemas",

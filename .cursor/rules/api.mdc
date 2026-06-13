@@ -1,0 +1,46 @@
+---
+description: Rules for the Cloudflare Worker API
+globs: ["apps/api/**/*"]
+alwaysApply: false
+---
+
+# apps/api Rules
+
+## Runtime: Cloudflare Workers — not Node.js
+
+**Never use `process.env`** — env vars live on Hono context:
+
+```ts
+// ✅
+app.get("/route", (c) => {
+  const token = c.env.GITHUB_TOKEN
+  const db = c.env.portfolio_cache
+})
+
+// ❌ Will throw
+const token = process.env.GITHUB_TOKEN
+```
+
+## Secrets (Cloudflare Dashboard only — never commit)
+- `GITHUB_TOKEN` — GitHub GraphQL auth
+
+## Bindings (`wrangler.toml`)
+- `portfolio_cache` — D1 database (SQLite)
+
+## Hono pattern
+```ts
+import { Hono } from "hono"
+import type { Bindings } from "./types/bindings.js"
+
+const route = new Hono<{ Bindings: Bindings }>()
+route.get("/path", async (c) => c.json(data))
+```
+
+Always use `.js` extensions in local imports (ESM + Workers requirement).
+
+## Routes
+- `GET /api/health`
+- `GET /api/github/contributions` — D1 cache → GitHub GraphQL fallback
+
+## Cron
+Daily at 03:00 UTC. Handler: `src/cron.ts`. Triggered by Cloudflare, not HTTP.

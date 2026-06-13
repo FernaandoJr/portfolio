@@ -1,0 +1,57 @@
+---
+description: Rules for the Next.js web app
+globs: ["apps/web/**/*"]
+alwaysApply: false
+---
+
+# apps/web Rules
+
+## Stack
+Next.js 16, React 19, Tailwind v4, shadcn/ui, Framer Motion, TanStack Query, i18next.
+
+## Client vs Server components
+- Add `"use client"` for interactive components (hooks, event handlers, animations)
+- Layout and page-level wrappers are server components by default
+
+## i18n
+```tsx
+"use client"
+import { useTranslation } from "@repo/i18n"
+
+const { t } = useTranslation()
+// t("myKey") — key must exist in both ptBR and enUS locales
+```
+
+## Colors — only semantic Tailwind classes
+```
+bg-background    text-foreground
+bg-card          text-card-foreground
+bg-muted         text-muted-foreground
+bg-primary       text-primary-foreground
+border-border    ring-ring
+```
+Never raw oklch, hex, or rgb in components.
+
+## Typography
+- `font-sans` → Geist (body)
+- `font-serif` → Merriweather (decorative, dates)
+- `font-mono` → JetBrains Mono
+
+## Theme
+Both light and dark themes have equal visual weight. Verify changes in both.
+Dark mode via `.dark` class (`@custom-variant dark (&:is(.dark *))`).
+
+## Component location
+- Feature component → `components/[featureName]/index.tsx`
+- Sub-component → `components/[featureName]/my-sub.tsx`
+- UI primitive → `components/ui/` (check here before creating)
+
+## Page sections (in order)
+`#hero` → `#about` → `#projects` → `#experience` → `#contact` → QuoteSection
+
+Max width: `max-w-3xl mx-auto`, padding: `px-6 lg:px-0`
+
+## Adding content
+- New project → `constants/projects.ts` + i18n keys + image in `public/projects/`
+- New experience → `constants/experience.ts` + i18n keys + logo in `public/icons/companies/`
+- New skill → `constants/skills.ts` + SVG in `public/icons/skills/`

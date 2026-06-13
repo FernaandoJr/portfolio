@@ -94,7 +94,7 @@ function ExperienceCard({ exp }: { exp: Experience }) {
 									rel="noopener noreferrer"
 									className="font-medium text-foreground leading-snug cursor-pointer hover:text-foreground/70 transition-colors"
 								>
-									{exp.role}
+									{t(exp.roleKey)}
 								</a>
 							</HoverCardTrigger>
 							<HoverCardContent side="top" align="start" sideOffset={8}>
@@ -128,7 +128,7 @@ function ExperienceCard({ exp }: { exp: Experience }) {
 							</HoverCardContent>
 						</HoverCard>
 					) : (
-						<span className="font-medium text-foreground leading-snug">{exp.role}</span>
+						<span className="font-medium text-foreground leading-snug">{t(exp.roleKey)}</span>
 					)}
 					<span className="text-muted-foreground/70 text-xs font-serif shrink-0 mt-[3px] flex items-center gap-1 select-none">
 						{translateDate(exp.startDate, t)}{" · "}

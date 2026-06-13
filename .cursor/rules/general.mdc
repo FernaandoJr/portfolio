@@ -1,0 +1,54 @@
+---
+description: Global rules for the portfolio monorepo — apply to all files
+globs: ["**/*"]
+alwaysApply: true
+---
+
+# Portfolio Monorepo — Global Rules
+
+## Owner
+
+Fernando Junior (`FernaandoJr`), Fullstack Developer, São Paulo.
+- 2+ years experience. Full fluency in TypeScript, React, Next.js, Tailwind, Hono.
+- Detail-obsessed. This portfolio prioritizes visual quality over delivery speed.
+- Uses Claude Code + Cursor daily.
+- Day job: Dolphin Sistemas — production monorepo, React + Expo, MVVM.
+
+## Response style
+- Direct on routine tasks. Explain the *why* on architectural decisions.
+- Never explain basic TypeScript, React, or Tailwind.
+
+## Monorepo structure
+```
+apps/web   → Next.js 16 + React 19
+apps/api   → Cloudflare Worker (Hono + D1)
+packages/i18n         → i18next (ptBR + enUS)
+packages/api-client   → typed HTTP client
+```
+
+## Never do
+
+- Hardcode UI strings — always use `t("key")` and add to **both** locales simultaneously:
+  - `packages/i18n/locales/ptBR/common.json`
+  - `packages/i18n/locales/enUS/common.json`
+- Create new UI components without checking `apps/web/src/components/ui/` first
+- Change folder structure without being explicitly asked
+- Add code comments unless the *why* is non-obvious
+- Refactor code outside the scope of what was asked
+- Create `.md` files unless explicitly requested
+- Hardcode colors — use Tailwind semantic classes (`bg-background`, `text-muted-foreground`, etc.)
+
+## Data lives in constants
+All content is in `apps/web/src/constants/` (projects, skills, experience, socials, profile).
+Never propose a CMS or external data source.
+
+## Git
+Conventional Commits: `feat:`, `fix:`, `refactor:`, `chore:`, `docs:`
+Create commits only when explicitly asked.
+
+## No tests
+No test suite exists. Type-checking is the correctness mechanism.
+
+## Deploy
+- Web: Vercel (manual)
+- API: `wrangler deploy` (manual)

@@ -84,6 +84,9 @@
   "projectStellarNotesDesc": "Notes app with rich text editor, workspace organization, semantic search, and cloud sync.",
   "projectVoidCliDesc": "CLI tool for project scaffolding with custom templates, plugins, and npm integration.",
 
+  "roleFrontendDeveloper": "Frontend Developer",
+  "roleBackendDeveloper": "Backend Developer",
+
   "experienceTitle": "Experience",
   "fullTime": "Full-time",
   "partTime": "Part-time",
