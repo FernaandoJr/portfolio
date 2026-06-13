@@ -1,23 +1,17 @@
-"use client"
+"use client";
 
-import { useTranslation } from "@repo/i18n"
-import { motion } from "framer-motion"
-import Image from "next/image"
+import { useTranslation } from "@repo/i18n";
+import { motion } from "framer-motion";
+import Image from "next/image";
 
-import {
-	Tooltip,
-	TooltipContent,
-	TooltipTrigger,
-} from "@/components/ui/tooltip"
-import { skills } from "@/constants/skills"
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import { skills } from "@/constants/skills";
 
 export default function SkillsSection() {
-	const { t } = useTranslation()
+	const { t } = useTranslation();
 	return (
 		<div className="flex flex-col gap-4">
-			<p className="text-muted-foreground uppercase font-bold text-sm">
-				{t("techStack")}
-			</p>
+			<p className="text-muted-foreground uppercase font-bold text-sm">{t("techStack")}</p>
 			<div className="flex flex-wrap gap-x-4 gap-y-4 select-none">
 				{skills.map((skill) => (
 					<Tooltip key={skill.id}>
@@ -36,7 +30,8 @@ export default function SkillsSection() {
 										damping: 17,
 									}}
 								/>
-							}>
+							}
+						>
 							<Image
 								src={skill.icon}
 								alt={skill.label}
@@ -44,11 +39,8 @@ export default function SkillsSection() {
 								height={32}
 								draggable={false}
 								className={
-									"size-8 " + (skill.alwaysInvert
-										? "invert"
-										: skill.darkInvert
-											? "dark:invert"
-											: "")
+									"size-8 " +
+									(skill.alwaysInvert ? "invert" : skill.darkInvert ? "dark:invert" : "")
 								}
 							/>
 						</TooltipTrigger>
@@ -59,5 +51,5 @@ export default function SkillsSection() {
 				))}
 			</div>
 		</div>
-	)
+	);
 }

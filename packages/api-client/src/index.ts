@@ -1,2 +1,2 @@
-export type { Activity } from "./types"
-export { fetchGithubContributions } from "./github"
+export type { Activity } from "./types";
+export { fetchGithubContributions } from "./github";

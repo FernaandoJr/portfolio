@@ -1,13 +1,9 @@
-"use client"
+"use client";
 
-import {
-	Tooltip,
-	TooltipContent,
-	TooltipTrigger,
-} from "@/components/ui/tooltip"
-import { socials } from "@/constants/socials"
-import Image from "next/image"
-import Link from "next/link"
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import { socials } from "@/constants/socials";
+import Image from "next/image";
+import Link from "next/link";
 
 export function SocialLinks() {
 	return (
@@ -19,7 +15,8 @@ export function SocialLinks() {
 							href={social.href}
 							target="_blank"
 							rel="noopener noreferrer"
-							aria-label={social.label}>
+							aria-label={social.label}
+						>
 							<Image
 								src={social.icon}
 								alt={social.label}
@@ -33,5 +30,5 @@ export function SocialLinks() {
 				</Tooltip>
 			))}
 		</div>
-	)
+	);
 }

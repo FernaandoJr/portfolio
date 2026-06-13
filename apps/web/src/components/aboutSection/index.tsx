@@ -1,11 +1,11 @@
-"use client"
+"use client";
 
-import { useTranslation } from "@repo/i18n"
-import { ArrowRightIcon } from "lucide-react"
-import Link from "next/link"
+import { useTranslation } from "@repo/i18n";
+import { ArrowRightIcon } from "lucide-react";
+import Link from "next/link";
 
 export default function AboutSection() {
-	const { t } = useTranslation()
+	const { t } = useTranslation();
 
 	return (
 		<div className="flex flex-col gap-6">
@@ -35,5 +35,5 @@ export default function AboutSection() {
 				<ArrowRightIcon className="size-3.5 transition-transform group-hover:translate-x-0.5" />
 			</Link>
 		</div>
-	)
+	);
 }

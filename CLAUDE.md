@@ -14,8 +14,9 @@
 ## Response Style
 
 Mix direct and explanatory depending on context:
+
 - Day-to-day changes: direct, minimal prose, go straight to code.
-- New concepts or architectural decisions: explain the *why*, not just the *what*.
+- New concepts or architectural decisions: explain the _why_, not just the _what_.
 - Never explain basic TypeScript, React, or Tailwind concepts — assume full fluency.
 
 ## Repository Structure
@@ -33,6 +34,7 @@ portfolio/                     ← Turborepo monorepo (pnpm)
 ```
 
 ### Path aliases
+
 - `@/` → `apps/web/src/`
 - `@repo/i18n` → `packages/i18n`
 - `@repo/api-client` → `packages/api-client`
@@ -47,6 +49,7 @@ pnpm check-types  # Type-check all
 ```
 
 Run individual apps:
+
 ```bash
 cd apps/web && pnpm dev    # next dev → localhost:3000
 cd apps/api && pnpm dev    # wrangler dev → localhost:8787
@@ -61,6 +64,7 @@ cd apps/api && pnpm dev    # wrangler dev → localhost:8787
 ## Git Conventions
 
 **Conventional Commits** — always:
+
 ```
 feat: add new section to homepage
 fix: correct heatmap alignment on mobile
@@ -78,7 +82,7 @@ Create commits only when explicitly asked. Never commit without a clear request.
 
 3. **Never change the folder structure** (`components/`, `constants/`, `lib/`, etc.) without being explicitly asked.
 
-4. **Never add code comments.** The code is self-documenting. Only add a comment when the *why* is a non-obvious constraint or workaround.
+4. **Never add code comments.** The code is self-documenting. Only add a comment when the _why_ is a non-obvious constraint or workaround.
 
 5. **Never refactor code outside the scope of what was asked.** A bug fix is a bug fix. A typo change is a typo change.
 
@@ -92,13 +96,13 @@ Create commits only when explicitly asked. Never commit without a clear request.
 
 All content data lives in TypeScript constants — no CMS, no external JSON:
 
-| What | File |
-|------|------|
-| Projects | `apps/web/src/constants/projects.ts` |
-| Skills | `apps/web/src/constants/skills.ts` |
-| Experience | `apps/web/src/constants/experience.ts` |
-| Social links | `apps/web/src/constants/socials.ts` |
-| Profile info | `apps/web/src/constants/profile.ts` |
+| What         | File                                   |
+| ------------ | -------------------------------------- |
+| Projects     | `apps/web/src/constants/projects.ts`   |
+| Skills       | `apps/web/src/constants/skills.ts`     |
+| Experience   | `apps/web/src/constants/experience.ts` |
+| Social links | `apps/web/src/constants/socials.ts`    |
+| Profile info | `apps/web/src/constants/profile.ts`    |
 
 When adding entries, edit the constant file + add i18n keys for any translatable text. Never propose migrating to a CMS or external data source.
 

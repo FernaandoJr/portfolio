@@ -1,46 +1,46 @@
-"use client"
+"use client";
 
-import { MotionConfig, motion, useReducedMotion } from "framer-motion"
-import * as React from "react"
-import { createContext, useContext } from "react"
+import { MotionConfig, motion, useReducedMotion } from "framer-motion";
+import * as React from "react";
+import { createContext, useContext } from "react";
 
-import { registryTheme } from "@/lib/registry-theme"
-import { cn } from "@/lib/utils"
+import { registryTheme } from "@/lib/registry-theme";
+import { cn } from "@/lib/utils";
 
 interface ReducedMotionProp {
-	reducedMotion?: boolean
+	reducedMotion?: boolean;
 }
 
-const ReducedMotionOverrideContext = createContext(false)
+const ReducedMotionOverrideContext = createContext(false);
 
 function useResolvedReducedMotion(reducedMotion?: boolean) {
-	const reducedMotionOverride = useContext(ReducedMotionOverrideContext)
-	const prefersReducedMotion = useReducedMotion() ?? false
+	const reducedMotionOverride = useContext(ReducedMotionOverrideContext);
+	const prefersReducedMotion = useReducedMotion() ?? false;
 
-	return Boolean(reducedMotion || reducedMotionOverride || prefersReducedMotion)
+	return Boolean(reducedMotion || reducedMotionOverride || prefersReducedMotion);
 }
 
 function ReducedMotionConfig({
 	children,
 	reducedMotion,
 }: ReducedMotionProp & { children: React.ReactNode }) {
-	const resolvedReducedMotion = useResolvedReducedMotion(reducedMotion)
+	const resolvedReducedMotion = useResolvedReducedMotion(reducedMotion);
 
 	return (
 		<MotionConfig reducedMotion={resolvedReducedMotion ? "always" : "user"}>
 			{children}
 		</MotionConfig>
-	)
+	);
 }
 
-const MotionDiv = motion.div
+const MotionDiv = motion.div;
 
 const cardLayoutTransition = {
 	type: "spring" as const,
 	stiffness: 220,
 	damping: 30,
 	mass: 0.85,
-}
+};
 
 type MotionSafeDivProps = Omit<
 	React.HTMLAttributes<HTMLDivElement>,
@@ -55,36 +55,33 @@ type MotionSafeDivProps = Omit<
 	| "onDragOver"
 	| "onDragStart"
 	| "onDrop"
->
+>;
 
 type CardProps = MotionSafeDivProps &
 	ReducedMotionProp & {
-		interactive?: boolean
-	}
+		interactive?: boolean;
+	};
 
-type CardSectionProps = MotionSafeDivProps
+type CardSectionProps = MotionSafeDivProps;
 
 const cardSectionMotionProps = {
 	layout: "position" as const,
 	transition: cardLayoutTransition,
-}
+};
 
 function assignRef<T>(ref: React.ForwardedRef<T>, value: T | null) {
 	if (typeof ref === "function") {
-		ref(value)
-		return
+		ref(value);
+		return;
 	}
 
 	if (ref) {
-		ref.current = value
+		ref.current = value;
 	}
 }
 
 const Card = React.forwardRef<HTMLDivElement, CardProps>(
-	(
-		{ children, className, interactive = false, reducedMotion, ...props },
-		ref
-	) => {
+	({ children, className, interactive = false, reducedMotion, ...props }, ref) => {
 		return (
 			<ReducedMotionConfig reducedMotion={reducedMotion}>
 				<MotionDiv
@@ -115,11 +112,11 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
 					{children}
 				</MotionDiv>
 			</ReducedMotionConfig>
-		)
+		);
 	}
-)
+);
 
-Card.displayName = "Card"
+Card.displayName = "Card";
 
 function CardHeader({ className, ...props }: CardSectionProps) {
 	return (
@@ -132,7 +129,7 @@ function CardHeader({ className, ...props }: CardSectionProps) {
 			{...cardSectionMotionProps}
 			{...props}
 		/>
-	)
+	);
 }
 
 function CardTitle({ className, ...props }: CardSectionProps) {
@@ -146,7 +143,7 @@ function CardTitle({ className, ...props }: CardSectionProps) {
 			{...cardSectionMotionProps}
 			{...props}
 		/>
-	)
+	);
 }
 
 function CardDescription({ className, ...props }: CardSectionProps) {
@@ -157,21 +154,18 @@ function CardDescription({ className, ...props }: CardSectionProps) {
 			{...cardSectionMotionProps}
 			{...props}
 		/>
-	)
+	);
 }
 
 function CardAction({ className, ...props }: CardSectionProps) {
 	return (
 		<MotionDiv
-			className={cn(
-				"col-start-2 row-span-2 row-start-1 self-start justify-self-end",
-				className
-			)}
+			className={cn("col-start-2 row-span-2 row-start-1 self-start justify-self-end", className)}
 			data-slot="card-action"
 			{...cardSectionMotionProps}
 			{...props}
 		/>
-	)
+	);
 }
 
 function CardContent({ className, ...props }: CardSectionProps) {
@@ -182,7 +176,7 @@ function CardContent({ className, ...props }: CardSectionProps) {
 			{...cardSectionMotionProps}
 			{...props}
 		/>
-	)
+	);
 }
 
 function CardFooter({ className, ...props }: CardSectionProps) {
@@ -196,15 +190,7 @@ function CardFooter({ className, ...props }: CardSectionProps) {
 			{...cardSectionMotionProps}
 			{...props}
 		/>
-	)
+	);
 }
 
-export {
-	Card,
-	CardHeader,
-	CardFooter,
-	CardTitle,
-	CardAction,
-	CardDescription,
-	CardContent,
-}
+export { Card, CardHeader, CardFooter, CardTitle, CardAction, CardDescription, CardContent };

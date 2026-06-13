@@ -1,23 +1,23 @@
 {
-  "name": "api",
-  "version": "0.1.0",
-  "type": "module",
-  "private": true,
-  "scripts": {
-    "dev": "wrangler dev",
-    "deploy": "wrangler deploy",
-    "build": "tsc --noEmit",
-    "lint": "eslint --max-warnings 0",
-    "check-types": "tsc --noEmit"
-  },
-  "dependencies": {
-    "hono": "^4.12.24"
-  },
-  "devDependencies": {
-    "@cloudflare/workers-types": "^4.20250620.0",
-    "@repo/eslint-config": "workspace:*",
-    "@repo/typescript-config": "workspace:*",
-    "typescript": "5.9.2",
-    "wrangler": "^4.0.0"
-  }
+	"name": "api",
+	"version": "0.1.0",
+	"type": "module",
+	"private": true,
+	"scripts": {
+		"dev": "wrangler dev",
+		"deploy": "wrangler deploy",
+		"build": "tsc --noEmit",
+		"lint": "eslint --max-warnings 0",
+		"check-types": "tsc --noEmit"
+	},
+	"dependencies": {
+		"hono": "^4.12.24"
+	},
+	"devDependencies": {
+		"@cloudflare/workers-types": "^4.20250620.0",
+		"@repo/eslint-config": "workspace:*",
+		"@repo/typescript-config": "workspace:*",
+		"typescript": "5.9.2",
+		"wrangler": "^4.0.0"
+	}
 }

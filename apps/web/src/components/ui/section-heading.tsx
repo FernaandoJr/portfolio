@@ -1,26 +1,26 @@
-"use client"
+"use client";
 
-import { Link } from "lucide-react"
-import { useState } from "react"
+import { Link } from "lucide-react";
+import { useState } from "react";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
 type SectionHeadingProps = {
-	id: string
-	children: React.ReactNode
-	className?: string
-}
+	id: string;
+	children: React.ReactNode;
+	className?: string;
+};
 
 export function SectionHeading({ id, children, className }: SectionHeadingProps) {
-	const [copied, setCopied] = useState(false)
+	const [copied, setCopied] = useState(false);
 
 	const handleCopy = () => {
-		const url = `${window.location.origin}${window.location.pathname}#${id}`
-		navigator.clipboard.writeText(url)
-		window.history.pushState(null, "", `#${id}`)
-		setCopied(true)
-		setTimeout(() => setCopied(false), 2000)
-	}
+		const url = `${window.location.origin}${window.location.pathname}#${id}`;
+		navigator.clipboard.writeText(url);
+		window.history.pushState(null, "", `#${id}`);
+		setCopied(true);
+		setTimeout(() => setCopied(false), 2000);
+	};
 
 	return (
 		<div className={cn("group flex items-center gap-2", className)}>
@@ -35,5 +35,5 @@ export function SectionHeading({ id, children, className }: SectionHeadingProps)
 				<Link className={cn("size-4 transition-transform", copied && "text-green-500")} />
 			</button>
 		</div>
-	)
+	);
 }

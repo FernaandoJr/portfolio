@@ -1,11 +1,11 @@
 export type Skill = {
-	id: string
-	label: string
-	icon: string
-	href: string
-	darkInvert?: boolean
-	alwaysInvert?: boolean
-}
+	id: string;
+	label: string;
+	icon: string;
+	href: string;
+	darkInvert?: boolean;
+	alwaysInvert?: boolean;
+};
 
 export const skills: Skill[] = [
 	// Linguagens
@@ -206,4 +206,4 @@ export const skills: Skill[] = [
 		icon: "/icons/skills/codex.svg",
 		href: "https://openai.com/codex",
 	},
-]
+];

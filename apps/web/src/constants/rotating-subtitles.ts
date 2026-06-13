@@ -4,6 +4,6 @@ export const subtitleKeys = [
 	"designEngineer",
 	"softwareBuilder",
 	"detailObsessed",
-] as const
+] as const;
 
-export type SubtitleKey = (typeof subtitleKeys)[number]
+export type SubtitleKey = (typeof subtitleKeys)[number];

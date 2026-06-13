@@ -1,14 +1,14 @@
 export type Project = {
-	id: string
-	title: string
-	descKey: string
-	image: string
-	tags: string[]
-	github?: string
-	demo?: string
-	year: number
-	status: "completed" | "wip"
-}
+	id: string;
+	title: string;
+	descKey: string;
+	image: string;
+	tags: string[];
+	github?: string;
+	demo?: string;
+	year: number;
+	status: "completed" | "wip";
+};
 
 export const projects: Project[] = [
 	{
@@ -75,4 +75,4 @@ export const projects: Project[] = [
 		year: 2023,
 		status: "wip",
 	},
-]
+];

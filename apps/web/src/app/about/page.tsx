@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
-import { Trans, useTranslation } from "@repo/i18n"
-import { ArrowLeftIcon } from "lucide-react"
-import Link from "next/link"
+import { Trans, useTranslation } from "@repo/i18n";
+import { ArrowLeftIcon } from "lucide-react";
+import Link from "next/link";
 
 function StoryLink({ href, children }: { href: string; children?: React.ReactNode }) {
 	return (
@@ -14,11 +14,11 @@ function StoryLink({ href, children }: { href: string; children?: React.ReactNod
 		>
 			{children}
 		</a>
-	)
+	);
 }
 
 export default function AboutPage() {
-	const { t } = useTranslation()
+	const { t } = useTranslation();
 
 	return (
 		<div className="flex flex-col gap-10">
@@ -42,24 +42,16 @@ export default function AboutPage() {
 					/>
 				</p>
 
-				<p className="text-muted-foreground leading-8 text-justify">
-					{t("storyP2")}
-				</p>
+				<p className="text-muted-foreground leading-8 text-justify">{t("storyP2")}</p>
 
-				<p className="text-muted-foreground leading-8 text-justify">
-					{t("storyP3")}
-				</p>
+				<p className="text-muted-foreground leading-8 text-justify">{t("storyP3")}</p>
 
-				<p className="text-muted-foreground leading-8 text-justify">
-					{t("storyP4")}
-				</p>
+				<p className="text-muted-foreground leading-8 text-justify">{t("storyP4")}</p>
 
 				<p className="text-muted-foreground leading-8 text-justify">
 					<Trans
 						i18nKey="storyP5"
-						components={[
-							<StoryLink key="p5" href="https://fatecmm.cps.sp.gov.br/" />,
-						]}
+						components={[<StoryLink key="p5" href="https://fatecmm.cps.sp.gov.br/" />]}
 					/>
 				</p>
 
@@ -73,18 +65,12 @@ export default function AboutPage() {
 					/>
 				</p>
 
-				<p className="text-muted-foreground leading-8 text-justify">
-					{t("storyP7")}
-				</p>
+				<p className="text-muted-foreground leading-8 text-justify">{t("storyP7")}</p>
 
-				<p className="text-muted-foreground leading-8 text-justify">
-					{t("storyP8")}
-				</p>
+				<p className="text-muted-foreground leading-8 text-justify">{t("storyP8")}</p>
 
-				<p className="text-muted-foreground leading-8 text-justify">
-					{t("storyP9")}
-				</p>
+				<p className="text-muted-foreground leading-8 text-justify">{t("storyP9")}</p>
 			</article>
 		</div>
-	)
+	);
 }

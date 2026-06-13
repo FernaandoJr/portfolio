@@ -16,35 +16,35 @@
 ```ts
 // ✅ Correct
 app.get("/route", (c) => {
-  const token = c.env.GITHUB_TOKEN
-  const db = c.env.portfolio_cache
-})
+	const token = c.env.GITHUB_TOKEN;
+	const db = c.env.portfolio_cache;
+});
 
 // ❌ Wrong — will throw at runtime
-const token = process.env.GITHUB_TOKEN
+const token = process.env.GITHUB_TOKEN;
 ```
 
 ### Secrets (set in Cloudflare Dashboard only — never committed)
 
-| Secret | Purpose |
-|--------|---------|
-| `GITHUB_TOKEN` | GitHub GraphQL API authentication |
+| Secret           | Purpose                                                          |
+| ---------------- | ---------------------------------------------------------------- |
+| `GITHUB_TOKEN`   | GitHub GraphQL API authentication                                |
 | `ALLOWED_ORIGIN` | CORS allowed origin (set in `wrangler.toml` for non-secret envs) |
 
 ### Bindings (in `wrangler.toml`)
 
-| Binding | Type | Purpose |
-|---------|------|---------|
+| Binding           | Type        | Purpose                        |
+| ----------------- | ----------- | ------------------------------ |
 | `portfolio_cache` | D1 Database | Cache for GitHub contributions |
 
 ## API Routes
 
 Base path: `/api`
 
-| Method | Route | Description |
-|--------|-------|-------------|
-| GET | `/api/health` | Health check |
-| GET | `/api/github/contributions` | Returns contribution activity array |
+| Method | Route                       | Description                         |
+| ------ | --------------------------- | ----------------------------------- |
+| GET    | `/api/health`               | Health check                        |
+| GET    | `/api/github/contributions` | Returns contribution activity array |
 
 ### Contributions Route Logic
 
@@ -57,12 +57,14 @@ Base path: `/api`
 ## Database Schema
 
 See `migrations/0001_initial.sql`. Two tables:
+
 - `contributions (date TEXT, count INTEGER, level INTEGER)` — daily contribution data
 - `sync_log (id INTEGER, synced_at TEXT)` — tracks last sync timestamp
 
 ## Cron Job
 
 Runs daily at **03:00 UTC** via Cloudflare Cron Triggers. Defined in `wrangler.toml`:
+
 ```toml
 [triggers]
 crons = ["0 3 * * *"]
@@ -83,16 +85,16 @@ For local D1, wrangler creates a local SQLite file automatically on first `pnpm 
 ## Hono Patterns
 
 ```ts
-import { Hono } from "hono"
-import type { Bindings } from "./types/bindings.js"
+import { Hono } from "hono";
+import type { Bindings } from "./types/bindings.js";
 
-const app = new Hono<{ Bindings: Bindings }>()
+const app = new Hono<{ Bindings: Bindings }>();
 
 app.get("/route", async (c) => {
-  const db = c.env.portfolio_cache
-  // ...
-  return c.json(data)
-})
+	const db = c.env.portfolio_cache;
+	// ...
+	return c.json(data);
+});
 ```
 
 Always use `.js` extensions in imports (ESM + Cloudflare Workers requirement).

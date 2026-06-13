@@ -1,1 +1,1 @@
-export const registryTheme = ""
+export const registryTheme = "";

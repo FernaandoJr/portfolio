@@ -1,28 +1,28 @@
-export type Modality = "remote" | "hybrid" | "on-site"
-export type JobType = "full-time" | "part-time" | "freelance" | "internship"
+export type Modality = "remote" | "hybrid" | "on-site";
+export type JobType = "full-time" | "part-time" | "freelance" | "internship";
 
 export type CompanyInfo = {
-	name: string
-	descKey: string
-	url: string
-	logo?: string
-}
+	name: string;
+	descKey: string;
+	url: string;
+	logo?: string;
+};
 
 export type Experience = {
-	id: string
-	role: string
-	roleKey: string
-	company: string
-	companyInfo?: CompanyInfo
-	modality: Modality
-	type: JobType
-	startDate: string
-	endDate: string | null
-	current: boolean
-	descKey: string
-	bulletKeys: string[]
-	stack: string[]
-}
+	id: string;
+	role: string;
+	roleKey: string;
+	company: string;
+	companyInfo?: CompanyInfo;
+	modality: Modality;
+	type: JobType;
+	startDate: string;
+	endDate: string | null;
+	current: boolean;
+	descKey: string;
+	bulletKeys: string[];
+	stack: string[];
+};
 
 export const experiences: Experience[] = [
 	{
@@ -43,7 +43,21 @@ export const experiences: Experience[] = [
 		current: true,
 		descKey: "expDolphinFrontDesc",
 		bulletKeys: ["expDolphinFrontBullet1", "expDolphinFrontBullet2"],
-		stack: ["TypeScript", "Node.js", "Bun", "React", "Expo", "Next.js", "Vite", "Vitest", "Tailwind", "shadcn/ui", "MUI", "Cursor", "Codex"],
+		stack: [
+			"TypeScript",
+			"Node.js",
+			"Bun",
+			"React",
+			"Expo",
+			"Next.js",
+			"Vite",
+			"Vitest",
+			"Tailwind",
+			"shadcn/ui",
+			"MUI",
+			"Cursor",
+			"Codex",
+		],
 	},
 	{
 		id: "dolphin-backend",
@@ -65,4 +79,4 @@ export const experiences: Experience[] = [
 		bulletKeys: ["expDolphinBackBullet1", "expDolphinBackBullet2"],
 		stack: ["GeneXus", "MySQL", "Postman"],
 	},
-]
+];

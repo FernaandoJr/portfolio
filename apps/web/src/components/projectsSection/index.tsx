@@ -1,28 +1,18 @@
-"use client"
+"use client";
 
-import { Icon } from "@iconify/react"
-import { useTranslation } from "@repo/i18n"
-import Image from "next/image"
-import Link from "next/link"
+import { Icon } from "@iconify/react";
+import { useTranslation } from "@repo/i18n";
+import Image from "next/image";
+import Link from "next/link";
 
-import {
-	Card,
-	CardAction,
-	CardContent,
-	CardHeader,
-	CardTitle,
-} from "@/components/ui/new-card"
-import {
-	Tooltip,
-	TooltipContent,
-	TooltipTrigger,
-} from "@/components/ui/tooltip"
-import type { Project } from "@/constants/projects"
-import { projects } from "@/constants/projects"
-import { skills } from "@/constants/skills"
+import { Card, CardAction, CardContent, CardHeader, CardTitle } from "@/components/ui/new-card";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import type { Project } from "@/constants/projects";
+import { projects } from "@/constants/projects";
+import { skills } from "@/constants/skills";
 
 function ProjectCard({ project }: { project: Project }) {
-	const { t } = useTranslation()
+	const { t } = useTranslation();
 
 	return (
 		<Card interactive className="gap-0 py-0">
@@ -35,7 +25,8 @@ function ProjectCard({ project }: { project: Project }) {
 						rel="noopener noreferrer"
 						className="absolute inset-0"
 						aria-label={project.title}
-						tabIndex={-1}>
+						tabIndex={-1}
+					>
 						<Image
 							data-sensitive
 							src={project.image}
@@ -80,7 +71,8 @@ function ProjectCard({ project }: { project: Project }) {
 										className="inline-flex items-center justify-center rounded-md p-1.5 text-muted-foreground opacity-60 transition-all hover:opacity-100 hover:bg-accent hover:text-accent-foreground"
 										aria-label={`${t("viewOnGitHub")} — ${project.title}`}
 									/>
-								}>
+								}
+							>
 								<Icon icon="mdi:github" className="size-5" />
 							</TooltipTrigger>
 							<TooltipContent className="font-sans text-xs select-none">
@@ -99,11 +91,9 @@ function ProjectCard({ project }: { project: Project }) {
 										className="inline-flex items-center justify-center rounded-md p-1.5 text-muted-foreground opacity-60 transition-all hover:opacity-100 hover:bg-accent hover:text-accent-foreground"
 										aria-label={`${t("viewSite")} — ${project.title}`}
 									/>
-								}>
-								<Icon
-									icon="lucide:external-link"
-									className="size-5"
-								/>
+								}
+							>
+								<Icon icon="lucide:external-link" className="size-5" />
 							</TooltipTrigger>
 							<TooltipContent className="font-sans text-xs select-none">
 								{t("viewSite")}
@@ -119,8 +109,8 @@ function ProjectCard({ project }: { project: Project }) {
 				</p>
 				<div className="mt-auto pt-3 flex flex-wrap items-center gap-2.5 select-none">
 					{project.tags.map((tag) => {
-						const skill = skills.find((s) => s.label === tag)
-						if (!skill) return null
+						const skill = skills.find((s) => s.label === tag);
+						if (!skill) return null;
 						return (
 							<Tooltip key={tag}>
 								<TooltipTrigger>
@@ -130,19 +120,21 @@ function ProjectCard({ project }: { project: Project }) {
 										width={22}
 										height={22}
 										draggable={false}
-										className={"size-[22px] cursor-pointer " + (skill.darkInvert ? "dark:invert" : "")}
+										className={
+											"size-[22px] cursor-pointer " + (skill.darkInvert ? "dark:invert" : "")
+										}
 									/>
 								</TooltipTrigger>
 								<TooltipContent className="font-sans text-xs select-none">
 									{skill.label}
 								</TooltipContent>
 							</Tooltip>
-						)
+						);
 					})}
 				</div>
 			</CardContent>
 		</Card>
-	)
+	);
 }
 
 export default function ProjectsSection() {
@@ -152,5 +144,5 @@ export default function ProjectsSection() {
 				<ProjectCard key={project.id} project={project} />
 			))}
 		</div>
-	)
+	);
 }

@@ -1,21 +1,21 @@
-"use client"
+"use client";
 
-import { useTranslation } from "@repo/i18n"
-import { Heart } from "lucide-react"
-import Image from "next/image"
-import Link from "next/link"
+import { useTranslation } from "@repo/i18n";
+import { Heart } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 
-import { socials } from "@/constants/socials"
+import { socials } from "@/constants/socials";
 
 export default function Footer() {
-	const { t } = useTranslation()
+	const { t } = useTranslation();
 
 	const navLinks = [
 		{ labelKey: "navAbout", href: "#about" },
 		{ labelKey: "navProjects", href: "#projects" },
 		{ labelKey: "experienceTitle", href: "#experience" },
 		{ labelKey: "navContact", href: "#contact" },
-	]
+	];
 
 	return (
 		<footer className="py-10 my-10 select-none">
@@ -25,7 +25,8 @@ export default function Footer() {
 						<Link
 							key={link.href}
 							href={link.href}
-							className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+							className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+						>
 							{t(link.labelKey)}
 						</Link>
 					))}
@@ -39,7 +40,8 @@ export default function Footer() {
 							target="_blank"
 							rel="noopener noreferrer"
 							aria-label={social.label}
-							className="text-muted-foreground hover:text-foreground transition-colors">
+							className="text-muted-foreground hover:text-foreground transition-colors"
+						>
 							<Image
 								src={social.icon}
 								alt={social.label}
@@ -58,7 +60,8 @@ export default function Footer() {
 							target="_blank"
 							rel="noopener noreferrer"
 							title={t("footerSource")}
-							className="inline-flex items-center hover:opacity-100 opacity-50 transition-opacity">
+							className="inline-flex items-center hover:opacity-100 opacity-50 transition-opacity"
+						>
 							<Image
 								src="/icons/github.svg"
 								alt="GitHub"
@@ -69,11 +72,10 @@ export default function Footer() {
 						</Link>
 					</span>
 					<span className="text-xs text-muted-foreground/50 select-none flex items-center gap-1">
-						{t("footerMadeWith")}{" "}
-						<Heart className="size-3 fill-red-500 text-red-500" />
+						{t("footerMadeWith")} <Heart className="size-3 fill-red-500 text-red-500" />
 					</span>
 				</div>
 			</div>
 		</footer>
-	)
+	);
 }

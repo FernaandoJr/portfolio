@@ -20,4 +20,4 @@ export const socials = [
 		href: "https://youtube.com/@fernaandojr",
 		icon: "/icons/youtube.svg",
 	},
-]
+];

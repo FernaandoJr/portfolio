@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import { useTranslation } from "@repo/i18n"
-import { format } from "date-fns"
+import { useTranslation } from "@repo/i18n";
+import { format } from "date-fns";
 
 import {
 	ContributionGraph,
@@ -11,30 +11,26 @@ import {
 	ContributionGraphLegend,
 	ContributionGraphTotalCount,
 	type Activity,
-} from "@/components/ui/contribution-graph"
-import {
-	Tooltip,
-	TooltipContent,
-	TooltipTrigger,
-} from "@/components/ui/tooltip"
-import { useGithubContributions } from "@/hooks/use-github-contributions"
+} from "@/components/ui/contribution-graph";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import { useGithubContributions } from "@/hooks/use-github-contributions";
 
 function generateEmptyYear(): Activity[] {
-	const end = new Date()
-	const start = new Date(end)
-	start.setFullYear(end.getFullYear() - 1)
-	const days: Activity[] = []
-	const current = new Date(start)
+	const end = new Date();
+	const start = new Date(end);
+	start.setFullYear(end.getFullYear() - 1);
+	const days: Activity[] = [];
+	const current = new Date(start);
 	while (current <= end) {
-		days.push({ date: current.toISOString().slice(0, 10), count: 0, level: 0 })
-		current.setDate(current.getDate() + 1)
+		days.push({ date: current.toISOString().slice(0, 10), count: 0, level: 0 });
+		current.setDate(current.getDate() + 1);
 	}
-	return days
+	return days;
 }
 
 export function GithubHeatmap() {
-	const { t } = useTranslation()
-	const { data, isLoading } = useGithubContributions()
+	const { t } = useTranslation();
+	const { data, isLoading } = useGithubContributions();
 
 	if (isLoading) {
 		return (
@@ -58,19 +54,15 @@ export function GithubHeatmap() {
 					<div className="h-3 w-48 rounded bg-muted animate-pulse" />
 					<div className="ml-auto flex items-center gap-1">
 						{Array.from({ length: 5 }).map((_, i) => (
-							<div
-								key={i}
-								className="bg-muted animate-pulse"
-								style={{ width: 11, height: 11 }}
-							/>
+							<div key={i} className="bg-muted animate-pulse" style={{ width: 11, height: 11 }} />
 						))}
 					</div>
 				</div>
 			</div>
-		)
+		);
 	}
 
-	const displayData = data ?? generateEmptyYear()
+	const displayData = data ?? generateEmptyYear();
 
 	return (
 		<ContributionGraph
@@ -80,11 +72,13 @@ export function GithubHeatmap() {
 			blockMargin={3}
 			blockRadius={0}
 			labels={{ legend: { less: t("less"), more: t("more") } }}
-			aria-label="GitHub Contributions Graph">
+			aria-label="GitHub Contributions Graph"
+		>
 			<ContributionGraphCalendar
 				className="no-scrollbar px-2"
 				title="GitHub Contributions"
-				aria-hidden>
+				aria-hidden
+			>
 				{({ activity, dayIndex, weekIndex }) => (
 					<Tooltip>
 						<TooltipTrigger
@@ -106,10 +100,7 @@ export function GithubHeatmap() {
 										: "githubContributionTooltip_plural",
 									{
 										count: activity.count,
-										date: format(
-											new Date(activity.date),
-											"dd.MM.yyyy"
-										),
+										date: format(new Date(activity.date), "dd.MM.yyyy"),
 									}
 								)}
 							</p>
@@ -130,7 +121,8 @@ export function GithubHeatmap() {
 								className="text-foreground underline underline-offset-2 hover:text-muted-foreground transition-colors"
 								href="https://github.com/FernaandoJr"
 								target="_blank"
-								rel="noopener noreferrer">
+								rel="noopener noreferrer"
+							>
 								GitHub
 							</a>
 							.
@@ -141,5 +133,5 @@ export function GithubHeatmap() {
 				<ContributionGraphLegend aria-hidden />
 			</ContributionGraphFooter>
 		</ContributionGraph>
-	)
+	);
 }

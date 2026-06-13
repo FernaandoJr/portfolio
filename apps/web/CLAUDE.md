@@ -81,12 +81,12 @@ font-mono   → JetBrains Mono (code)
 
 ```tsx
 // Client component
-"use client"
-import { useTranslation } from "@repo/i18n"
+"use client";
+import { useTranslation } from "@repo/i18n";
 
 export default function MySection() {
-  const { t } = useTranslation()
-  return <p>{t("myKey")}</p>
+	const { t } = useTranslation();
+	return <p>{t("myKey")}</p>;
 }
 ```
 
