@@ -104,5 +104,18 @@
 
   "expDolphinBackDesc": "Developed and maintained RESTful APIs using GeneXus, handling CRUD operations and backend optimizations in close collaboration with frontend and support teams.",
   "expDolphinBackBullet1": "Created and maintained CRUD operations with performance-focused optimizations",
-  "expDolphinBackBullet2": "Worked closely with the frontend team to align API contracts and resolve integration issues"
+  "expDolphinBackBullet2": "Worked closely with the frontend team to align API contracts and resolve integration issues",
+
+  "readMyStory": "Read my story",
+  "storyTitle": "About Me",
+  "storyBack": "Back",
+  "storyP1": "I was born in <0>Mogi Guaçu, São Paulo, Brazil.</0> From a very young age, I have always been fascinated by technology, especially the internet. Over the years, this passion has only grown stronger, and it became clear that I would pursue a career in technology.",
+  "storyP2": "I started a technical course in high school called Software Development, where I had my first real experience with programming and building projects on my own. It was then that I realized that what motivates me the most is creating things, bringing ideas from my head into the real world, whether through programming or other creative processes.",
+  "storyP3": "Web technologies were my first gateway: HTML, CSS, and JavaScript helped me understand the fundamentals of logic and algorithms. From there, I decided to dive headfirst into the world of web development.",
+  "storyP4": "Over the years, I have had the opportunity to work with HTML, CSS, JavaScript, TypeScript, React, Node.js, Express, and other technologies. I have also explored other areas of software development, such as mobile applications and backend development.",
+  "storyP5": "Then I decided to pursue a degree in Systems Analysis and Development at <0>Fatec Artur de Azevedo,</0> where I was able to expand my knowledge and gain a deeper understanding of software development, algorithms, software architecture, software engineering, and other essential topics in the field, such as design patterns, testing methodologies, and requirements engineering.",
+  "storyP6": "In my second semester of college, I had the opportunity to intern in customer support at <0>AgroCRM,</0> where I was able to apply my knowledge in real-world scenarios and gain valuable experience in the field. After 6 months, I transitioned to a backend development role using <1>GeneXus</1> and other technologies, such as SQL and REST APIs.",
+  "storyP7": "After that backend experience, I transitioned to frontend development within the same company, where I started working with TypeScript, React, Next.js, Expo, and React Native, building everything from reusable form components to a cross-platform mobile app with offline-first support.",
+  "storyP8": "And the rest is history! I continued working in the field of software development, gaining experience in various technologies and frameworks, and honing my skills as a developer. I had the opportunity to work on projects that challenged me and helped me grow as a professional.",
+  "storyP9": "Today, I dedicate my time and energy to continuously improving my skills in modern technologies, frameworks, and platforms required by the industry. I love creating personal projects and collaborating with other developers who share the same passion for technology and innovation."
 }

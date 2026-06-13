@@ -21,5 +21,5 @@ i18n.use(initReactI18next).init({
 });
 
 export default i18n;
-export { I18nextProvider, useTranslation } from 'react-i18next';
+export { I18nextProvider, Trans, useTranslation } from 'react-i18next';
 export const t = i18n.t.bind(i18n);

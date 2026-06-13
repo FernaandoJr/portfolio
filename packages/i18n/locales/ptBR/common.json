@@ -104,5 +104,18 @@
 
   "expDolphinBackDesc": "Desenvolvi e mantive APIs RESTful com GeneXus, realizando operações CRUD e otimizações de backend em colaboração com os times de frontend e suporte.",
   "expDolphinBackBullet1": "Criei e mantive operações CRUD com foco em performance e estabilidade",
-  "expDolphinBackBullet2": "Trabalhei em conjunto com o time de frontend para alinhar contratos de API e resolver integrações"
+  "expDolphinBackBullet2": "Trabalhei em conjunto com o time de frontend para alinhar contratos de API e resolver integrações",
+
+  "readMyStory": "Leia minha história",
+  "storyTitle": "Sobre mim",
+  "storyBack": "Voltar",
+  "storyP1": "Nasci em <0>Mogi Guaçu, São Paulo, Brasil.</0> Desde muito jovem, sempre fui fascinado por tecnologia, especialmente pela internet. Com o passar dos anos, essa paixão só ficou mais forte, e ficou claro que eu seguiria uma carreira na área de tecnologia.",
+  "storyP2": "Comecei um curso técnico no ensino médio chamado Desenvolvimento de Software, onde tive minha primeira experiência real com programação e construção de projetos por conta própria. Foi então que percebi que o que mais me motiva é criar coisas, trazendo ideias da minha cabeça para o mundo real, seja por meio da programação ou de outros processos criativos.",
+  "storyP3": "As tecnologias web foram minha primeira porta de entrada: HTML, CSS e JavaScript me ajudaram a entender os fundamentos de lógica e algoritmos. A partir daí, decidi mergulhar de vez no mundo do desenvolvimento web.",
+  "storyP4": "Ao longo dos anos, tive a oportunidade de trabalhar com HTML, CSS, JavaScript, TypeScript, React, Node.js, Express e outras tecnologias. Também explorei outras áreas do desenvolvimento de software, como aplicações mobile e desenvolvimento backend.",
+  "storyP5": "Então decidi cursar Análise e Desenvolvimento de Sistemas na <0>Fatec Artur de Azevedo,</0> onde pude ampliar meus conhecimentos e obter uma compreensão mais profunda sobre desenvolvimento de software, algoritmos, arquitetura de software, engenharia de software e outros tópicos essenciais da área, como padrões de projeto, metodologias de testes e engenharia de requisitos.",
+  "storyP6": "No meu segundo semestre da faculdade, tive a oportunidade de estagiar na área de suporte ao cliente na <0>AgroCRM,</0> onde pude aplicar meus conhecimentos em cenários reais e adquirir uma experiência valiosa na área. Após 6 meses, migrei para um cargo de desenvolvimento back-end utilizando <1>GeneXus</1> e outras tecnologias, como SQL e APIs REST.",
+  "storyP7": "Após essa experiência no back-end, migrei para o desenvolvimento front-end dentro da mesma empresa, onde passei a trabalhar com TypeScript, React, Next.js, Expo e React Native, construindo desde componentes de formulário reutilizáveis até um aplicativo mobile multiplataforma com suporte offline.",
+  "storyP8": "E o resto é história! Continuei trabalhando na área de desenvolvimento de software, adquirindo experiência em diversas tecnologias e frameworks, e aperfeiçoando minhas habilidades como desenvolvedor. Tive a oportunidade de trabalhar em projetos que me desafiaram e me fizeram crescer como profissional.",
+  "storyP9": "Hoje, dedico meu tempo e energia a melhorar continuamente minhas habilidades em tecnologias, frameworks e plataformas modernas exigidas pela indústria. Adoro criar projetos pessoais e colaborar com outros desenvolvedores que compartilham a mesma paixão por tecnologia e inovação."
 }
