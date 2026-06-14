@@ -30,7 +30,7 @@ function generateEmptyYear(): Activity[] {
 
 export function GithubHeatmap() {
 	const { t } = useTranslation();
-	const { data, isLoading } = useGithubContributions();
+	const { data, isLoading, error } = useGithubContributions();
 
 	if (isLoading) {
 		return (
@@ -58,6 +58,15 @@ export function GithubHeatmap() {
 						))}
 					</div>
 				</div>
+			</div>
+		);
+	}
+
+	if (error) {
+		return (
+			<div className="py-4 flex flex-col gap-1">
+				<p className="text-sm text-muted-foreground">{t("githubContributionsError")}</p>
+				<p className="text-xs text-muted-foreground/60 font-mono">{error.message}</p>
 			</div>
 		);
 	}

@@ -21,7 +21,8 @@ githubRoutes.get("/contributions", async (c) => {
 		const data = await syncContributions(c.env);
 		return c.json(data);
 	} catch (err) {
-		console.error("[GitHub] Sync failed:", err instanceof Error ? err.message : err);
-		return c.json({ error: "Failed to reach GitHub API" }, 502);
+		const message = err instanceof Error ? err.message : "Unknown error";
+		console.error("[GitHub] Sync failed:", message);
+		return c.json({ error: message }, 502);
 	}
 });
