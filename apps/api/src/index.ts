@@ -5,7 +5,7 @@ import { logger } from "hono/logger";
 import { env } from "./lib/env.js";
 import { githubRoutes } from "./routes/github.js";
 
-const app = new Hono().basePath("/api");
+const app = new Hono();
 
 app.use("*", logger());
 app.use(
@@ -26,9 +26,10 @@ app.use(
 	})
 );
 
-app.get("/health", (c) => c.json({ status: "ok" }));
+app.get("/", (c) => c.json({ status: "ok" }));
+app.get("/api/health", (c) => c.json({ status: "ok" }));
 
-app.route("/github", githubRoutes);
+app.route("/api/github", githubRoutes);
 
 app.onError((err, c) => {
 	console.error("[API Error]", err);
