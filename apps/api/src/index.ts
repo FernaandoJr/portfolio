@@ -12,7 +12,14 @@ app.use("*", logger());
 app.use(
 	"*",
 	cors({
-		origin: (_, c) => c.env.ALLOWED_ORIGIN ?? "*",
+		origin: (origin, c) => {
+			const allowed = (c.env.ALLOWED_ORIGIN ?? "")
+				.split(",")
+				.map((o: string) => o.trim())
+				.filter(Boolean);
+			if (!allowed.length) return "*";
+			return allowed.includes(origin) ? origin : (allowed[0] ?? null);
+		},
 		allowMethods: ["GET"],
 	})
 );
