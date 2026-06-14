@@ -39,6 +39,7 @@ export function LanguageSwitcher() {
 					width={20}
 					height={14}
 					className="rounded-sm"
+					style={{ width: 20, height: 14 }}
 				/>
 			</DropdownMenuTrigger>
 			<DropdownMenuContent align="end">
@@ -50,6 +51,7 @@ export function LanguageSwitcher() {
 							width={16}
 							height={12}
 							className="rounded-sm"
+							style={{ width: 16, height: 12 }}
 						/>
 						{t(lang.label)}
 					</DropdownMenuItem>
