@@ -13,12 +13,19 @@ app.use(
 	"*",
 	cors({
 		origin: (origin, c) => {
-			const allowed = (c.env.ALLOWED_ORIGIN ?? "")
+			const patterns = (c.env.ALLOWED_ORIGIN ?? "")
 				.split(",")
 				.map((o: string) => o.trim())
 				.filter(Boolean);
-			if (!allowed.length) return "*";
-			return allowed.includes(origin) ? origin : (allowed[0] ?? null);
+
+			const isAllowed = patterns.some((pattern: string) => {
+				if (pattern.startsWith("*.")) {
+					return origin.endsWith(pattern.slice(1));
+				}
+				return origin === pattern;
+			});
+
+			return isAllowed ? origin : null;
 		},
 		allowMethods: ["GET"],
 	})
