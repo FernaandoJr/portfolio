@@ -5,5 +5,4 @@ const schema = new mongoose.Schema({
 	synced_at: { type: String, required: true },
 });
 
-export const SyncLog =
-	mongoose.models.SyncLog ?? mongoose.model("SyncLog", schema);
+export const SyncLog = mongoose.models.SyncLog ?? mongoose.model("SyncLog", schema);

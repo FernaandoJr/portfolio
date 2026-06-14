@@ -14,20 +14,20 @@
 All env vars come from `process.env`, centralised in `src/lib/env.ts`:
 
 ```ts
-import { env } from "./lib/env.js"
-const token = env.GITHUB_TOKEN
+import { env } from "./lib/env.js";
+const token = env.GITHUB_TOKEN;
 ```
 
 Never access `process.env` directly outside of `src/lib/env.ts`.
 
 ### Variables
 
-| Variable       | Purpose                             |
-| -------------- | ----------------------------------- |
-| `MONGODB_URI`  | MongoDB Atlas connection string     |
-| `GITHUB_TOKEN` | GitHub GraphQL API authentication   |
+| Variable         | Purpose                                                         |
+| ---------------- | --------------------------------------------------------------- |
+| `MONGODB_URI`    | MongoDB Atlas connection string                                 |
+| `GITHUB_TOKEN`   | GitHub GraphQL API authentication                               |
 | `ALLOWED_ORIGIN` | CORS allowed origins (comma-separated, supports `*.domain.com`) |
-| `CRON_SECRET`  | Bearer token for POST `/api/github/sync` |
+| `CRON_SECRET`    | Bearer token for POST `/api/github/sync`                        |
 
 For local dev, copy `.env` and fill in values.
 
@@ -35,11 +35,11 @@ For local dev, copy `.env` and fill in values.
 
 Base path: `/api`
 
-| Method | Route                        | Description                                   |
-| ------ | ---------------------------- | --------------------------------------------- |
-| GET    | `/api/health`                | Health check                                  |
-| GET    | `/api/github/contributions`  | Returns contribution activity array           |
-| POST   | `/api/github/sync`           | Triggers GitHub sync (requires Bearer token)  |
+| Method | Route                       | Description                                  |
+| ------ | --------------------------- | -------------------------------------------- |
+| GET    | `/api/health`               | Health check                                 |
+| GET    | `/api/github/contributions` | Returns contribution activity array          |
+| POST   | `/api/github/sync`          | Triggers GitHub sync (requires Bearer token) |
 
 ### Contributions Route Logic
 
@@ -72,13 +72,13 @@ pnpm build # tsc --noEmit (type-check only)
 ## Hono Patterns
 
 ```ts
-import { Hono } from "hono"
+import { Hono } from "hono";
 
-const app = new Hono()
+const app = new Hono();
 
 app.get("/route", async (c) => {
-  return c.json(data)
-})
+	return c.json(data);
+});
 ```
 
 Always use `.js` extensions in imports (ESM requirement).
