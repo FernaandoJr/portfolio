@@ -26,7 +26,7 @@ githubRoutes.get("/contributions", async (c) => {
 	}
 });
 
-githubRoutes.post("/sync", async (c) => {
+githubRoutes.get("/sync", async (c) => {
 	const auth = c.req.header("authorization");
 	if (auth !== `Bearer ${env.CRON_SECRET}`) {
 		return c.json({ error: "Unauthorized" }, 401);

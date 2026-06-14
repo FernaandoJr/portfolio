@@ -22,7 +22,7 @@ app.use(
 
 			return isAllowed ? origin : null;
 		},
-		allowMethods: ["GET", "POST"],
+		allowMethods: ["GET"],
 	})
 );
 
