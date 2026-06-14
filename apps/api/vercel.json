@@ -1,0 +1,4 @@
+{
+	"rewrites": [{ "source": "/(.*)", "destination": "/api/index" }],
+	"crons": [{ "path": "/api/github/sync", "schedule": "0 3 * * *" }]
+}

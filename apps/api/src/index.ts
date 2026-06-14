@@ -2,32 +2,27 @@ import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { logger } from "hono/logger";
 
-import { handleScheduled } from "./cron.js";
+import { env } from "./lib/env.js";
 import { githubRoutes } from "./routes/github.js";
-import type { Bindings } from "./types/bindings.js";
 
-const app = new Hono<{ Bindings: Bindings }>().basePath("/api");
+const app = new Hono().basePath("/api");
 
 app.use("*", logger());
 app.use(
 	"*",
 	cors({
-		origin: (origin, c) => {
-			const patterns = (c.env.ALLOWED_ORIGIN ?? "")
-				.split(",")
-				.map((o: string) => o.trim())
+		origin: (origin) => {
+			const patterns = env.ALLOWED_ORIGIN.split(",")
+				.map((o) => o.trim())
 				.filter(Boolean);
 
-			const isAllowed = patterns.some((pattern: string) => {
-				if (pattern.startsWith("*.")) {
-					return origin.endsWith(pattern.slice(1));
-				}
-				return origin === pattern;
-			});
+			const isAllowed = patterns.some((pattern) =>
+				pattern.startsWith("*.") ? origin.endsWith(pattern.slice(1)) : origin === pattern
+			);
 
 			return isAllowed ? origin : null;
 		},
-		allowMethods: ["GET"],
+		allowMethods: ["GET", "POST"],
 	})
 );
 
@@ -40,7 +35,4 @@ app.onError((err, c) => {
 	return c.json({ error: err.message }, 500);
 });
 
-export default {
-	fetch: app.fetch,
-	scheduled: handleScheduled,
-};
+export default app;

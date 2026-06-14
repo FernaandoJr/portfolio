@@ -1,100 +1,84 @@
-# apps/api — Cloudflare Worker Context
+# apps/api — Hono + MongoDB Context
 
 > Read root `CLAUDE.md` first. This file adds API-specific context.
 
 ## Stack
 
-- **Runtime:** Cloudflare Workers (not Node.js)
+- **Runtime:** Node.js (Vercel Serverless)
 - **Framework:** Hono v4
-- **Database:** Cloudflare D1 (SQLite) — binding name: `portfolio_cache`
+- **Database:** MongoDB Atlas via Mongoose — singleton connection in `src/lib/mongoose.ts`
 - **TypeScript:** strict, ESM (`"type": "module"`)
 
 ## Critical: Environment Variables
 
-**Never use `process.env`** — this is a Cloudflare Worker. All env vars and bindings are on the Hono context:
+All env vars come from `process.env`, centralised in `src/lib/env.ts`:
 
 ```ts
-// ✅ Correct
-app.get("/route", (c) => {
-	const token = c.env.GITHUB_TOKEN;
-	const db = c.env.portfolio_cache;
-});
-
-// ❌ Wrong — will throw at runtime
-const token = process.env.GITHUB_TOKEN;
+import { env } from "./lib/env.js"
+const token = env.GITHUB_TOKEN
 ```
 
-### Secrets (set in Cloudflare Dashboard only — never committed)
+Never access `process.env` directly outside of `src/lib/env.ts`.
 
-| Secret           | Purpose                                                          |
-| ---------------- | ---------------------------------------------------------------- |
-| `GITHUB_TOKEN`   | GitHub GraphQL API authentication                                |
-| `ALLOWED_ORIGIN` | CORS allowed origin (set in `wrangler.toml` for non-secret envs) |
+### Variables
 
-### Bindings (in `wrangler.toml`)
+| Variable       | Purpose                             |
+| -------------- | ----------------------------------- |
+| `MONGODB_URI`  | MongoDB Atlas connection string     |
+| `GITHUB_TOKEN` | GitHub GraphQL API authentication   |
+| `ALLOWED_ORIGIN` | CORS allowed origins (comma-separated, supports `*.domain.com`) |
+| `CRON_SECRET`  | Bearer token for POST `/api/github/sync` |
 
-| Binding           | Type        | Purpose                        |
-| ----------------- | ----------- | ------------------------------ |
-| `portfolio_cache` | D1 Database | Cache for GitHub contributions |
+For local dev, copy `.env` and fill in values.
 
 ## API Routes
 
 Base path: `/api`
 
-| Method | Route                       | Description                         |
-| ------ | --------------------------- | ----------------------------------- |
-| GET    | `/api/health`               | Health check                        |
-| GET    | `/api/github/contributions` | Returns contribution activity array |
+| Method | Route                        | Description                                   |
+| ------ | ---------------------------- | --------------------------------------------- |
+| GET    | `/api/health`                | Health check                                  |
+| GET    | `/api/github/contributions`  | Returns contribution activity array           |
+| POST   | `/api/github/sync`           | Triggers GitHub sync (requires Bearer token)  |
 
 ### Contributions Route Logic
 
-1. Query D1 for cached rows → return if found
-2. If empty, fetch from GitHub GraphQL API
-3. Insert fetched data into D1 (batch)
-4. Update `sync_log` table
-5. Return data
+1. Connect to MongoDB (`connectDB()` is idempotent — safe to call multiple times)
+2. Query `Contribution` collection → return if records exist
+3. If empty, call `syncContributions()` which fetches from GitHub GraphQL + upserts into MongoDB
 
-## Database Schema
+## Database Schema (Mongoose)
 
-See `migrations/0001_initial.sql`. Two tables:
-
-- `contributions (date TEXT, count INTEGER, level INTEGER)` — daily contribution data
-- `sync_log (id INTEGER, synced_at TEXT)` — tracks last sync timestamp
+- `Contribution` (`date: String` unique, `count: Number`, `level: Number 0-4`)
+- `SyncLog` (`_id: "singleton"`, `synced_at: String ISO 8601`)
 
 ## Cron Job
 
-Runs daily at **03:00 UTC** via Cloudflare Cron Triggers. Defined in `wrangler.toml`:
+Runs daily at **03:00 UTC** via Vercel Cron (defined in `vercel.json`). Calls `POST /api/github/sync` with the `CRON_SECRET` bearer token.
 
-```toml
-[triggers]
-crons = ["0 3 * * *"]
-```
+## Deployment
 
-The handler is in `src/cron.ts` → imported as `scheduled` export in `src/index.ts`.
+- Entry point for Vercel: `api/index.ts` (uses `hono/vercel` handle with Node.js runtime)
+- `vercel.json` configures route rewrites and cron schedule
+- Deploy: push to main branch → Vercel deploys automatically
 
 ## Dev Commands
 
 ```bash
-pnpm dev      # wrangler dev → localhost:8787
-pnpm deploy   # wrangler deploy (manual deploy to Cloudflare)
-pnpm build    # tsc --noEmit (type-check only, no emit)
+pnpm dev   # tsx --env-file=.env watch src/server.ts → localhost:8787
+pnpm build # tsc --noEmit (type-check only)
 ```
-
-For local D1, wrangler creates a local SQLite file automatically on first `pnpm dev`.
 
 ## Hono Patterns
 
 ```ts
-import { Hono } from "hono";
-import type { Bindings } from "./types/bindings.js";
+import { Hono } from "hono"
 
-const app = new Hono<{ Bindings: Bindings }>();
+const app = new Hono()
 
 app.get("/route", async (c) => {
-	const db = c.env.portfolio_cache;
-	// ...
-	return c.json(data);
-});
+  return c.json(data)
+})
 ```
 
-Always use `.js` extensions in imports (ESM + Cloudflare Workers requirement).
+Always use `.js` extensions in imports (ESM requirement).

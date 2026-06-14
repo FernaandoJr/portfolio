@@ -3,7 +3,8 @@
 	"extends": ["//"],
 	"tasks": {
 		"build": {
-			"outputs": []
+			"outputs": [],
+			"env": ["GITHUB_TOKEN", "ALLOWED_ORIGIN", "MONGODB_URI", "CRON_SECRET"]
 		}
 	}
 }

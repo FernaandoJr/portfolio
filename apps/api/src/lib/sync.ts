@@ -1,19 +1,23 @@
-import { fetchFromGitHub } from "./github.js";
-import type { Bindings } from "../types/bindings.js";
+import { Contribution } from "../models/contribution.js";
+import { SyncLog } from "../models/sync-log.js";
 import type { ContributionEntry } from "../types/github.js";
+import { env } from "./env.js";
+import { fetchFromGitHub } from "./github.js";
+import { connectDB } from "./mongoose.js";
 
-export async function syncContributions(env: Bindings): Promise<ContributionEntry[]> {
+export async function syncContributions(): Promise<ContributionEntry[]> {
+	await connectDB();
 	const data = await fetchFromGitHub(env.GITHUB_TOKEN);
 
-	const stmt = env.portfolio_cache.prepare(
-		"INSERT OR REPLACE INTO contributions (date, count, level) VALUES (?, ?, ?)"
+	await Promise.all(
+		data.map((d) => Contribution.updateOne({ date: d.date }, { $set: d }, { upsert: true }))
 	);
-	await env.portfolio_cache.batch(data.map((d) => stmt.bind(d.date, d.count, d.level)));
 
-	await env.portfolio_cache
-		.prepare("INSERT OR REPLACE INTO sync_log (id, synced_at) VALUES (1, ?)")
-		.bind(new Date().toISOString())
-		.run();
+	await SyncLog.updateOne(
+		{ _id: "singleton" },
+		{ $set: { synced_at: new Date().toISOString() } },
+		{ upsert: true }
+	);
 
 	return data;
 }

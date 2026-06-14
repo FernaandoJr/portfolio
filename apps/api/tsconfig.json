@@ -2,9 +2,9 @@
 	"extends": "@repo/typescript-config/base.json",
 	"compilerOptions": {
 		"outDir": "dist",
-		"rootDir": "src",
-		"types": ["@cloudflare/workers-types"]
+		"rootDir": ".",
+		"types": ["@types/node"]
 	},
-	"include": ["src"],
+	"include": ["src", "api"],
 	"exclude": ["node_modules", "dist"]
 }
