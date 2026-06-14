@@ -12,4 +12,4 @@ database_id = "8b731d0f-410e-4b04-aef3-708c1e923ab1"
 crons = ["0 3 * * *"]
 
 [vars]
-ALLOWED_ORIGIN = "https://fernaandojr.dev,https://www.fernaandojr.dev,http://localhost:3000"
+ALLOWED_ORIGIN = "https://fernaandojr.dev,https://www.fernaandojr.dev,https://portfolio-web-hi5l.vercel.app,http://localhost:3000"
