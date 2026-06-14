@@ -26,9 +26,30 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-	title: "Fernando Jr — Portfolio",
-	description: "Portfolio de desenvolvimento web",
+	title: "Fernando Jr — Full Stack Developer",
+	description:
+		"Portfolio de Fernando Junior, desenvolvedor Full Stack baseado em São Paulo. TypeScript, React, Next.js, Node.js e mobile com Expo.",
+	authors: [{ name: "Fernando Junior", url: "https://fernaandojr.dev" }],
+	creator: "Fernando Junior",
+	openGraph: {
+		title: "Fernando Jr — Full Stack Developer",
+		description:
+			"Portfolio de Fernando Junior, desenvolvedor Full Stack baseado em São Paulo. TypeScript, React, Next.js, Node.js e mobile com Expo.",
+		url: "https://fernaandojr.dev",
+		siteName: "Fernando Jr",
+		locale: "pt_BR",
+		type: "website",
+	},
+	twitter: {
+		card: "summary",
+		title: "Fernando Jr — Full Stack Developer",
+		description:
+			"Portfolio de Fernando Junior, desenvolvedor Full Stack baseado em São Paulo. TypeScript, React, Next.js, Node.js e mobile com Expo.",
+		creator: "@FernaandoJr",
+	},
 };
+
+const htmlLang: Record<string, string> = { ptBR: "pt-BR", enUS: "en" };
 
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
 	const cookieStore = await cookies();
@@ -36,7 +57,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
 
 	return (
 		<html
-			lang="pt-BR"
+			lang={htmlLang[locale] ?? "pt-BR"}
 			className={`${geist.variable} ${merriweather.variable} ${jetbrainsMono.variable} antialiased`}
 			suppressHydrationWarning
 		>

@@ -21,7 +21,7 @@ const CONTRIBUTIONS_QUERY = `
 
 export const PORTFOLIO_USERNAME = "FernaandoJr";
 
-export async function fetchFromGitHub(token: string): Promise<ContributionEntry[] | null> {
+export async function fetchFromGitHub(token: string): Promise<ContributionEntry[]> {
 	let res: Response;
 	try {
 		res = await fetch(GITHUB_GRAPHQL, {
@@ -36,14 +36,24 @@ export async function fetchFromGitHub(token: string): Promise<ContributionEntry[
 			}),
 			signal: AbortSignal.timeout(30000),
 		});
-	} catch {
-		return null;
+	} catch (err) {
+		throw new Error(
+			`GitHub API unreachable: ${err instanceof Error ? err.message : String(err)}`
+		);
 	}
 
-	if (!res.ok) return null;
+	if (!res.ok) {
+		throw new Error(`GitHub API returned ${res.status} ${res.statusText}`);
+	}
 
 	const json = (await res.json()) as GitHubResponse;
-	if (json.errors || !json.data?.user) return null;
+
+	if (json.errors?.length) {
+		throw new Error(`GitHub GraphQL error: ${json.errors[0]?.message ?? "unknown"}`);
+	}
+	if (!json.data?.user) {
+		throw new Error("GitHub user not found — check GITHUB_TOKEN and username");
+	}
 
 	const weeks = json.data.user.contributionsCollection?.contributionCalendar?.weeks ?? [];
 
