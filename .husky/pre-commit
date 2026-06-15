@@ -1,5 +1,10 @@
-prettier $(git diff --cached --name-only --diff-filter=ACMR | sed 's| |\\ |g') --write --ignore-unknown
+#!/usr/bin/env sh
+set -e
 
-pnpm turbo run lint
+PRETTIER_FILES="$(git diff --cached --name-only --diff-filter=ACMR | sed 's| |\\ |g')"
+if [ -n "$PRETTIER_FILES" ]; then
+	bunx prettier $PRETTIER_FILES --write --ignore-unknown
+	git update-index --again
+fi
 
-pnpm turbo run check-types
+pnpm lint
