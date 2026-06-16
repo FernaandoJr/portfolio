@@ -2,17 +2,6 @@
 
 import type { Day as WeekDay } from "date-fns";
 import {
-	differenceInCalendarDays,
-	eachDayOfInterval,
-	formatISO,
-	getDay,
-	getMonth,
-	getYear,
-	nextDay,
-	parseISO,
-	subWeeks,
-} from "date-fns";
-import {
 	createContext,
 	Fragment,
 	useContext,
@@ -22,15 +11,10 @@ import {
 	type ReactNode,
 } from "react";
 
+import { fillHoles, groupByWeeks, toLocalDate, type Activity, type Week } from "@/lib/contribution-calendar";
 import { cn } from "@/lib/utils";
 
-export type Activity = {
-	date: string;
-	count: number;
-	level: number;
-};
-
-type Week = Array<Activity | undefined>;
+export type { Activity };
 
 export type Labels = {
 	months?: string[];
@@ -103,38 +87,6 @@ const useContributionGraph = () => {
 	return context;
 };
 
-const fillHoles = (activities: Activity[]): Activity[] => {
-	if (activities.length === 0) return [];
-	const sorted = [...activities].sort((a, b) => a.date.localeCompare(b.date));
-	const calendar = new Map<string, Activity>(activities.map((a) => [a.date, a]));
-	const first = sorted[0] as Activity;
-	const last = sorted.at(-1);
-	if (!last) return [];
-	return eachDayOfInterval({
-		start: parseISO(first.date),
-		end: parseISO(last.date),
-	}).map((day) => {
-		const date = formatISO(day, { representation: "date" });
-		return calendar.has(date) ? (calendar.get(date) as Activity) : { date, count: 0, level: 0 };
-	});
-};
-
-const groupByWeeks = (activities: Activity[], weekStart: WeekDay = 0): Week[] => {
-	if (activities.length === 0) return [];
-	const normalized = fillHoles(activities);
-	const first = normalized[0] as Activity;
-	const firstDate = parseISO(first.date);
-	const firstCalendarDate =
-		getDay(firstDate) === weekStart ? firstDate : subWeeks(nextDay(firstDate, weekStart), 1);
-	const padded = [
-		...(new Array(differenceInCalendarDays(firstDate, firstCalendarDate)).fill(
-			undefined
-		) as Activity[]),
-		...normalized,
-	];
-	const numberOfWeeks = Math.ceil(padded.length / 7);
-	return new Array(numberOfWeeks).fill(undefined).map((_, i) => padded.slice(i * 7, i * 7 + 7));
-};
 
 const getMonthLabels = (
 	weeks: Week[],
@@ -144,7 +96,7 @@ const getMonthLabels = (
 		.reduce<MonthLabel[]>((labels, week, weekIndex) => {
 			const first = week.find((a) => a !== undefined);
 			if (!first) throw new Error(`Week ${weekIndex + 1} is empty.`);
-			const month = monthNames[getMonth(parseISO(first.date))];
+			const month = monthNames[+first.date.slice(5, 7) - 1];
 			if (!month) throw new Error(`Undefined month label.`);
 			const prev = labels.at(-1);
 			if (weekIndex === 0 || !prev || prev.label !== month)
@@ -193,7 +145,7 @@ export const ContributionGraph = ({
 	const LABEL_MARGIN = 8;
 	const labels = { ...DEFAULT_LABELS, ...labelsProp };
 	const labelHeight = fontSize + LABEL_MARGIN;
-	const year = data[0] ? getYear(parseISO(data[0].date)) : new Date().getFullYear();
+	const year = data[0] ? +data[0].date.slice(0, 4) : new Date().getFullYear();
 	const totalCount =
 		typeof totalCountProp === "number" ? totalCountProp : data.reduce((sum, a) => sum + a.count, 0);
 	const width = weeks.length * (blockSize + blockMargin) - blockMargin;

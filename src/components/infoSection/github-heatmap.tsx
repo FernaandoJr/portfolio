@@ -1,7 +1,6 @@
 "use client";
 
 import { useTranslation } from "@/lib/i18n";
-import { format } from "date-fns";
 
 import {
 	ContributionGraph,
@@ -71,7 +70,7 @@ export function GithubHeatmap() {
 		);
 	}
 
-	const displayData = data ?? generateEmptyYear();
+	const displayData = data?.length ? data : generateEmptyYear();
 
 	return (
 		<ContributionGraph
@@ -109,7 +108,7 @@ export function GithubHeatmap() {
 										: "githubContributionTooltip_plural",
 									{
 										count: activity.count,
-										date: format(new Date(activity.date), "dd.MM.yyyy"),
+										date: activity.date.split("-").reverse().join("."),
 									}
 								)}
 							</p>

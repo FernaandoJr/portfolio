@@ -2,7 +2,6 @@ import { NextResponse } from "next/server";
 
 import { Contribution } from "@/lib/db/models/contribution";
 import { connectDB } from "@/lib/db/mongoose";
-import { syncContributions } from "@/lib/db/sync";
 import type { ContributionEntry } from "@/lib/github";
 
 export async function GET() {
@@ -12,10 +11,7 @@ export async function GET() {
 			.sort({ date: 1 })
 			.lean<ContributionEntry[]>();
 
-		if (docs.length > 0) return NextResponse.json(docs);
-
-		const data = await syncContributions();
-		return NextResponse.json(data);
+		return NextResponse.json(docs);
 	} catch (err) {
 		const message = err instanceof Error ? err.message : "Unknown error";
 		console.error("[GitHub] Contributions failed:", message);
