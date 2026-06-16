@@ -26,7 +26,8 @@ export default [
 		languageOptions: {
 			...pluginReact.configs.flat.recommended.languageOptions,
 			globals: {
-				...globals.serviceworker,
+				...globals.browser,
+				...globals.node,
 			},
 		},
 	},
@@ -48,7 +49,7 @@ export default [
 			...pluginReactHooks.configs.recommended.rules,
 			"react/react-in-jsx-scope": "off",
 			"react/prop-types": "off",
-			"react-hooks/exhaustive-deps": "off",
+			"react-hooks/exhaustive-deps": "warn",
 		},
 	},
 ];

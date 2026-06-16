@@ -1,10 +1,15 @@
 import { describe, expect, it } from "vitest";
 
-import data from "../../../ex.json";
 import { fillHoles, groupByWeeks, toDateStr, toLocalDate } from "../contribution-calendar";
 import type { Activity } from "../contribution-calendar";
 
-const activities = data as Activity[];
+const activities: Activity[] = [
+	{ date: "2025-06-15", count: 3, level: 1 },
+	{ date: "2025-09-01", count: 5, level: 2 },
+	{ date: "2025-12-25", count: 2, level: 1 },
+	{ date: "2026-03-10", count: 7, level: 3 },
+	{ date: "2026-06-16", count: 1, level: 1 },
+];
 
 describe("toLocalDate", () => {
 	it("cria meia-noite local — sem desvio de timezone", () => {
@@ -26,7 +31,7 @@ describe("toDateStr", () => {
 	});
 });
 
-describe("fillHoles com ex.json", () => {
+describe("fillHoles", () => {
 	const filled = fillHoles(activities);
 
 	it("inclui o último dia do dataset (2026-06-16)", () => {
@@ -52,7 +57,7 @@ describe("fillHoles com ex.json", () => {
 		}
 	});
 
-	it("todos os dias do ex.json estão presentes no resultado", () => {
+	it("todos os dias da fixture estão presentes no resultado", () => {
 		const filledDates = new Set(filled.map((a) => a.date));
 		for (const entry of activities) {
 			expect(filledDates.has(entry.date)).toBe(true);
@@ -69,7 +74,7 @@ describe("fillHoles com ex.json", () => {
 	});
 });
 
-describe("groupByWeeks com ex.json", () => {
+describe("groupByWeeks", () => {
 	const weeks = groupByWeeks(activities);
 
 	it("último dia visível no grid é 2026-06-16", () => {

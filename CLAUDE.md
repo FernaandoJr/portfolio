@@ -1,4 +1,4 @@
-# Portfolio Monorepo — Claude Context
+# Portfolio — Claude Context
 
 ## About the Owner
 
@@ -22,44 +22,65 @@ Mix direct and explanatory depending on context:
 ## Repository Structure
 
 ```
-portfolio/                     ← Turborepo monorepo (pnpm)
-├── apps/
-│   ├── web/                   ← Next.js 16 + React 19 (main site)
-│   └── api/                   ← Cloudflare Worker (Hono + D1)
-└── packages/
-    ├── i18n/                  ← i18next config + locales (ptBR / enUS)
-    ├── api-client/            ← Typed HTTP client for the API
-    ├── eslint-config/         ← Shared ESLint configs
-    └── typescript-config/     ← Shared tsconfigs
+portfolio/                     ← Single Next.js app (pnpm)
+├── src/
+│   ├── app/                   ← Next.js App Router (pages + API routes)
+│   │   └── api/
+│   │       └── github/
+│   │           ├── contributions/route.ts   ← Reads from MongoDB
+│   │           └── sync/route.ts            ← Cron-only writer (GET, auth required)
+│   ├── components/
+│   │   ├── ui/                ← shadcn/ui primitives + custom components
+│   │   ├── header/
+│   │   ├── infoSection/       ← GitHub heatmap section
+│   │   ├── projectsSection/
+│   │   ├── experienceSection/
+│   │   ├── skillsSection/
+│   │   ├── quoteSection/
+│   │   ├── aboutSection/
+│   │   └── footer/
+│   ├── constants/             ← All static content data (no CMS)
+│   ├── hooks/
+│   └── lib/
+│       ├── db/                ← Mongoose models + sync logic
+│       ├── i18n/              ← i18next instance + locale files
+│       ├── contribution-calendar.ts  ← Pure date helpers for the heatmap
+│       ├── github.ts          ← GitHub GraphQL fetch
+│       └── utils.ts
+├── public/
+├── vercel.json                ← Cron: GET /api/github/sync daily at 03:00 UTC
+├── next.config.ts
+└── vitest.config.ts
 ```
 
-### Path aliases
+### Path alias
 
-- `@/` → `apps/web/src/`
-- `@repo/i18n` → `packages/i18n`
-- `@repo/api-client` → `packages/api-client`
+- `@/` → `./src/`
 
 ## Dev Commands
 
 ```bash
-pnpm dev          # Run all apps via Turborepo
-pnpm build        # Build all
-pnpm lint         # Lint all
-pnpm check-types  # Type-check all
-```
-
-Run individual apps:
-
-```bash
-cd apps/web && pnpm dev    # next dev → localhost:3000
-cd apps/api && pnpm dev    # wrangler dev → localhost:8787
+pnpm dev          # next dev → localhost:3000
+pnpm build        # next build
+pnpm lint         # ESLint (max 0 warnings)
+pnpm check-types  # next typegen && tsc --noEmit
+pnpm test         # vitest run
 ```
 
 ## Deploy
 
-- **Web:** Manual deploy to Vercel.
-- **API:** `cd apps/api && pnpm deploy` (runs `wrangler deploy`).
-- No CI/CD pipeline currently.
+**Web:** Manual deploy to Vercel. Set env vars: `MONGODB_URI`, `GITHUB_TOKEN`, `CRON_SECRET`.  
+No CI/CD pipeline. No wrangler, no Cloudflare, no Turborepo.
+
+## Environment variables
+
+All accessed via `process.env` in server-side code (API routes, `lib/db`, `lib/github`):
+
+| Variable | Where used |
+| --- | --- |
+| `MONGODB_URI` | `src/lib/db/mongoose.ts` |
+| `GITHUB_TOKEN` | `src/lib/github.ts` |
+| `CRON_SECRET` | `src/app/api/github/sync/route.ts` |
 
 ## Git Conventions
 
@@ -76,9 +97,9 @@ Create commits only when explicitly asked. Never commit without a clear request.
 
 ## Global Rules — Never Do
 
-1. **Never hardcode strings** visible in the UI. Every user-facing string must use `t("key")` from `@repo/i18n`. Always add the key to **both** locale files simultaneously: `packages/i18n/locales/ptBR/common.json` and `packages/i18n/locales/enUS/common.json`.
+1. **Never hardcode strings** visible in the UI. Every user-facing string must use `t("key")` from `react-i18next`. Always add the key to **both** locale files simultaneously: `src/lib/i18n/locales/ptBR/common.json` and `src/lib/i18n/locales/enUS/common.json`.
 
-2. **Never create new UI components** without first checking `apps/web/src/components/ui/` — shadcn/ui already covers most primitives (accordion, dialog, tooltip, timeline, hover-card, etc.).
+2. **Never create new UI components** without first checking `src/components/ui/` — shadcn/ui already covers most primitives (accordion, dialog, tooltip, timeline, hover-card, etc.).
 
 3. **Never change the folder structure** (`components/`, `constants/`, `lib/`, etc.) without being explicitly asked.
 
@@ -88,21 +109,19 @@ Create commits only when explicitly asked. Never commit without a clear request.
 
 6. **Never create `.md` documentation files** unless explicitly requested.
 
-7. **Never use `process.env`** inside `apps/api` — this runs on Cloudflare Workers. Environment variables and bindings are accessed via `c.env` (Hono context).
-
-8. **Never hardcode colors.** The design system uses `oklch` CSS variables (`--background`, `--foreground`, `--muted`, `--border`, etc.). Use Tailwind semantic classes (`bg-background`, `text-muted-foreground`, `border-border`).
+7. **Never hardcode colors.** The design system uses `oklch` CSS variables (`--background`, `--foreground`, `--muted`, `--border`, etc.). Use Tailwind semantic classes (`bg-background`, `text-muted-foreground`, `border-border`).
 
 ## Data Management
 
 All content data lives in TypeScript constants — no CMS, no external JSON:
 
-| What         | File                                   |
-| ------------ | -------------------------------------- |
-| Projects     | `apps/web/src/constants/projects.ts`   |
-| Skills       | `apps/web/src/constants/skills.ts`     |
-| Experience   | `apps/web/src/constants/experience.ts` |
-| Social links | `apps/web/src/constants/socials.ts`    |
-| Profile info | `apps/web/src/constants/profile.ts`    |
+| What         | File                            |
+| ------------ | ------------------------------- |
+| Projects     | `src/constants/projects.ts`     |
+| Skills       | `src/constants/skills.ts`       |
+| Experience   | `src/constants/experience.ts`   |
+| Social links | `src/constants/socials.ts`      |
+| Profile info | `src/constants/profile.ts`      |
 
 When adding entries, edit the constant file + add i18n keys for any translatable text. Never propose migrating to a CMS or external data source.
 
@@ -110,9 +129,16 @@ When adding entries, edit the constant file + add i18n keys for any translatable
 
 - Primary locale: `ptBR` (default and fallback)
 - Secondary locale: `enUS`
+- Locale files: `src/lib/i18n/locales/ptBR/common.json` and `src/lib/i18n/locales/enUS/common.json`
 - Locale is stored in a cookie (`NEXT_LOCALE`) and read server-side in `layout.tsx`
 - **Always add keys to both locales at the same time.** Never leave one locale missing a key.
-- Use `useTranslation()` hook in client components, `t` from `@repo/i18n` in non-React contexts.
+- Use `useTranslation()` hook in client components.
+
+## GitHub Heatmap Architecture
+
+- **DB is the single source of truth.** The contributions endpoint only reads from MongoDB — never calls the GitHub API directly.
+- **Cron is the only writer.** `GET /api/github/sync` (protected by `Authorization: Bearer CRON_SECRET`) is fired daily by Vercel Cron at 03:00 UTC. It fetches from GitHub and upserts into MongoDB.
+- **Date handling:** dates are calendar strings (YYYY-MM-DD) with no timezone conversion. Use `toLocalDate` / `toDateStr` from `src/lib/contribution-calendar.ts` for all date arithmetic — never `parseISO` (date-fns v4 treats date-only strings as UTC, causing off-by-one in UTC-3).
 
 ## Performance
 

@@ -3,7 +3,7 @@ set -e
 
 PRETTIER_FILES="$(git diff --cached --name-only --diff-filter=ACMR | sed 's| |\\ |g')"
 if [ -n "$PRETTIER_FILES" ]; then
-	bunx prettier $PRETTIER_FILES --write --ignore-unknown
+	pnpm exec prettier $PRETTIER_FILES --write --ignore-unknown
 	git update-index --again
 fi
 

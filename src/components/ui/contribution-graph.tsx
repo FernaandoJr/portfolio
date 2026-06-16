@@ -11,7 +11,7 @@ import {
 	type ReactNode,
 } from "react";
 
-import { fillHoles, groupByWeeks, toLocalDate, type Activity, type Week } from "@/lib/contribution-calendar";
+import { groupByWeeks, type Activity, type Week } from "@/lib/contribution-calendar";
 import { cn } from "@/lib/utils";
 
 export type { Activity };
@@ -228,11 +228,15 @@ export const ContributionGraphCalendar = ({
 	children,
 	...props
 }: ContributionGraphCalendarProps) => {
-	const { weeks, width, height, blockSize, blockMargin, labels } = useContributionGraph();
+	const { weeks, width, height, blockSize, blockMargin, labels } =
+		useContributionGraph();
 	const monthLabels = useMemo(() => getMonthLabels(weeks, labels.months), [weeks, labels.months]);
 
 	return (
-		<div className={cn("max-w-full overflow-x-auto overflow-y-hidden", className)} {...props}>
+		<div
+			className={cn("max-w-full overflow-x-auto overflow-y-hidden", className)}
+			{...props}
+		>
 			<svg
 				className="block overflow-visible"
 				height={height}

@@ -17,8 +17,6 @@
 		"resolveJsonModule": true,
 		"skipLibCheck": true,
 		"incremental": false,
-		"declaration": true,
-		"declarationMap": true,
 		"plugins": [
 			{
 				"name": "next"
@@ -37,5 +35,5 @@
 		".next/types/**/*.ts",
 		".next/dev/types/**/*.ts"
 	],
-	"exclude": ["node_modules", "apps", "packages"]
+	"exclude": ["node_modules"]
 }

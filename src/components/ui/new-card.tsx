@@ -4,7 +4,6 @@ import { MotionConfig, motion, useReducedMotion } from "framer-motion";
 import * as React from "react";
 import { createContext, useContext } from "react";
 
-import { registryTheme } from "@/lib/registry-theme";
 import { cn } from "@/lib/utils";
 
 interface ReducedMotionProp {
@@ -87,7 +86,6 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
 				<MotionDiv
 					{...props}
 					className={cn(
-						registryTheme,
 						"relative flex transform-gpu flex-col gap-4 overflow-hidden rounded-lg border border-border/70 bg-card py-4 text-card-foreground text-sm",
 						"before:pointer-events-none before:absolute before:inset-x-0 before:top-0 before:z-1 before:h-px before:bg-linear-to-r before:from-transparent before:via-foreground/12 before:to-transparent before:opacity-60",
 						"has-[>img:first-child]:pt-0 has-data-[slot=card-footer]:pb-0",
