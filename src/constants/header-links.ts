@@ -1,1 +1,1 @@
-export const headerLinks = [] as const;
+export const headerLinks: { key: string; href: string }[] = [];
