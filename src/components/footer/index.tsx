@@ -14,7 +14,6 @@ export default function Footer() {
 		{ labelKey: "navAbout", href: "#about" },
 		{ labelKey: "navProjects", href: "#projects" },
 		{ labelKey: "experienceTitle", href: "#experience" },
-		{ labelKey: "navContact", href: "#contact" },
 	];
 
 	return (

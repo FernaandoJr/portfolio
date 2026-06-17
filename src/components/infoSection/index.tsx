@@ -26,9 +26,15 @@ export default function InfoSection() {
 	return (
 		<>
 			<div className="flex flex-row items-center gap-4">
-				<div className="border w-fit border-border rounded-md overflow-hidden">
-					<Image src="/pt-br.svg" alt="Fernando Jr" width={80} height={80} className="size-20" />
-				</div>
+				<Image
+					src="/pfp_greninja.png"
+					alt="Fernando Jr"
+					width={75}
+					height={66}
+					className="h-20 w-auto"
+					style={{ imageRendering: "pixelated" }}
+					unoptimized
+				/>
 				<div className="flex flex-col gap-0.5">
 					<p className="text-3xl font-bold">{NAME}</p>
 					<RotatingSubtitle />

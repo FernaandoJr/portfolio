@@ -40,13 +40,6 @@ export default function Home() {
 				</div>
 			</section>
 
-			<section id="contact" className="min-h-screen">
-				<div className="w-full max-w-3xl mx-auto px-6 lg:px-0">
-					<h2 className="text-3xl font-bold">{t("contactTitle")}</h2>
-					<p className="mt-4 text-muted-foreground">{t("contactSoon")}</p>
-				</div>
-			</section>
-
 			<QuoteSection />
 		</main>
 	);
