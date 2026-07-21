@@ -13,8 +13,9 @@ const TimelineItem = React.forwardRef<HTMLLIElement, React.HTMLAttributes<HTMLLI
 		<li
 			ref={ref}
 			className={cn(
-				"grid grid-cols-[20px_1fr] gap-x-4 pb-10 last:pb-0",
+				"grid grid-cols-[20px_1fr] gap-x-4",
 				"[&:last-child_[data-slot='timeline-connector']]:hidden",
+				"[&:last-child_[data-slot='timeline-content']]:pb-0",
 				className
 			)}
 			{...props}
@@ -56,7 +57,7 @@ const TimelineConnector = React.forwardRef<HTMLDivElement, React.HTMLAttributes<
 	({ className, ...props }, ref) => (
 		<div
 			ref={ref}
-			className={cn("mt-1.5 w-px flex-1 bg-border/50", className)}
+			className={cn("mt-1.5 -mb-1.5 w-px flex-1 bg-border/50", className)}
 			data-slot="timeline-connector"
 			{...props}
 		/>
@@ -66,7 +67,12 @@ TimelineConnector.displayName = "TimelineConnector";
 
 const TimelineContent = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
 	({ className, ...props }, ref) => (
-		<div ref={ref} className={cn("min-w-0", className)} {...props} />
+		<div
+			ref={ref}
+			className={cn("min-w-0 pb-10", className)}
+			data-slot="timeline-content"
+			{...props}
+		/>
 	)
 );
 TimelineContent.displayName = "TimelineContent";
