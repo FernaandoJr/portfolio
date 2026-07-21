@@ -36,16 +36,23 @@ export function Header({ disableSticky = false, forceBlur = false }: HeaderProps
 	return (
 		<header
 			className={cn(
-				"z-50 w-full border-b border-transparent ",
+				"z-50 w-full",
 				!disableSticky && "fixed top-0 right-0 left-0",
-				disableSticky && "relative",
-				{
-					"bg-background/95 supports-[backdrop-filter]:bg-background/50 border-border backdrop-blur-lg":
-						(scrolled && !disableSticky) || forceBlur,
-				}
+				disableSticky && "relative"
 			)}
 		>
-			<nav className="mx-auto flex h-14 w-full max-w-3xl items-center justify-between px-6 lg:px-0 select-none">
+			<div
+				aria-hidden
+				className={cn(
+					"pointer-events-none absolute inset-x-0 top-0 -bottom-16 transition-opacity duration-500 ease-out",
+					"bg-linear-to-b from-background/85 via-background/60 to-transparent",
+					"supports-[backdrop-filter]:backdrop-blur-lg",
+					"[mask-image:linear-gradient(to_bottom,var(--background)_45%,transparent)]",
+					(scrolled && !disableSticky) || forceBlur ? "opacity-100" : "opacity-0"
+				)}
+			/>
+
+			<nav className="relative mx-auto flex h-14 w-full max-w-3xl items-center justify-between px-6 lg:px-0 select-none">
 				<div className="flex items-center gap-5">
 					<Link href="/" className="flex items-center gap-2 rounded-md p-2">
 						<span className="text-lg font-medium">FernaandoJr</span>
