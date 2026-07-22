@@ -65,7 +65,6 @@ export default async function Image({ params }: { params: Promise<{ slug: string
 	return new ImageResponse(
 		(
 			<Blog
-				brand="fernaandojr.dev"
 				category={tags[0] ?? "Blog"}
 				title={title}
 				excerpt={description}

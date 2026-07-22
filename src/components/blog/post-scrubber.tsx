@@ -70,11 +70,11 @@ export function PostScrubber({ toc, sourceLocale }: PostScrubberProps) {
 	if (chapters.length < 2) return null;
 
 	return (
-		<div className="pointer-events-none fixed top-40 left-[calc(50%+25rem)] z-30 hidden min-[1500px]:block">
+		<div className="pointer-events-none fixed top-40 right-14 z-30 hidden select-none min-[1500px]:block">
 			<div className="pointer-events-auto">
 				<ChapterScrubber
 					chapters={chapters}
-					side="right"
+					side="left"
 					peakLength={40}
 					restLength={12}
 					rowHeight={14}

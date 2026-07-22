@@ -21,8 +21,6 @@ export interface BlogProps {
 	author: string;
 	meta: string;
 	avatar?: string;
-	brand: string;
-	logo?: string;
 }
 
 const initials = (name: string) =>
@@ -33,16 +31,7 @@ const initials = (name: string) =>
 		.join("")
 		.toUpperCase();
 
-export const Blog = ({
-	category,
-	title,
-	excerpt,
-	author,
-	meta,
-	avatar,
-	brand,
-	logo,
-}: BlogProps) => (
+export const Blog = ({ category, title, excerpt, author, meta, avatar }: BlogProps) => (
 	<div
 		style={{
 			backgroundColor: COLOR.background,
@@ -91,10 +80,10 @@ export const Blog = ({
 				style={{
 					color: COLOR.muted,
 					display: "flex",
-					fontSize: "32px",
-					lineHeight: 1.4,
-					marginTop: "28px",
-					maxWidth: "920px",
+					fontSize: "26px",
+					lineHeight: 1.45,
+					marginTop: "24px",
+					maxWidth: "820px",
 				}}
 			>
 				{excerpt}
@@ -129,26 +118,5 @@ export const Blog = ({
 			</div>
 		</div>
 
-		<div
-			style={{
-				alignItems: "center",
-				display: "flex",
-				gap: "12px",
-				position: "absolute",
-				right: "80px",
-				top: "80px",
-			}}
-		>
-			{logo ? (
-				<img
-					alt=""
-					height={40}
-					src={logo}
-					width={40}
-					style={{ borderRadius: "8px", objectFit: "contain" }}
-				/>
-			) : null}
-			<div style={{ color: COLOR.muted, fontSize: "30px", fontWeight: 700 }}>{brand}</div>
-		</div>
 	</div>
 );

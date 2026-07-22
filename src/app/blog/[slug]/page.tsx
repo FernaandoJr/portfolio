@@ -6,6 +6,7 @@ import type { ReactNode } from "react";
 import { MDXRemote } from "next-mdx-remote-client/rsc";
 
 import { BackLink } from "@/components/blog/back-link";
+import { BackToTop } from "@/components/blog/back-to-top";
 import { CopyPageButton } from "@/components/blog/copy-page-button";
 import { LocalizedContent } from "@/components/blog/localized-content";
 import { mdxComponents } from "@/components/blog/mdx-components";
@@ -120,6 +121,7 @@ export default async function PostPage({ params }: PageProps) {
 			</div>
 			<PostScrubber toc={toc} sourceLocale={post.sourceLocale} />
 			<LocalizedContent content={content} sourceLocale={post.sourceLocale} />
+			<BackToTop />
 		</div>
 	);
 }
