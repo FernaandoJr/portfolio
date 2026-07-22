@@ -12,13 +12,12 @@ import {
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { SITE_URL } from "@/constants/profile";
-import { DEFAULT_LOCALE, isLocale, type Locale } from "@/lib/blog/types";
 import { useTranslation } from "@/lib/i18n";
 
 type CopyPageButtonProps = {
-	slug: string;
-	markdown: Partial<Record<Locale, string>>;
-	sourceLocale: Locale;
+	/** Locale-agnostic path to the raw markdown, e.g. /blog/pt/my-post/markdown */
+	markdownPath: string;
+	markdown: string;
 };
 
 type AiTarget = {
@@ -43,8 +42,8 @@ const AI_TARGETS: AiTarget[] = [
 	},
 ];
 
-export function CopyPageButton({ slug, markdown, sourceLocale }: CopyPageButtonProps) {
-	const { t, i18n } = useTranslation();
+export function CopyPageButton({ markdownPath, markdown }: CopyPageButtonProps) {
+	const { t } = useTranslation();
 	const [copied, setCopied] = React.useState(false);
 
 	React.useEffect(() => {
@@ -53,17 +52,10 @@ export function CopyPageButton({ slug, markdown, sourceLocale }: CopyPageButtonP
 		return () => clearTimeout(timeout);
 	}, [copied]);
 
-	const active = isLocale(i18n.language) ? i18n.language : DEFAULT_LOCALE;
-	const locale = markdown[active] ? active : sourceLocale;
-	const content = markdown[locale];
-
-	if (!content) return null;
-
-	const markdownPath = `/blog/${slug}/markdown?lang=${locale}`;
 	const prompt = encodeURIComponent(t("blogAiPrompt", { url: `${SITE_URL}${markdownPath}` }));
 
 	function copy() {
-		navigator.clipboard.writeText(content as string);
+		navigator.clipboard.writeText(markdown);
 		setCopied(true);
 	}
 
@@ -72,7 +64,7 @@ export function CopyPageButton({ slug, markdown, sourceLocale }: CopyPageButtonP
 			<button
 				type="button"
 				onClick={copy}
-				className="inline-flex cursor-pointer items-center gap-1.5 rounded-l-md py-1.5 pr-2.5 pl-2.5 text-muted-foreground text-sm transition-colors select-none hover:text-foreground"
+				className="inline-flex cursor-pointer items-center gap-1.5 rounded-l-md px-2.5 py-1.5 text-muted-foreground text-sm transition-colors select-none hover:text-foreground"
 			>
 				<span className="t-icon-swap" data-state={copied ? "b" : "a"} aria-hidden>
 					<span className="t-icon" data-icon="a">
@@ -106,9 +98,7 @@ export function CopyPageButton({ slug, markdown, sourceLocale }: CopyPageButtonP
 					{AI_TARGETS.map((target) => (
 						<DropdownMenuItem
 							key={target.id}
-							render={
-								<a href={target.url(prompt)} target="_blank" rel="noopener noreferrer" />
-							}
+							render={<a href={target.url(prompt)} target="_blank" rel="noopener noreferrer" />}
 						>
 							<Icon icon={target.icon} className="size-4" />
 							{t("blogOpenIn", { app: target.label })}

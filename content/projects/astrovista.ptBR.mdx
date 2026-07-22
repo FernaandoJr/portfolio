@@ -1,0 +1,73 @@
+---
+title: AstroVista
+description: Aplicação open source que explora as imagens e vídeos espaciais da NASA, arquivando diariamente as imagens do APOD desde 1995.
+date: 2024-11-20
+tags:
+  - Next.js
+  - Hono
+  - MongoDB
+cover: /projects/astrovista.webp
+draft: false
+status: completed
+featured: 1
+stack:
+  - Next.js
+  - Hono
+  - MongoDB
+  - TypeScript
+links:
+  repo: https://github.com/FernaandoJr/AstroVista
+  live: https://astrovista.fernaandojr.dev
+gallery:
+  - src: /projects/astrovista.webp
+    alt: Tela inicial com a imagem do dia
+  - src: /projects/astrovista.webp
+    alt: Galeria completa com filtro por data
+  - src: /projects/astrovista.webp
+    alt: Detalhe de uma imagem com a explicação da NASA
+  - src: /projects/astrovista.webp
+    alt: Busca por texto no arquivo
+  - src: /projects/astrovista.webp
+    alt: Visualização em tela cheia
+authors:
+  - id: fernaandojr
+    roleKey: roleLead
+---
+
+A NASA publica desde 1995 uma imagem por dia no APOD — Astronomy Picture of the Day. São mais de dez mil imagens, cada uma com uma explicação escrita por astrônomos. A API oficial existe, mas é lenta, tem rate limit agressivo e não serve para navegar: você pede uma data e recebe uma data.
+
+O AstroVista transforma isso em um arquivo navegável, com busca, filtro por data e galeria.
+
+## O problema com a API oficial
+
+Consultar a API da NASA a cada request tinha três problemas na prática:
+
+- **Rate limit.** A chave gratuita dá 1000 requests por hora. Uma galeria paginada consome isso em minutos.
+- **Latência.** Entre 800ms e 3s por chamada, sem cache do lado deles.
+- **Sem busca.** Não existe endpoint de busca por texto. Só por data.
+
+A solução foi parar de consultar a NASA no caminho do usuário.
+
+## Sincronização como único escritor
+
+Um job diário busca as imagens novas e faz upsert no MongoDB. A aplicação lê **só** do banco — nunca chama a NASA durante um request.
+
+```ts title="sync.ts"
+const existing = await Apod.findOne({ date }).lean();
+if (existing) return { skipped: true };
+
+const data = await fetchApod(date);
+await Apod.updateOne({ date }, { $set: data }, { upsert: true });
+```
+
+Isso mudou o perfil da aplicação por completo: o tempo de resposta virou o tempo de uma query indexada no Mongo, e o rate limit deixou de existir como conceito.
+
+## Por que Hono e não uma rota do Next
+
+O backend é um serviço Hono separado. A razão não foi performance — foi o job de sincronização. Ele precisa rodar fora do ciclo de request, com timeout longo e retry, e Route Handlers do Next em serverless são hostis a isso.
+
+Separar também deixou a API reutilizável: hoje o mesmo endpoint alimenta o site e um bot que publica a imagem do dia.
+
+## O que eu faria diferente
+
+Guardaria as imagens em um bucket próprio desde o começo. Hoje o AstroVista serve as URLs da NASA direto, e imagens antigas ocasionalmente somem do servidor deles — o registro sobrevive, a imagem não.

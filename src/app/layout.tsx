@@ -31,13 +31,13 @@ export const metadata: Metadata = {
 	title: "Fernando Jr — Full Stack Developer",
 	description:
 		"Portfolio de Fernando Junior, desenvolvedor Full Stack baseado em São Paulo. TypeScript, React, Next.js, Node.js e mobile com Expo.",
-	authors: [{ name: "Fernando Junior", url: "https://fernaandojr.dev" }],
+	authors: [{ name: "Fernando Junior", url: SITE_URL }],
 	creator: "Fernando Junior",
 	openGraph: {
 		title: "Fernando Jr — Full Stack Developer",
 		description:
 			"Portfolio de Fernando Junior, desenvolvedor Full Stack baseado em São Paulo. TypeScript, React, Next.js, Node.js e mobile com Expo.",
-		url: "https://fernaandojr.dev",
+		url: SITE_URL,
 		siteName: "Fernando Jr",
 		locale: "pt_BR",
 		type: "website",

@@ -10,8 +10,10 @@
 		"lint": "eslint --max-warnings 0",
 		"check-types": "next typegen && tsc --noEmit",
 		"test": "vitest run",
-		"blog:translate": "tsx --env-file-if-exists=.env --env-file-if-exists=.env.local scripts/translate-posts.ts",
-		"blog:check": "tsx scripts/check-posts.ts"
+		"content:translate": "tsx --env-file-if-exists=.env --env-file-if-exists=.env.local scripts/translate-content.ts",
+		"content:check": "tsx scripts/check-content.ts",
+		"blog:translate": "pnpm content:translate blog",
+		"blog:check": "pnpm content:check blog"
 	},
 	"dependencies": {
 		"@base-ui/react": "^1.5.0",

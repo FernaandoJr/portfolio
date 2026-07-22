@@ -1,0 +1,36 @@
+---
+title: Orbit Dashboard
+description: Painel de analytics em tempo real com gráficos interativos, streaming de dados e filtros avançados.
+date: 2024-06-10
+tags:
+  - Next.js
+  - TypeScript
+  - TanStack
+cover: https://picsum.photos/seed/orbit-dashboard/640/360
+draft: false
+status: completed
+featured: 2
+stack:
+  - Next.js
+  - TypeScript
+  - TanStack
+links:
+  repo: https://github.com/FernaandoJr
+  live: https://example.com
+gallery:
+  - src: https://picsum.photos/seed/orbit-1/900/900
+    alt: Filtros combinados na query string
+authors:
+  - id: fernaandojr
+    roleKey: roleLead
+---
+
+Painel de métricas que atualiza sem recarregar, com filtros combinados e séries temporais que continuam legíveis quando os dados chegam a cada segundo.
+
+## Estado do filtro na URL
+
+Todo filtro vive na query string. Um recorte interessante vira um link que outra pessoa abre no mesmo estado, e o botão de voltar do navegador funciona como desfazer.
+
+## Streaming sem travar a renderização
+
+Os pontos chegam por SSE e entram em um buffer. O gráfico redesenha em intervalo fixo em vez de por evento — sem isso, uma rajada de atualizações prende a thread principal e a interface engasga.

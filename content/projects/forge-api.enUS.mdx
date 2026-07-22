@@ -1,0 +1,43 @@
+---
+title: Forge API
+description: >-
+  High-performance REST API with JWT authentication, rate limiting, and
+  automatic OpenAPI documentation.
+date: '2024-09-02'
+tags:
+  - Hono
+  - Bun
+  - TypeScript
+cover: 'https://picsum.photos/seed/forge-api/640/360'
+draft: false
+status: wip
+featured: 3
+stack:
+  - Hono
+  - Bun
+  - TypeScript
+links:
+  repo: 'https://github.com/FernaandoJr'
+gallery:
+  - src: https://picsum.photos/seed/forge-1/900/900
+    alt: OpenAPI docs generated from the schema
+  - src: https://picsum.photos/seed/forge-2/1200/400
+    alt: Rate limit response with its headers
+authors:
+  - id: fernaandojr
+    roleKey: roleBackend
+translatedFrom: ptBR
+sourceHash: 57481111a569ec1a
+translatedBy: manual
+translatedAt: '2026-07-22T18:41:01.191Z'
+---
+
+An API skeleton that ships with the boring parts already solved: authentication, request limiting and documentation that cannot go stale.
+
+## Schema as the single source
+
+Every route declares its schema with Zod. From it come, at the same time, runtime validation, the TypeScript types and the OpenAPI document. There is no separate step for writing documentation, so there is no wrong documentation.
+
+## Rate limit by identity, not by IP
+
+Counting by IP punishes a whole office behind one NAT. The counter uses the JWT `sub` when it exists and falls back to the IP only on public routes.

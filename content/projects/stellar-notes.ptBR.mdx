@@ -1,0 +1,41 @@
+---
+title: Stellar Notes
+description: App de notas com editor rich text, organização em workspaces, busca semântica e sincronização em nuvem.
+date: 2023-07-05
+tags:
+  - Next.js
+  - TypeScript
+  - PostgreSQL
+cover: https://picsum.photos/seed/stellar-notes/640/360
+draft: false
+status: completed
+stack:
+  - Next.js
+  - TypeScript
+  - PostgreSQL
+links:
+  repo: https://github.com/FernaandoJr
+  live: https://example.com
+gallery:
+  - src: https://picsum.photos/seed/stellar-1/900/900
+    alt: Workspace com a hierarquia de notas
+  - src: https://picsum.photos/seed/stellar-2/900/600
+    alt: Editor rich text
+  - src: https://picsum.photos/seed/stellar-3/1200/400
+    alt: Resultado da busca híbrida
+  - src: https://picsum.photos/seed/stellar-4/1200/400
+    alt: Sincronização entre dispositivos
+authors:
+  - id: fernaandojr
+    roleKey: roleLead
+---
+
+Notas com estrutura: workspaces, hierarquia e uma busca que encontra a nota mesmo quando você não lembra a palavra exata que usou.
+
+## Busca híbrida
+
+Busca semântica sozinha erra em nome próprio e código; busca textual sozinha erra em sinônimo. As duas rodam juntas e os resultados são combinados por posição, não por score bruto — os scores vivem em escalas diferentes e somá-los é comparar coisas incomparáveis.
+
+## Documento como árvore, não como HTML
+
+A nota é salva como árvore de blocos. Guardar HTML economiza trabalho no começo e cobra caro depois, na hora de fazer diff, colaboração ou exportar para outro formato.
