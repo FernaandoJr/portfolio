@@ -60,12 +60,11 @@ export default async function Image({ params }: { params: Promise<{ slug: string
 		);
 	}
 
-	const { title, description, tags, date } = variant.frontmatter;
+	const { title, description, date } = variant.frontmatter;
 
 	return new ImageResponse(
 		(
 			<Blog
-				category={tags[0] ?? "Blog"}
 				title={title}
 				excerpt={description}
 				author="Fernando Junior"

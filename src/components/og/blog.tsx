@@ -15,7 +15,6 @@ const COLOR = {
 };
 
 export interface BlogProps {
-	category: string;
 	title: string;
 	excerpt: string;
 	author: string;
@@ -31,7 +30,7 @@ const initials = (name: string) =>
 		.join("")
 		.toUpperCase();
 
-export const Blog = ({ category, title, excerpt, author, meta, avatar }: BlogProps) => (
+export const Blog = ({ title, excerpt, author, meta, avatar }: BlogProps) => (
 	<div
 		style={{
 			backgroundColor: COLOR.background,
@@ -45,24 +44,6 @@ export const Blog = ({ category, title, excerpt, author, meta, avatar }: BlogPro
 			width: "100%",
 		}}
 	>
-		<div
-			style={{
-				alignSelf: "flex-start",
-				backgroundColor: COLOR.card,
-				border: `1px solid ${COLOR.border}`,
-				borderRadius: "999px",
-				color: COLOR.muted,
-				display: "flex",
-				fontSize: "24px",
-				fontWeight: 600,
-				letterSpacing: "0.04em",
-				padding: "10px 22px",
-				textTransform: "uppercase",
-			}}
-		>
-			{category}
-		</div>
-
 		<div style={{ display: "flex", flexDirection: "column" }}>
 			<div
 				style={{
