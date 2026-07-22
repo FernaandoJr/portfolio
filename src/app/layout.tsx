@@ -1,5 +1,6 @@
 import Footer from "@/components/footer";
 import { Header } from "@/components/header";
+import { SITE_URL } from "@/constants/profile";
 import { I18nProvider } from "@/components/providers/i18n-provider";
 import { QueryProvider } from "@/components/providers/query-provider";
 import { BGPattern } from "@/components/ui/bg-pattern";
@@ -26,6 +27,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+	metadataBase: new URL(SITE_URL),
 	title: "Fernando Jr — Full Stack Developer",
 	description:
 		"Portfolio de Fernando Junior, desenvolvedor Full Stack baseado em São Paulo. TypeScript, React, Next.js, Node.js e mobile com Expo.",

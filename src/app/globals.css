@@ -2,6 +2,8 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
+@plugin "@tailwindcss/typography";
+
 @custom-variant dark (&:is(.dark *));
 
 :root {
@@ -218,5 +220,302 @@
 	scrollbar-width: none;
 	&::-webkit-scrollbar {
 		display: none;
+	}
+}
+
+/* Unlayered on purpose: @tailwindcss/typography sets --tw-prose-* from the
+   utilities layer, which outranks anything declared inside @layer base. */
+.prose {
+	--tw-prose-body: var(--muted-foreground);
+	--tw-prose-headings: var(--foreground);
+	--tw-prose-lead: var(--muted-foreground);
+	--tw-prose-links: var(--foreground);
+	--tw-prose-bold: var(--foreground);
+	--tw-prose-counters: var(--muted-foreground);
+	--tw-prose-bullets: var(--border);
+	--tw-prose-hr: var(--border);
+	--tw-prose-quotes: var(--foreground);
+	--tw-prose-quote-borders: var(--border);
+	--tw-prose-captions: var(--muted-foreground);
+	--tw-prose-code: var(--foreground);
+	--tw-prose-pre-code: var(--foreground);
+	--tw-prose-pre-bg: transparent;
+	--tw-prose-th-borders: var(--border);
+	--tw-prose-td-borders: var(--border);
+	color: var(--muted-foreground);
+}
+
+.prose :is(h1, h2, h3, h4, h5, h6) {
+	color: var(--foreground);
+	scroll-margin-top: 9rem;
+}
+
+.prose :is(strong, b) {
+	color: var(--foreground);
+}
+
+.prose :is(a, blockquote) {
+	color: var(--foreground);
+}
+
+.prose :is(th, td) {
+	color: var(--foreground);
+}
+
+.prose :not(pre) > code {
+	background-color: color-mix(in oklch, var(--foreground) 8%, transparent);
+	border-radius: 0.25rem;
+	color: var(--foreground);
+	font-weight: 500;
+	padding: 0.15em 0.35em;
+}
+
+.prose :not(pre) > code::before,
+.prose :not(pre) > code::after {
+	content: none;
+}
+
+/* The card carries .not-prose, so it owns its own geometry instead of undoing
+   typography rule by rule. */
+[data-rehype-pretty-code-figure] pre {
+	margin: 0;
+	overflow-x: auto;
+	padding-block: 1rem;
+	padding-inline: 0;
+}
+
+[data-rehype-pretty-code-figure] code {
+	counter-reset: line;
+	display: grid;
+	font-size: 0.875rem;
+	line-height: 1.7;
+}
+
+[data-rehype-pretty-code-figure] [data-line] {
+	padding-inline: 1rem;
+}
+
+[data-rehype-pretty-code-figure] [data-line]::before {
+	color: var(--muted-foreground);
+	content: counter(line);
+	counter-increment: line;
+	display: inline-block;
+	margin-right: 1rem;
+	opacity: 0.4;
+	text-align: right;
+	user-select: none;
+	width: 1.25rem;
+}
+
+/* A lone line number reads as noise on one-liners like shell commands. */
+[data-rehype-pretty-code-figure] code:has([data-line]:only-child) [data-line]::before {
+	content: none;
+	margin-right: 0;
+	width: 0;
+}
+
+[data-rehype-pretty-code-figure] span {
+	color: var(--shiki-light);
+}
+
+.dark [data-rehype-pretty-code-figure] span {
+	color: var(--shiki-dark);
+}
+
+[data-rehype-pretty-code-figure] [data-highlighted-line] {
+	background-color: color-mix(in oklch, var(--foreground) 7%, transparent);
+}
+
+[data-rehype-pretty-code-title] {
+	border-bottom: 1px solid var(--border);
+	color: var(--muted-foreground);
+	font-family: var(--font-mono);
+	font-size: 0.75rem;
+	padding: 0.5rem 1rem;
+}
+
+/* Keep below the last @utility: Tailwind v4 swallows plain rules placed
+   immediately after an @utility block. */
+.t-icon-swap {
+	--icon-swap-dur: 250ms;
+	--icon-swap-blur: 2px;
+	--icon-swap-start-scale: 0.25;
+	--icon-swap-ease: ease-in-out;
+
+	display: inline-grid;
+	position: relative;
+}
+
+.t-icon-swap .t-icon {
+	grid-area: 1 / 1;
+	transition:
+		opacity var(--icon-swap-dur) var(--icon-swap-ease),
+		filter var(--icon-swap-dur) var(--icon-swap-ease),
+		transform var(--icon-swap-dur) var(--icon-swap-ease);
+	will-change: opacity, filter, transform;
+}
+
+/* `none`, not blur(0): Lightning CSS strips the literal zero and emits the
+   invalid blur(), killing the rule. Interpolation treats none as blur(0). */
+.t-icon-swap[data-state="a"] .t-icon[data-icon="a"],
+.t-icon-swap[data-state="b"] .t-icon[data-icon="b"] {
+	filter: none;
+	opacity: 1;
+	transform: scale(1);
+}
+
+.t-icon-swap[data-state="a"] .t-icon[data-icon="b"],
+.t-icon-swap[data-state="b"] .t-icon[data-icon="a"] {
+	filter: blur(var(--icon-swap-blur));
+	opacity: 0;
+	transform: scale(var(--icon-swap-start-scale));
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.t-icon-swap .t-icon {
+		transition: none;
+	}
+}
+
+.t-stagger {
+	--stagger-dur: 500ms;
+	--stagger-distance: 12px;
+	--stagger-stagger: 40ms;
+	--stagger-blur: 3px;
+	--stagger-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.t-stagger-line {
+	display: block;
+	filter: blur(var(--stagger-blur));
+	opacity: 0;
+	transform: translateY(var(--stagger-distance));
+	transition:
+		opacity var(--stagger-dur) var(--stagger-ease),
+		transform var(--stagger-dur) var(--stagger-ease),
+		filter var(--stagger-dur) var(--stagger-ease);
+	will-change: transform, opacity, filter;
+}
+
+.t-stagger-line--2 {
+	transition-delay: var(--stagger-stagger);
+}
+
+.t-stagger-line--3 {
+	transition-delay: calc(var(--stagger-stagger) * 2);
+}
+
+.t-stagger-line--4 {
+	transition-delay: calc(var(--stagger-stagger) * 3);
+}
+
+.t-stagger-line--5 {
+	transition-delay: calc(var(--stagger-stagger) * 4);
+}
+
+.t-stagger-line--6 {
+	transition-delay: calc(var(--stagger-stagger) * 5);
+}
+
+.t-stagger.is-shown .t-stagger-line {
+	filter: none;
+	opacity: 1;
+	transform: translateY(0);
+}
+
+/* Exit decouples from the stagger: same fade for every line, no Y return and
+   no blur, so it reads as one quiet fade instead of a reverse reveal. */
+.t-stagger.is-hiding .t-stagger-line {
+	filter: none;
+	opacity: 0;
+	transform: translateY(0);
+	transition:
+		opacity 200ms ease,
+		transform 0s linear,
+		filter 0s linear;
+	transition-delay: 0s;
+}
+
+/* !important is load-bearing: .is-hiding sets its own transition at higher
+   specificity and would otherwise still animate under reduced motion. */
+@media (prefers-reduced-motion: reduce) {
+	.t-stagger-line {
+		transition: none !important;
+	}
+}
+
+.t-skel {
+	--pulse-dur: 1000ms;
+	--pulse-count: 1;
+	--pulse-min: 0.5;
+	--reveal-dur: 400ms;
+	--reveal-blur: 2px;
+	--reveal-ease: ease-in-out;
+
+	position: relative;
+}
+
+.t-skel-skeleton,
+.t-skel-content {
+	inset: 0;
+	position: absolute;
+	transition:
+		opacity var(--reveal-dur) var(--reveal-ease),
+		filter var(--reveal-dur) var(--reveal-ease);
+}
+
+.t-skel-skeleton {
+	filter: none;
+	opacity: 1;
+	z-index: 1;
+}
+
+.t-skel-content {
+	filter: blur(var(--reveal-blur));
+	opacity: 0;
+	z-index: 2;
+}
+
+.t-skel.is-revealed .t-skel-skeleton {
+	filter: blur(var(--reveal-blur));
+	opacity: 0;
+}
+
+.t-skel.is-revealed .t-skel-content {
+	filter: none;
+	opacity: 1;
+}
+
+/* Snap-back when replaying: kill transitions so the reverse is instant. Drop
+   .is-resetting after a forced reflow and the next reveal animates again. */
+.t-skel.is-resetting .t-skel-skeleton,
+.t-skel.is-resetting .t-skel-content {
+	transition: none !important;
+}
+
+/* Pulse lives on the bars, not the skeleton, so the skeleton's own opacity and
+   filter stay free for the cross-fade above. */
+.t-skel-skeleton.is-pulsing > * {
+	animation: t-skel-pulse var(--pulse-dur) ease-in-out var(--pulse-count);
+}
+
+@keyframes t-skel-pulse {
+	0%,
+	100% {
+		opacity: 1;
+	}
+	50% {
+		opacity: var(--pulse-min);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.t-skel-skeleton,
+	.t-skel-content {
+		transition: none !important;
+	}
+
+	.t-skel-skeleton.is-pulsing > * {
+		animation: none !important;
 	}
 }

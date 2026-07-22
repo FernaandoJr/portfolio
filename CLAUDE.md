@@ -125,6 +125,18 @@ All content data lives in TypeScript constants — no CMS, no external JSON:
 
 When adding entries, edit the constant file + add i18n keys for any translatable text. Never propose migrating to a CMS or external data source.
 
+**Blog is the one exception.** Long-form posts live as MDX files in `content/blog/`, not in constants — putting article prose into i18n JSON is unworkable. This exception covers blog posts only; everything in the table above stays in TypeScript constants.
+
+## Blog
+
+- **Files:** `content/blog/<slug>.<locale>.mdx` — slug is the filename before the first dot, locale is `ptBR` or `enUS`.
+- **Source vs translation:** the variant *without* `translatedFrom` in its frontmatter is the source. Write posts in either language.
+- **Translation:** `pnpm blog:translate` sends the post to Gemini and writes the sibling file. `pnpm blog:check` reports what is missing or stale. Commit the generated file — it is never translated at runtime.
+- **Never let the model see code.** `src/lib/blog/mask.ts` replaces fenced code, inline code, JSX and URLs with `⟦Cn⟧` placeholders before the API call and restores them after. `src/lib/blog/validate.ts` rejects any response that drops, duplicates or invents a placeholder.
+- **Staleness:** the translated file carries `sourceHash`. Edit the source and it no longer matches, so `blog:check` flags it. Unchanged posts are skipped, which preserves manual edits to a translation.
+- **Rendering:** post pages are Server Components. Both locales are rendered at build time and `src/components/blog/localized-content.tsx` picks one on the client — never read `cookies()` under `/blog`.
+- **`GEMINI_API_KEY` is local-only.** The script is a devDependency workflow; it must never be imported by app code or deployed.
+
 ## i18n Rules
 
 - Primary locale: `ptBR` (default and fallback)

@@ -2,13 +2,10 @@
 	"footerRights": "Use como inspiração.",
 	"footerMadeWith": "feito com",
 	"footerSource": "Código Fonte",
-
 	"quoteText": "Qualquer um pode escrever um código que o computador entenda. Bons programadores escrevem códigos que os humanos entendam.",
 	"quoteAuthor": "Martin Fowler",
-
 	"showMore": "ver mais",
 	"showLess": "ver menos",
-
 	"monthJan": "Jan",
 	"monthFeb": "Fev",
 	"monthMar": "Mar",
@@ -21,7 +18,6 @@
 	"monthOct": "Out",
 	"monthNov": "Nov",
 	"monthDec": "Dez",
-
 	"navAbout": "Sobre",
 	"navProjects": "Projetos",
 	"heroRole": "Desenvolvedor Full Stack",
@@ -47,21 +43,18 @@
 	"bioIntro": "Desenvolvedor Full Stack apaixonado por construir interfaces modernas, funcionais e com atenção aos detalhes que fazem a diferença na experiência do usuário.",
 	"bioCurrently": "Trabalho com",
 	"and": "e",
-
 	"location": "Localização",
 	"email": "Email",
 	"localTime": "Horário local",
 	"sameTime": "mesmo horário",
 	"ahead": "à frente",
 	"behind": "atrás",
-
 	"aboutP1": "Sou Fernando Junior, Desenvolvedor Full Stack com mais de 2 anos de experiência, detalhista por natureza e obcecado com design que funciona tão bem quanto parece.",
 	"aboutP2": "Fascinado pelo espectro completo da criação, de conceitos de UI/UX e web design à arquitetura de componentes e como o usuário conversa com um design funcional e intencional.",
 	"aboutP3": "Estou sempre com novas ideias de projetos e coloco-as em prática sempre que posso. Adoro explorar componentes, criar interfaces bonitas e transformar conceitos em produtos polidos.",
 	"aboutCreator": "Criador do",
 	"aboutAstroVista": "AstroVista",
 	"aboutAstroVistaDesc": "projeto open source que arquiva diariamente as imagens da NASA.",
-
 	"githubContributions": "{{count}} contribuições em {{year}} no",
 	"githubContributionsError": "Não foi possível carregar as contribuições do GitHub.",
 	"githubContributionTooltip": "{{count}} contribuição em {{date}}",
@@ -69,21 +62,17 @@
 	"less": "Menos",
 	"more": "Mais",
 	"techStack": "Tech Stack",
-
 	"wip": "Em progresso",
 	"viewOnGitHub": "GitHub",
 	"viewSite": "Ver site",
-
 	"projectAstroVistaDesc": "Aplicação open source que explora as imagens e vídeos espaciais da NASA, arquivando diariamente as imagens do APOD desde 1995.",
 	"projectOrbitDashboardDesc": "Painel de analytics em tempo real com gráficos interativos, streaming de dados e filtros avançados.",
 	"projectForgeApiDesc": "API REST de alta performance com autenticação JWT, rate limiting e documentação automática via OpenAPI.",
 	"projectPixelCanvasDesc": "Editor colaborativo de pixel art em tempo real com salas públicas, paleta customizável e exportação PNG.",
 	"projectStellarNotesDesc": "App de notas com editor rich text, organização em workspaces, busca semântica e sincronização em nuvem.",
 	"projectVoidCliDesc": "Ferramenta CLI para scaffolding de projetos com templates personalizados, plugins e integração com npm.",
-
 	"roleFrontendDeveloper": "Desenvolvedor Frontend",
 	"roleBackendDeveloper": "Desenvolvedor Backend",
-
 	"experienceTitle": "Experiência",
 	"fullTime": "Tempo integral",
 	"partTime": "Meio período",
@@ -92,17 +81,13 @@
 	"remote": "Remoto",
 	"hybrid": "Híbrido",
 	"onSite": "Presencial",
-
 	"companyDolphinDesc": "Empresa brasileira de software focada em soluções tecnológicas, desenvolvedora do AgroCRM, uma plataforma completa para gestão de vendas e relacionamento com clientes para empresas de diversos segmentos.",
-
 	"expDolphinFrontDesc": "Desenvolvimento de uma nova plataforma AgroCRM com arquiteturas modernas, construindo uma biblioteca rica de componentes de formulário como comboboxes, inputs de data e file upload. Trabalho colaborativo com múltiplos desenvolvedores em monorepo, além do desenvolvimento do zero de um aplicativo mobile multiplataforma com suporte offline usando Expo e React Native.",
 	"expDolphinFrontBullet1": "Criei componentes de formulário reutilizáveis e uma aplicação mobile multiplataforma com sincronização offline",
 	"expDolphinFrontBullet2": "Colaborei com múltiplos desenvolvedores em um monorepo estruturado com arquitetura MVVM e boas práticas de DX",
-
 	"expDolphinBackDesc": "Desenvolvi e mantive APIs RESTful com GeneXus, realizando operações CRUD e otimizações de backend em colaboração com os times de frontend e suporte.",
 	"expDolphinBackBullet1": "Criei e mantive operações CRUD com foco em performance e estabilidade",
 	"expDolphinBackBullet2": "Trabalhei em conjunto com o time de frontend para alinhar contratos de API e resolver integrações",
-
 	"readMyStory": "Leia minha história",
 	"storyTitle": "Sobre mim",
 	"storyBack": "Voltar",
@@ -114,5 +99,21 @@
 	"storyP6": "No meu segundo semestre da faculdade, tive a oportunidade de estagiar na área de suporte ao cliente na <0>AgroCRM,</0> onde pude aplicar meus conhecimentos em cenários reais e adquirir uma experiência valiosa na área. Após 6 meses, migrei para um cargo de desenvolvimento back-end utilizando <1>GeneXus</1> e outras tecnologias, como SQL e APIs REST.",
 	"storyP7": "Após essa experiência no back-end, migrei para o desenvolvimento front-end dentro da mesma empresa, onde passei a trabalhar com TypeScript, React, Next.js, Expo e React Native, construindo desde componentes de formulário reutilizáveis até um aplicativo mobile multiplataforma com suporte offline.",
 	"storyP8": "E o resto é história! Continuei trabalhando na área de desenvolvimento de software, adquirindo experiência em diversas tecnologias e frameworks, e aperfeiçoando minhas habilidades como desenvolvedor. Tive a oportunidade de trabalhar em projetos que me desafiaram e me fizeram crescer como profissional.",
-	"storyP9": "Hoje, dedico meu tempo e energia a melhorar continuamente minhas habilidades em tecnologias, frameworks e plataformas modernas exigidas pela indústria. Adoro criar projetos pessoais e colaborar com outros desenvolvedores que compartilham a mesma paixão por tecnologia e inovação."
+	"storyP9": "Hoje, dedico meu tempo e energia a melhorar continuamente minhas habilidades em tecnologias, frameworks e plataformas modernas exigidas pela indústria. Adoro criar projetos pessoais e colaborar com outros desenvolvedores que compartilham a mesma paixão por tecnologia e inovação.",
+	"navBlog": "Blog",
+	"blogTitle": "Blog",
+	"blogBack": "Voltar para o blog",
+	"blogEmpty": "Nenhum post publicado ainda. Em breve.",
+	"blogReadingTime": "{{count}} min de leitura",
+	"blogReadingTime_plural": "{{count}} min de leitura",
+	"blogCopyCode": "Copiar código",
+	"blogNoTranslation": "Este post ainda não tem tradução. Exibindo a versão em {{language}}.",
+	"blogCopyLink": "Copiar link da seção",
+	"blogCopyPage": "Copiar página",
+	"blogCopiedPage": "Copiado",
+	"blogPageActions": "Mais ações",
+	"blogViewMarkdown": "Ver como Markdown",
+	"blogOpenIn": "Abrir no {{app}}",
+	"blogAiPrompt": "Leia {{url}} para eu poder fazer perguntas sobre esse conteúdo.",
+	"blogTocLabel": "Seções do post"
 }

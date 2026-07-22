@@ -1,1 +1,1 @@
-export const headerLinks: { key: string; href: string }[] = [];
+export const headerLinks: { key: string; href: string }[] = [{ key: "navBlog", href: "/blog" }];

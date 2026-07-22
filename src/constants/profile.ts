@@ -1,3 +1,4 @@
+export const SITE_URL = "https://fernaandojr.dev";
 export const NAME = "FernaandoJr";
 export const EMAIL = "fernaando.divino@gmail.com";
 export const LOCATION = "São Paulo, Brazil";

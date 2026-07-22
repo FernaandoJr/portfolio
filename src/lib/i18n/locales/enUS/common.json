@@ -2,13 +2,10 @@
 	"footerRights": "Use as inspiration.",
 	"footerMadeWith": "made with",
 	"footerSource": "Source Code",
-
 	"quoteText": "Any fool can write code that a computer can understand. Good programmers write code that humans can understand.",
 	"quoteAuthor": "Martin Fowler",
-
 	"showMore": "show more",
 	"showLess": "show less",
-
 	"monthJan": "Jan",
 	"monthFeb": "Feb",
 	"monthMar": "Mar",
@@ -21,7 +18,6 @@
 	"monthOct": "Oct",
 	"monthNov": "Nov",
 	"monthDec": "Dec",
-
 	"navAbout": "About",
 	"navProjects": "Projects",
 	"heroRole": "Full Stack Developer",
@@ -47,21 +43,18 @@
 	"bioIntro": "Full Stack Developer passionate about building modern, functional interfaces with an eye for the details that make a real difference in the user experience.",
 	"bioCurrently": "Working with",
 	"and": "and",
-
 	"location": "Location",
 	"email": "Email",
 	"localTime": "Local time",
 	"sameTime": "same time",
 	"ahead": "ahead",
 	"behind": "behind",
-
 	"aboutP1": "I'm Fernando Junior, a Full Stack Developer with 2+ years of experience, detail-obsessed and passionate about design that feels as good as it looks.",
 	"aboutP2": "Fascinated by the full spectrum of creation, from UI/UX concepts and web design to component architecture and how users interact with functional, intentional interfaces.",
 	"aboutP3": "I constantly come up with new project ideas and make a point of bringing them to life. I love exploring components, crafting beautiful interfaces, and turning rough concepts into polished products.",
 	"aboutCreator": "Creator of",
 	"aboutAstroVista": "AstroVista",
 	"aboutAstroVistaDesc": "an open source project that archives NASA's daily astronomy images.",
-
 	"githubContributions": "{{count}} contributions in {{year}} on",
 	"githubContributionsError": "Could not load GitHub contributions.",
 	"githubContributionTooltip": "{{count}} contribution on {{date}}",
@@ -69,21 +62,17 @@
 	"less": "Less",
 	"more": "More",
 	"techStack": "Tech Stack",
-
 	"wip": "In progress",
 	"viewOnGitHub": "GitHub",
 	"viewSite": "Visit site",
-
 	"projectAstroVistaDesc": "Open source app that explores NASA's space images and videos, archiving daily APOD images dating back to 1995.",
 	"projectOrbitDashboardDesc": "Real-time analytics dashboard with interactive charts, data streaming, and advanced filters.",
 	"projectForgeApiDesc": "High-performance REST API with JWT authentication, rate limiting, and automatic OpenAPI documentation.",
 	"projectPixelCanvasDesc": "Collaborative real-time pixel art editor with public rooms, customizable palette, and PNG export.",
 	"projectStellarNotesDesc": "Notes app with rich text editor, workspace organization, semantic search, and cloud sync.",
 	"projectVoidCliDesc": "CLI tool for project scaffolding with custom templates, plugins, and npm integration.",
-
 	"roleFrontendDeveloper": "Frontend Developer",
 	"roleBackendDeveloper": "Backend Developer",
-
 	"experienceTitle": "Experience",
 	"fullTime": "Full-time",
 	"partTime": "Part-time",
@@ -92,17 +81,13 @@
 	"remote": "Remote",
 	"hybrid": "Hybrid",
 	"onSite": "On-site",
-
 	"companyDolphinDesc": "Brazilian software company focused on technological solutions, developing AgroCRM, a complete platform for sales management and customer relationships for companies across various industries.",
-
 	"expDolphinFrontDesc": "Developing a new AgroCRM platform using modern architecture, building a rich component library including comboboxes, date inputs, and file uploads. Working collaboratively with multiple developers in a monorepo, while also building from scratch a cross-platform mobile app with offline-first support using Expo and React Native.",
 	"expDolphinFrontBullet1": "Built reusable form components and a cross-platform mobile app with offline sync from scratch",
 	"expDolphinFrontBullet2": "Collaborated with multiple developers in a structured monorepo with MVVM architecture and strong DX practices",
-
 	"expDolphinBackDesc": "Developed and maintained RESTful APIs using GeneXus, handling CRUD operations and backend optimizations in close collaboration with frontend and support teams.",
 	"expDolphinBackBullet1": "Created and maintained CRUD operations with performance-focused optimizations",
 	"expDolphinBackBullet2": "Worked closely with the frontend team to align API contracts and resolve integration issues",
-
 	"readMyStory": "Read my story",
 	"storyTitle": "About Me",
 	"storyBack": "Back",
@@ -114,5 +99,21 @@
 	"storyP6": "In my second semester of college, I had the opportunity to intern in customer support at <0>AgroCRM,</0> where I was able to apply my knowledge in real-world scenarios and gain valuable experience in the field. After 6 months, I transitioned to a backend development role using <1>GeneXus</1> and other technologies, such as SQL and REST APIs.",
 	"storyP7": "After that backend experience, I transitioned to frontend development within the same company, where I started working with TypeScript, React, Next.js, Expo, and React Native, building everything from reusable form components to a cross-platform mobile app with offline-first support.",
 	"storyP8": "And the rest is history! I continued working in the field of software development, gaining experience in various technologies and frameworks, and honing my skills as a developer. I had the opportunity to work on projects that challenged me and helped me grow as a professional.",
-	"storyP9": "Today, I dedicate my time and energy to continuously improving my skills in modern technologies, frameworks, and platforms required by the industry. I love creating personal projects and collaborating with other developers who share the same passion for technology and innovation."
+	"storyP9": "Today, I dedicate my time and energy to continuously improving my skills in modern technologies, frameworks, and platforms required by the industry. I love creating personal projects and collaborating with other developers who share the same passion for technology and innovation.",
+	"navBlog": "Blog",
+	"blogTitle": "Blog",
+	"blogBack": "Back to blog",
+	"blogEmpty": "No posts published yet. Coming soon.",
+	"blogReadingTime": "{{count}} min read",
+	"blogReadingTime_plural": "{{count}} min read",
+	"blogCopyCode": "Copy code",
+	"blogNoTranslation": "This post has not been translated yet. Showing the {{language}} version.",
+	"blogCopyLink": "Copy link to section",
+	"blogCopyPage": "Copy page",
+	"blogCopiedPage": "Copied",
+	"blogPageActions": "More actions",
+	"blogViewMarkdown": "View as Markdown",
+	"blogOpenIn": "Open in {{app}}",
+	"blogAiPrompt": "Read {{url}} so I can ask questions about it.",
+	"blogTocLabel": "Post sections"
 }

@@ -11,9 +11,10 @@ export default function Footer() {
 	const { t } = useTranslation();
 
 	const navLinks = [
-		{ labelKey: "navAbout", href: "#about" },
-		{ labelKey: "navProjects", href: "#projects" },
-		{ labelKey: "experienceTitle", href: "#experience" },
+		{ labelKey: "navAbout", href: "/#about" },
+		{ labelKey: "navProjects", href: "/#projects" },
+		{ labelKey: "experienceTitle", href: "/#experience" },
+		{ labelKey: "navBlog", href: "/blog" },
 	];
 
 	return (
