@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { LocalizedRouteSync } from "@/components/localized-route-sync";
-import type { ProjectCardData } from "@/components/projects/project-card";
-import { ProjectsGrid } from "@/components/projects/projects-grid";
+import { ProjectCard, type ProjectCardData } from "@/components/projects/project-card";
 import { ProjectsEmptyState, ProjectsIntro } from "@/components/projects/projects-intro";
 import { getAllProjects, variantFor } from "@/lib/projects/source";
 import { isLocaleSegment, LOCALE_SEGMENTS, toLocale } from "@/lib/i18n/routing";
@@ -67,7 +66,15 @@ export default async function ProjectsPage({ params }: PageProps) {
 			<LocalizedRouteSync locale={locale} />
 			<ProjectsIntro />
 
-			{cards.length === 0 ? <ProjectsEmptyState /> : <ProjectsGrid projects={cards} />}
+			{cards.length === 0 ? (
+				<ProjectsEmptyState />
+			) : (
+				<div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+					{cards.map((project) => (
+						<ProjectCard key={project.slug} project={project} />
+					))}
+				</div>
+			)}
 		</div>
 	);
 }

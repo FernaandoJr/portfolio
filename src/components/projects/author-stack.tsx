@@ -1,68 +1,46 @@
 "use client";
 
-import { Icon } from "@iconify/react";
-import Link from "next/link";
+import { GradientAvatar } from "@outpacelabs/avatars";
 
-import { Avatar, AvatarFallback, AvatarGroup, AvatarImage } from "@/components/ui/avatar";
-import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/new-hover-card";
-import { findPerson, initialsOf } from "@/constants/people";
+import { AvatarGroup, type AvatarGroupItem } from "@/components/ui/avatar-group";
+import { findPerson } from "@/constants/people";
 import { useTranslation } from "@/lib/i18n";
 
 export type ProjectAuthor = { id: string; roleKey?: string | undefined };
 
-export function AuthorStack({ authors }: { authors: ProjectAuthor[] }) {
+const PIXELS = { default: 34, sm: 26 } as const;
+
+export function AuthorStack({
+	authors,
+	size = "default",
+}: {
+	authors: ProjectAuthor[];
+	size?: keyof typeof PIXELS;
+}) {
 	const { t } = useTranslation();
 
-	const resolved = authors
-		.map((author) => ({ ...author, person: findPerson(author.id) }))
-		.filter((author) => author.person !== undefined);
+	const pixels = PIXELS[size];
 
-	if (resolved.length === 0) return null;
+	const items: AvatarGroupItem[] = authors
+		.map((author) => ({ ...author, person: findPerson(author.id) }))
+		.filter((author) => author.person !== undefined)
+		.map(({ id, roleKey, person }) => ({
+			id,
+			// Seeded by id, so a person keeps the same avatar across every project.
+			node: <GradientAvatar seed={id} size={pixels} pattern="dither" radius={0} />,
+			label: roleKey ? `${person!.name} · ${t(roleKey)}` : person!.name,
+			href: person!.github ?? person!.url,
+		}));
+
+	if (items.length === 0) return null;
 
 	return (
-		<div className="flex items-center gap-3 select-none">
-			<AvatarGroup>
-				{resolved.map(({ id, roleKey, person }) => {
-					const name = person!.name;
-
-					return (
-						<HoverCard key={id} openDelay={100}>
-							<HoverCardTrigger className="cursor-pointer rounded-full">
-								<Avatar>
-									{person!.avatar && <AvatarImage src={person!.avatar} alt={name} />}
-									<AvatarFallback>{initialsOf(name)}</AvatarFallback>
-								</Avatar>
-							</HoverCardTrigger>
-
-							<HoverCardContent className="w-64">
-								<div className="flex items-start gap-3">
-									<Avatar size="lg">
-										{person!.avatar && <AvatarImage src={person!.avatar} alt={name} />}
-										<AvatarFallback>{initialsOf(name)}</AvatarFallback>
-									</Avatar>
-
-									<div className="flex flex-col gap-1">
-										<span className="text-sm font-medium">{name}</span>
-										{roleKey && <span className="text-muted-foreground text-xs">{t(roleKey)}</span>}
-
-										{person!.github && (
-											<Link
-												href={person!.github}
-												target="_blank"
-												rel="noopener noreferrer"
-												className="mt-1 inline-flex items-center gap-1.5 text-muted-foreground text-xs transition-colors hover:text-foreground"
-											>
-												<Icon icon="mdi:github" className="size-3.5" />
-												{t("viewOnGitHub")}
-											</Link>
-										)}
-									</div>
-								</div>
-							</HoverCardContent>
-						</HoverCard>
-					);
-				})}
-			</AvatarGroup>
-		</div>
+		<AvatarGroup
+			items={items}
+			size={pixels}
+			maxVisible={4}
+			overlap={Math.round(pixels * 0.35)}
+			ring={2}
+		/>
 	);
 }

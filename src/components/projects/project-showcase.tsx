@@ -143,7 +143,7 @@ export function ProjectShowcase({
 							className="inset-y-0 right-3 my-auto translate-y-0 cursor-pointer border-0 bg-black/40 text-white opacity-0 backdrop-blur-sm transition-opacity hover:bg-black/60 hover:text-white group-hover/carousel:opacity-100 focus-visible:opacity-100 active:not-aria-[haspopup]:translate-y-0"
 						/>
 
-						<div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 items-center gap-2 rounded-full bg-black/30 px-2.5 py-1.5 backdrop-blur-sm">
+						<div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 items-center gap-2 rounded-full bg-black/30 px-2.5 py-1.5 opacity-0 backdrop-blur-sm transition-opacity group-hover/carousel:opacity-100 focus-within:opacity-100">
 							{slides.map((image, index) => (
 								<button
 									key={`dot-${image.src}-${index}`}

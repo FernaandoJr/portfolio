@@ -131,20 +131,22 @@ export default async function ProjectPage({ params }: PageProps) {
 
 					<p className="text-muted-foreground leading-relaxed">{description}</p>
 
-					<PostDate
-						date={date}
-						className="font-serif text-muted-foreground/70 text-xs select-none"
-					/>
-
 					<div className="flex flex-wrap items-center justify-between gap-3">
+						<div className="flex items-center gap-3">
+							<AuthorStack authors={authors} size="sm" />
+							<PostDate
+								date={date}
+								className="font-serif text-muted-foreground/70 text-xs select-none"
+							/>
+						</div>
+
 						<ProjectStack stack={stack} />
-						<ProjectLinks repo={links.repo} live={links.live} />
 					</div>
 				</header>
 
 				<ProjectShowcase cover={cover} title={title} images={gallery} />
 
-				<AuthorStack authors={authors} />
+				<ProjectLinks repo={links.repo} live={links.live} />
 
 				<div className="prose prose-neutral max-w-none">
 					<MDXRemote source={variant.body} components={mdxComponents} options={mdxOptions} />

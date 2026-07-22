@@ -13,13 +13,13 @@ export function ProjectLinks({ repo, live }: { repo?: string | undefined; live?:
 	if (!repo && !live) return null;
 
 	return (
-		<div className="flex flex-wrap items-center gap-2">
+		<div className="flex flex-wrap items-center justify-end gap-2">
 			{repo && (
 				<Link
 					href={repo}
 					target="_blank"
 					rel="noopener noreferrer"
-					className={cn(buttonVariants({ variant: "outline", size: "sm" }), "gap-1.5")}
+					className={cn(buttonVariants({ variant: "secondary", size: "sm"}), "gap-1.5")}
 				>
 					<Icon icon="mdi:github" className="size-4" />
 					{t("viewOnGitHub")}
