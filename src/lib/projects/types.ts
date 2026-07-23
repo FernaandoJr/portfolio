@@ -10,7 +10,6 @@ export type ProjectStatus = (typeof PROJECT_STATUSES)[number];
 
 export const projectFrontmatterSchema = baseFrontmatterSchema.extend({
 	status: z.enum(PROJECT_STATUSES).default("completed"),
-	// Presence decides whether the project reaches the homepage; the value orders it.
 	featured: z.number().int().optional(),
 	stack: z.array(z.string()).default([]),
 	links: z

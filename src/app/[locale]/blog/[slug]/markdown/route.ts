@@ -1,13 +1,11 @@
+import { getAllPosts, getPost, variantFor } from "@/lib/blog/source";
 import { toMarkdown } from "@/lib/content/to-markdown";
 import { isLocaleSegment, LOCALE_SEGMENTS, toLocale } from "@/lib/i18n/routing";
-import { getAllProjects, getProject, variantFor } from "@/lib/projects/source";
 
 export async function generateStaticParams() {
-	const projects = await getAllProjects();
+	const posts = await getAllPosts();
 
-	return LOCALE_SEGMENTS.flatMap((locale) =>
-		projects.map((project) => ({ locale, slug: project.slug }))
-	);
+	return LOCALE_SEGMENTS.flatMap((locale) => posts.map((post) => ({ locale, slug: post.slug })));
 }
 
 export async function GET(
@@ -17,12 +15,12 @@ export async function GET(
 	const { locale: segment, slug } = await params;
 	if (!isLocaleSegment(segment)) return new Response("Not found", { status: 404 });
 
-	const project = await getProject(slug);
-	if (!project) return new Response("Not found", { status: 404 });
+	const post = await getPost(slug);
+	if (!post) return new Response("Not found", { status: 404 });
 
-	const variant = variantFor(project, toLocale(segment));
+	const variant = variantFor(post, toLocale(segment));
 
-	return new Response(toMarkdown(variant, `/projects/${segment}/${slug}`), {
+	return new Response(toMarkdown(variant, `/${segment}/blog/${slug}`), {
 		headers: {
 			"Content-Type": "text/markdown; charset=utf-8",
 			"Cache-Control": "public, max-age=3600",

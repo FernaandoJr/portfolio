@@ -62,14 +62,12 @@ export default async function Image({
 	const { title, description, date } = variant.frontmatter;
 
 	return new ImageResponse(
-		(
-			<Blog
-				title={title}
-				excerpt={description}
-				author="Fernando Junior"
-				meta={`${formatDate(date, locale)} · ${variant.readingMinutes} ${READ_LABEL[locale]}`}
-			/>
-		),
+		<Blog
+			title={title}
+			excerpt={description}
+			author="Fernando Junior"
+			meta={`${formatDate(date, locale)} · ${variant.readingMinutes} ${READ_LABEL[locale]}`}
+		/>,
 		size
 	);
 }

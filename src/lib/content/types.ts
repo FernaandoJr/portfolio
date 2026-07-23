@@ -2,8 +2,6 @@ import { z } from "zod";
 
 import { LOCALES, type Locale } from "@/lib/i18n/routing";
 
-// Single source of truth lives in the routing module: the content file suffixes
-// (post.ptBR.mdx) and the URL segments have to stay in lockstep.
 export { DEFAULT_LOCALE, isLocale, LOCALES, type Locale } from "@/lib/i18n/routing";
 
 const calendarDate = z

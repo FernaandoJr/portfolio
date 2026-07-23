@@ -16,7 +16,6 @@ const DOT: Record<ProjectStatus, string> = {
 	archived: "bg-muted-foreground",
 };
 
-/** Overlay variant sits on top of the cover image, so it carries its own contrast. */
 export function ProjectStatusBadge({
 	status,
 	overlay = false,

@@ -75,8 +75,6 @@ describe("serializeVariant", () => {
 		const source = parseProject("astrovista.ptBR.mdx", raw);
 		expect(source).not.toBeNull();
 
-		// This is what the translator writes: base fields replaced, everything the
-		// project schema added copied from the source variant.
 		const translated = serializeVariant(
 			{
 				...source!.frontmatter,

@@ -30,7 +30,6 @@ const naoPodeSerTraduzido = "valor";
 | Um | Dois |
 `;
 
-/** Stands in for Gemini: rewrites prose only, never touching placeholders. */
 function fakeTranslate(masked: string): string {
 	return masked
 		.replace("Cabeçalho", "Heading")

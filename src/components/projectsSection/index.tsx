@@ -15,7 +15,7 @@ export default async function ProjectsSection() {
 
 				return {
 					slug: project.slug,
-					href: `/projects/${toSegment(locale)}/${project.slug}`,
+					href: `/${toSegment(locale)}/projects/${project.slug}`,
 					title: variant.frontmatter.title,
 					description: variant.frontmatter.description,
 					cover: variant.frontmatter.cover,

@@ -54,9 +54,6 @@ export function serializeVariant<F extends BaseFrontmatter>(frontmatter: F, body
 		tags: frontmatter.tags,
 	};
 
-	// Whatever the collection schema added on top of the base sits between the
-	// shared header and the translation footer. Copying it verbatim is what keeps
-	// a project's authors and gallery alive when the translator rewrites the file.
 	for (const [key, value] of Object.entries(frontmatter)) {
 		if (LEADING_KEYS.has(key)) continue;
 		if ((TRANSLATION_KEYS as readonly string[]).includes(key)) continue;

@@ -10,7 +10,6 @@ type PostScrubberProps = {
 	toc: TocEntry[];
 };
 
-// Matches the fixed header offset used by scroll-margin-top on prose headings.
 const HEADING_OFFSET = 160;
 
 export function PostScrubber({ toc }: PostScrubberProps) {

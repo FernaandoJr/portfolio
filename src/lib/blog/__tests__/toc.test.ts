@@ -4,7 +4,9 @@ import { extractToc } from "../toc";
 
 describe("extractToc", () => {
 	it("collects h2 and h3 with their depth", () => {
-		const toc = extractToc(["# Ignorado", "", "## Primeira", "", "### Sub", "", "## Segunda"].join("\n"));
+		const toc = extractToc(
+			["# Ignorado", "", "## Primeira", "", "### Sub", "", "## Segunda"].join("\n")
+		);
 
 		expect(toc).toEqual([
 			{ id: "primeira", text: "Primeira", depth: 2 },

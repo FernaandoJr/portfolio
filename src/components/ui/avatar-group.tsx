@@ -10,13 +10,9 @@ const EASE_OUT_CUBIC = [0.215, 0.61, 0.355, 1] as const;
 const STAGGER_DELAY = 0.05;
 
 export type AvatarGroupItem = {
-	/** Unique key and, when `href` is absent, still the accessible name source. */
 	id: string;
-	/** The visual itself — an image, a canvas avatar, initials. */
 	node: React.ReactNode;
-	/** Shown in the tooltip and used as the link's accessible name. */
 	label: string;
-	/** Profile URL. Without it the avatar renders as a plain, non-clickable item. */
 	href?: string | undefined;
 };
 
@@ -24,9 +20,7 @@ export interface AvatarGroupProps {
 	items: AvatarGroupItem[];
 	maxVisible?: number;
 	size?: number;
-	/** Pixels each avatar pulls onto the previous one. */
 	overlap?: number;
-	/** Ring thickness in pixels; scale it down for small avatars. */
 	ring?: number;
 	className?: string;
 	avatarClassName?: string;
@@ -52,8 +46,6 @@ export function AvatarGroup({
 	return (
 		<div className={cn("relative flex items-center", className)}>
 			{visible.map((item, index) => (
-				// An <a> without href is not a link and not focusable, which is exactly
-				// what a person with no public profile should render as.
 				<motion.a
 					key={item.id}
 					href={item.href}
@@ -65,22 +57,15 @@ export function AvatarGroup({
 						avatarClassName
 					)}
 					style={{
-						// `size + ring * 2`, not `size`: box-sizing is border-box here, so
-						// sizing the box to `size` would eat the ring out of the avatar and
-						// crop the node inside it.
 						width: size + ring * 2,
 						height: size + ring * 2,
 						borderWidth: ring,
 						borderStyle: "solid",
 						borderColor: "var(--background)",
-						// Only the followers pull left, otherwise the whole group would
-						// sit `overlap` pixels off its container's edge.
 						marginLeft: index === 0 ? 0 : -overlap,
 						zIndex: hoveredIdx === index ? 20 : visible.length - index,
 					}}
-					initial={
-						shouldReduceMotion ? { opacity: 1 } : { opacity: 0, scale: 0.8, x: -20 }
-					}
+					initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, scale: 0.8, x: -20 }}
 					animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, scale: 1, x: 0 }}
 					transition={
 						shouldReduceMotion
@@ -119,10 +104,7 @@ export function AvatarGroup({
 				</div>
 			)}
 
-			{/*
-			 * The tooltip lives outside the avatars: inside, `overflow-hidden` (which
-			 * crops the avatar to a circle) would clip it away.
-			 */}
+			{}
 			<AnimatePresence>
 				{hoveredIdx !== null && visible[hoveredIdx] && (
 					<motion.span

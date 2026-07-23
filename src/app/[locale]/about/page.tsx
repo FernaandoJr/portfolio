@@ -1,8 +1,11 @@
 "use client";
 
+import { LocalizedRouteSync } from "@/components/localized-route-sync";
 import { Trans, useTranslation } from "@/lib/i18n";
+import { DEFAULT_LOCALE, isLocaleSegment, toLocale } from "@/lib/i18n/routing";
 import { ArrowLeftIcon } from "lucide-react";
 import Link from "next/link";
+import { useParams } from "next/navigation";
 
 function StoryLink({ href, children }: { href: string; children?: React.ReactNode }) {
 	return (
@@ -19,11 +22,15 @@ function StoryLink({ href, children }: { href: string; children?: React.ReactNod
 
 export default function AboutPage() {
 	const { t } = useTranslation();
+	const params = useParams<{ locale: string }>();
+	const segment = isLocaleSegment(params.locale) ? params.locale : "en";
 
 	return (
 		<div className="flex flex-col gap-10">
+			<LocalizedRouteSync locale={isLocaleSegment(segment) ? toLocale(segment) : DEFAULT_LOCALE} />
+
 			<Link
-				href="/#about"
+				href={`/${segment}#about`}
 				className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors w-fit"
 			>
 				<ArrowLeftIcon className="size-3.5" />

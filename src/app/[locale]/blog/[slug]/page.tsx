@@ -36,15 +36,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 	const variant = variantFor(post, toLocale(segment));
 	const { title, description, date } = variant.frontmatter;
 
-	// No `images` here on purpose: that would override opengraph-image.tsx.
 	return {
 		title: `${title} — Fernando Jr`,
 		description,
 		alternates: {
-			canonical: `/blog/${segment}/${slug}`,
+			canonical: `/${segment}/blog/${slug}`,
 			languages: {
-				"pt-BR": `/blog/pt/${slug}`,
-				"en-US": `/blog/en/${slug}`,
+				"pt-BR": `/pt-br/blog/${slug}`,
+				"en-US": `/en/blog/${slug}`,
 			},
 		},
 		openGraph: {
@@ -53,7 +52,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 			title,
 			description,
 			publishedTime: date,
-			url: `/blog/${segment}/${slug}`,
+			url: `/${segment}/blog/${slug}`,
 		},
 		twitter: { card: "summary_large_image", title, description },
 	};
@@ -78,7 +77,7 @@ export default async function PostPage({ params }: PageProps) {
 		datePublished: date,
 		keywords: tags.join(", "),
 		inLanguage: HTML_LANG[locale],
-		mainEntityOfPage: `${SITE_URL}/blog/${segment}/${slug}`,
+		mainEntityOfPage: `${SITE_URL}/${segment}/blog/${slug}`,
 		author: { "@type": "Person", name: "Fernando Junior", url: SITE_URL },
 		...(cover ? { image: `${SITE_URL}${cover}` } : {}),
 	};
@@ -93,10 +92,10 @@ export default async function PostPage({ params }: PageProps) {
 			<LocalizedRouteSync locale={locale} />
 
 			<div className="flex items-center justify-between gap-4">
-				<BackLink href={`/blog/${segment}`} labelKey="blogBack" />
+				<BackLink href={`/${segment}/blog`} labelKey="blogBack" />
 				<CopyPageButton
-					markdownPath={`/blog/${segment}/${slug}/markdown`}
-					markdown={toMarkdown(variant, `/blog/${segment}/${slug}`)}
+					markdownPath={`/${segment}/blog/${slug}/markdown`}
+					markdown={toMarkdown(variant, `/${segment}/blog/${slug}`)}
 				/>
 			</div>
 

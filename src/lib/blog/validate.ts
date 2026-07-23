@@ -37,7 +37,9 @@ export function validateTranslation({
 
 	const duplicated = received.filter((index, i) => received.indexOf(index) !== i);
 	if (duplicated.length > 0) {
-		issues.push(`duplicated placeholders: ${[...new Set(duplicated)].map((i) => `⟦C${i}⟧`).join(", ")}`);
+		issues.push(
+			`duplicated placeholders: ${[...new Set(duplicated)].map((i) => `⟦C${i}⟧`).join(", ")}`
+		);
 	}
 
 	const sourceHeadings = countHeadings(maskedSource);

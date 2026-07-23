@@ -7,7 +7,13 @@ import { buttonVariants } from "@/components/ui/button";
 import { useTranslation } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
-export function ProjectLinks({ repo, live }: { repo?: string | undefined; live?: string | undefined }) {
+export function ProjectLinks({
+	repo,
+	live,
+}: {
+	repo?: string | undefined;
+	live?: string | undefined;
+}) {
 	const { t } = useTranslation();
 
 	if (!repo && !live) return null;
@@ -19,7 +25,7 @@ export function ProjectLinks({ repo, live }: { repo?: string | undefined; live?:
 					href={repo}
 					target="_blank"
 					rel="noopener noreferrer"
-					className={cn(buttonVariants({ variant: "secondary", size: "sm"}), "gap-1.5")}
+					className={cn(buttonVariants({ variant: "secondary", size: "sm" }), "gap-1.5")}
 				>
 					<Icon icon="mdi:github" className="size-4" />
 					{t("viewOnGitHub")}

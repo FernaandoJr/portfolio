@@ -34,8 +34,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 		title: copy.title,
 		description: copy.description,
 		alternates: {
-			canonical: `/projects/${segment}`,
-			languages: { "pt-BR": "/projects/pt", "en-US": "/projects/en" },
+			canonical: `/${segment}/projects`,
+			languages: { "pt-BR": "/pt-br/projects", "en-US": "/en/projects" },
 		},
 	};
 }
@@ -52,7 +52,7 @@ export default async function ProjectsPage({ params }: PageProps) {
 
 		return {
 			slug: project.slug,
-			href: `/projects/${segment}/${project.slug}`,
+			href: `/${segment}/projects/${project.slug}`,
 			title: variant.frontmatter.title,
 			description: variant.frontmatter.description,
 			cover: variant.frontmatter.cover,

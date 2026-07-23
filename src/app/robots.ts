@@ -8,9 +8,7 @@ export default function robots(): MetadataRoute.Robots {
 			{
 				userAgent: "*",
 				allow: "/",
-				// Raw markdown mirrors the page that already ranks; indexing both
-				// would put two URLs with the same content against each other.
-				disallow: ["/api/", "/blog/*/*/markdown", "/projects/*/*/markdown"],
+				disallow: ["/api/", "/*/blog/*/markdown", "/*/projects/*/markdown"],
 			},
 		],
 		sitemap: `${SITE_URL}/sitemap.xml`,

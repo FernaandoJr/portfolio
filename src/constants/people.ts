@@ -16,8 +16,6 @@ export const people: Person[] = [
 		github: "https://github.com/FernaandoJr",
 		url: SITE_URL,
 	},
-	// Placeholders so the multi-author layout can be seen. No `github` on
-	// purpose: a made-up handle would link to a stranger's real account.
 	{ id: "marina-alves", name: "Marina Alves" },
 	{ id: "rafael-costa", name: "Rafael Costa" },
 	{ id: "beatriz-lima", name: "Beatriz Lima" },

@@ -56,8 +56,6 @@ export function ProjectShowcase({
 
 	React.useEffect(() => {
 		if (!api || slides.length < 2) return;
-		// Nothing should keep moving while the reader is looking at a slide up
-		// close, hovering it, or has asked the OS for less motion.
 		if (paused || lightbox !== null) return;
 		if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
@@ -128,12 +126,6 @@ export function ProjectShowcase({
 
 				{slides.length > 1 && (
 					<>
-						{/*
-						 * `inset-y-0 my-auto` instead of the default `top-1/2 -translate-y-1/2`:
-						 * the Button base presses with `active:translate-y-px`, and both write
-						 * the same `translate` property, so on click the centering was dropped
-						 * and the arrow fell half its own height.
-						 */}
 						<CarouselPrevious
 							variant="ghost"
 							className="inset-y-0 left-3 my-auto translate-y-0 cursor-pointer border-0 bg-black/40 text-white opacity-0 backdrop-blur-sm transition-opacity hover:bg-black/60 hover:text-white group-hover/carousel:opacity-100 focus-visible:opacity-100 active:not-aria-[haspopup]:translate-y-0"

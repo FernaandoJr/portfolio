@@ -87,7 +87,6 @@ const useContributionGraph = () => {
 	return context;
 };
 
-
 const getMonthLabels = (
 	weeks: Week[],
 	monthNames: string[] = DEFAULT_MONTH_LABELS
@@ -228,15 +227,11 @@ export const ContributionGraphCalendar = ({
 	children,
 	...props
 }: ContributionGraphCalendarProps) => {
-	const { weeks, width, height, blockSize, blockMargin, labels } =
-		useContributionGraph();
+	const { weeks, width, height, blockSize, blockMargin, labels } = useContributionGraph();
 	const monthLabels = useMemo(() => getMonthLabels(weeks, labels.months), [weeks, labels.months]);
 
 	return (
-		<div
-			className={cn("max-w-full overflow-x-auto overflow-y-hidden", className)}
-			{...props}
-		>
+		<div className={cn("max-w-full overflow-x-auto overflow-y-hidden", className)} {...props}>
 			<svg
 				className="block overflow-visible"
 				height={height}

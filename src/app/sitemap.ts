@@ -9,19 +9,32 @@ import { absoluteUrl } from "@/lib/seo";
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 	const [posts, projects] = await Promise.all([getAllPosts(), getAllProjects()]);
 
-	const staticRoutes: MetadataRoute.Sitemap = [
-		{ url: SITE_URL, changeFrequency: "monthly", priority: 1 },
-		{ url: `${SITE_URL}/about`, changeFrequency: "yearly", priority: 0.6 },
-	];
+	const homeRoutes: MetadataRoute.Sitemap = LOCALE_SEGMENTS.map((segment) => ({
+		url: `${SITE_URL}/${segment}`,
+		changeFrequency: "monthly",
+		priority: 1,
+		alternates: {
+			languages: { "pt-BR": `${SITE_URL}/pt-br`, "en-US": `${SITE_URL}/en` },
+		},
+	}));
+
+	const aboutRoutes: MetadataRoute.Sitemap = LOCALE_SEGMENTS.map((segment) => ({
+		url: `${SITE_URL}/${segment}/about`,
+		changeFrequency: "yearly",
+		priority: 0.6,
+		alternates: {
+			languages: { "pt-BR": `${SITE_URL}/pt-br/about`, "en-US": `${SITE_URL}/en/about` },
+		},
+	}));
 
 	const blogIndexes: MetadataRoute.Sitemap = LOCALE_SEGMENTS.map((segment) => ({
-		url: `${SITE_URL}/blog/${segment}`,
+		url: `${SITE_URL}/${segment}/blog`,
 		changeFrequency: "weekly",
 		priority: 0.8,
 		alternates: {
 			languages: {
-				"pt-BR": `${SITE_URL}/blog/pt`,
-				"en-US": `${SITE_URL}/blog/en`,
+				"pt-BR": `${SITE_URL}/pt-br/blog`,
+				"en-US": `${SITE_URL}/en/blog`,
 			},
 		},
 	}));
@@ -31,15 +44,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 			const cover = post.variants[post.sourceLocale]?.frontmatter.cover;
 
 			return {
-				url: `${SITE_URL}/blog/${segment}/${post.slug}`,
+				url: `${SITE_URL}/${segment}/blog/${post.slug}`,
 				lastModified: post.variants[post.sourceLocale]?.frontmatter.date,
 				changeFrequency: "yearly" as const,
 				priority: 0.7,
 				...(cover ? { images: [absoluteUrl(cover)] } : {}),
 				alternates: {
 					languages: {
-						"pt-BR": `${SITE_URL}/blog/pt/${post.slug}`,
-						"en-US": `${SITE_URL}/blog/en/${post.slug}`,
+						"pt-BR": `${SITE_URL}/pt-br/blog/${post.slug}`,
+						"en-US": `${SITE_URL}/en/blog/${post.slug}`,
 					},
 				},
 			};
@@ -47,13 +60,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 	);
 
 	const projectIndexes: MetadataRoute.Sitemap = LOCALE_SEGMENTS.map((segment) => ({
-		url: `${SITE_URL}/projects/${segment}`,
+		url: `${SITE_URL}/${segment}/projects`,
 		changeFrequency: "monthly",
 		priority: 0.8,
 		alternates: {
 			languages: {
-				"pt-BR": `${SITE_URL}/projects/pt`,
-				"en-US": `${SITE_URL}/projects/en`,
+				"pt-BR": `${SITE_URL}/pt-br/projects`,
+				"en-US": `${SITE_URL}/en/projects`,
 			},
 		},
 	}));
@@ -64,9 +77,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 			const cover = source?.frontmatter.cover;
 			const gallery = source?.frontmatter.gallery ?? [];
 
-			// Image sitemaps are how Google associates a screenshot with the page
-			// it belongs to — the carousel shots are never crawled on their own.
-			// Deduped because the same file may serve as both cover and slide.
 			const images = [
 				...new Set(
 					[...(cover ? [cover] : []), ...gallery.map((image) => image.src)].map(absoluteUrl)
@@ -74,15 +84,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 			];
 
 			return {
-				url: `${SITE_URL}/projects/${segment}/${project.slug}`,
+				url: `${SITE_URL}/${segment}/projects/${project.slug}`,
 				lastModified: source?.frontmatter.date,
 				changeFrequency: "yearly" as const,
 				priority: 0.7,
 				...(images.length > 0 ? { images } : {}),
 				alternates: {
 					languages: {
-						"pt-BR": `${SITE_URL}/projects/pt/${project.slug}`,
-						"en-US": `${SITE_URL}/projects/en/${project.slug}`,
+						"pt-BR": `${SITE_URL}/pt-br/projects/${project.slug}`,
+						"en-US": `${SITE_URL}/en/projects/${project.slug}`,
 					},
 				},
 			};
@@ -90,7 +100,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 	);
 
 	return [
-		...staticRoutes,
+		...homeRoutes,
+		...aboutRoutes,
 		...blogIndexes,
 		...postRoutes,
 		...projectIndexes,

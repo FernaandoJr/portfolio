@@ -55,11 +55,11 @@ const htmlLang: Record<string, string> = { ptBR: "pt-BR", enUS: "en" };
 
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
 	const cookieStore = await cookies();
-	const locale = cookieStore.get("NEXT_LOCALE")?.value ?? "ptBR";
+	const locale = cookieStore.get("NEXT_LOCALE")?.value ?? "enUS";
 
 	return (
 		<html
-			lang={htmlLang[locale] ?? "pt-BR"}
+			lang={htmlLang[locale] ?? "en"}
 			className={`${geist.variable} ${merriweather.variable} ${jetbrainsMono.variable} antialiased`}
 			suppressHydrationWarning
 		>

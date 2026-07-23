@@ -36,7 +36,7 @@ export async function GET(_req: Request, { params }: { params: Promise<{ locale:
 	const items = posts
 		.map((post) => {
 			const variant = variantFor(post, locale);
-			const url = `${SITE_URL}/blog/${segment}/${post.slug}`;
+			const url = `${SITE_URL}/${segment}/blog/${post.slug}`;
 			const pubDate = new Date(`${variant.frontmatter.date}T12:00:00Z`).toUTCString();
 
 			return [
@@ -57,10 +57,10 @@ export async function GET(_req: Request, { params }: { params: Promise<{ locale:
 		'<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">',
 		"  <channel>",
 		"    <title>Fernando Jr — Blog</title>",
-		`    <link>${SITE_URL}/blog/${segment}</link>`,
+		`    <link>${SITE_URL}/${segment}/blog</link>`,
 		`    <description>${escapeXml(CHANNEL[locale].description)}</description>`,
 		`    <language>${HTML_LANG[locale]}</language>`,
-		`    <atom:link href="${SITE_URL}/blog/${segment}/rss.xml" rel="self" type="application/rss+xml"/>`,
+		`    <atom:link href="${SITE_URL}/${segment}/blog/rss.xml" rel="self" type="application/rss+xml"/>`,
 		items,
 		"  </channel>",
 		"</rss>",

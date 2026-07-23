@@ -15,10 +15,8 @@ export const getProject = projects.get;
 export const getAllSlugs = projects.getAllSlugs;
 export const variantFor = projects.variantFor;
 
-/** The homepage grid is two columns, so anything past four leaves a ragged row. */
 export const FEATURED_LIMIT = 4;
 
-/** Homepage selection: only entries carrying `featured`, ordered by its value. */
 export async function getFeaturedProjects(): Promise<Project[]> {
 	const all = await getAllProjects();
 

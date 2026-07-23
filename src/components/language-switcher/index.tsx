@@ -19,20 +19,13 @@ const languages = [
 	{ name: "enUS", label: "english", image: "/en.svg" },
 ];
 
-function setLocaleCookie(locale: string) {
-	document.cookie = `NEXT_LOCALE=${locale}; path=/; max-age=31536000; SameSite=Lax`;
-}
-
-const LOCALIZED_ROOTS = ["blog", "projects"];
-
-/** /blog/pt/my-post -> /blog/en/my-post. Returns null outside localized routes. */
-function swapLocaleSegment(pathname: string, segment: string): string | null {
+function swapLocaleSegment(pathname: string, segment: string): string {
 	const parts = pathname.split("/");
-	if (!parts[1] || !LOCALIZED_ROOTS.includes(parts[1])) return null;
-	if (!parts[2] || !isLocaleSegment(parts[2])) return null;
-
-	parts[2] = segment;
-	return parts.join("/");
+	if (parts[1] && isLocaleSegment(parts[1])) {
+		parts[1] = segment;
+		return parts.join("/");
+	}
+	return `/${segment}`;
 }
 
 export function LanguageSwitcher() {
@@ -44,14 +37,9 @@ export function LanguageSwitcher() {
 	const selectedLang = languages.find((l) => l.name === currentLanguage) ?? languages[0]!;
 
 	function handleChange(lang: string) {
-		setLocaleCookie(lang);
 		void i18n.changeLanguage(lang);
-
-		// Under /blog and /projects the URL carries the language, so the cookie
-		// alone is not enough — the route has to follow, or the page would snap back.
 		if (!isLocale(lang)) return;
-		const next = swapLocaleSegment(pathname, toSegment(lang));
-		if (next) router.push(next);
+		router.push(swapLocaleSegment(pathname, toSegment(lang)));
 	}
 
 	return (
@@ -89,9 +77,7 @@ export function LanguageSwitcher() {
 								style={{ width: 16, height: 12 }}
 							/>
 							{t(lang.label)}
-							<CheckIcon
-								className={cn("ml-auto size-3.5", active ? "opacity-100" : "opacity-0")}
-							/>
+							<CheckIcon className={cn("ml-auto size-3.5", active ? "opacity-100" : "opacity-0")} />
 						</DropdownMenuItem>
 					);
 				})}

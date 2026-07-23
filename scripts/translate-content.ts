@@ -10,8 +10,6 @@ import { fileNameFor, serializeVariant } from "../src/lib/content/parse";
 import type { BaseFrontmatter, Locale } from "../src/lib/content/types";
 import { contentDir, hashOf, parseArgs, planJobs, type Job } from "./content-io";
 
-// `||`, not `??`: an empty GEMINI_MODEL= line in .env must fall back too.
-// The alias tracks the current stable flash, so pinned ids can't go stale.
 const MODEL = process.env.GEMINI_MODEL || "gemini-flash-latest";
 
 const LANGUAGE_NAME: Record<Locale, string> = {

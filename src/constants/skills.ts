@@ -8,7 +8,6 @@ export type Skill = {
 };
 
 export const skills: Skill[] = [
-	// Linguagens
 	{
 		id: "javascript",
 		label: "JavaScript",
@@ -27,7 +26,6 @@ export const skills: Skill[] = [
 		icon: "/icons/skills/java.svg",
 		href: "https://java.com",
 	},
-	// Runtime
 	{
 		id: "nodejs",
 		label: "Node.js",
@@ -40,7 +38,6 @@ export const skills: Skill[] = [
 		icon: "/icons/skills/bun.svg",
 		href: "https://bun.sh",
 	},
-	// Frameworks frontend
 	{
 		id: "react",
 		label: "React",
@@ -73,7 +70,6 @@ export const skills: Skill[] = [
 		icon: "/icons/skills/vitest.svg",
 		href: "https://vitest.dev",
 	},
-	// Backend
 	{
 		id: "hono",
 		label: "Hono",
@@ -86,7 +82,6 @@ export const skills: Skill[] = [
 		icon: "/icons/skills/discordjs.svg",
 		href: "https://discord.js.org",
 	},
-	// State / data fetching
 	{
 		id: "tanstack",
 		label: "TanStack",
@@ -100,7 +95,6 @@ export const skills: Skill[] = [
 		icon: "/icons/skills/redux.svg",
 		href: "https://redux.js.org",
 	},
-	// Estilização / UI
 	{
 		id: "tailwindcss",
 		label: "Tailwind",
@@ -126,7 +120,6 @@ export const skills: Skill[] = [
 		icon: "/icons/skills/genexus.png",
 		href: "https://www.genexus.com",
 	},
-	// Banco de dados
 	{
 		id: "mongodb",
 		label: "MongoDB",
@@ -145,7 +138,6 @@ export const skills: Skill[] = [
 		icon: "/icons/skills/postgresql.svg",
 		href: "https://postgresql.org",
 	},
-	// DevOps / infra
 	{
 		id: "docker",
 		label: "Docker",
@@ -159,7 +151,6 @@ export const skills: Skill[] = [
 		href: "https://vercel.com",
 		darkInvert: true,
 	},
-	// Versionamento
 	{
 		id: "git",
 		label: "Git",
@@ -173,7 +164,6 @@ export const skills: Skill[] = [
 		href: "https://github.com/FernaandoJr",
 		darkInvert: true,
 	},
-	// Ferramentas
 	{
 		id: "postman",
 		label: "Postman",
@@ -193,7 +183,6 @@ export const skills: Skill[] = [
 		icon: "/icons/skills/photoshop.svg",
 		href: "https://adobe.com/products/photoshop",
 	},
-	// IA
 	{
 		id: "claude",
 		label: "Claude",

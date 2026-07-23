@@ -15,7 +15,6 @@ import { SITE_URL } from "@/constants/profile";
 import { useTranslation } from "@/lib/i18n";
 
 type CopyPageButtonProps = {
-	/** Locale-agnostic path to the raw markdown, e.g. /blog/pt/my-post/markdown */
 	markdownPath: string;
 	markdown: string;
 };

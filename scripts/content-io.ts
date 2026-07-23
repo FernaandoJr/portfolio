@@ -105,11 +105,6 @@ export async function planJobs(
 	return jobs;
 }
 
-/**
- * Splits `[collection] [slug] [--flags]`. The collection is optional and
- * defaults to blog, which is what keeps the old `blog:translate <slug>` form
- * working now that the first positional can also name a collection.
- */
 export function parseArgs(args: string[]): {
 	collection: CollectionName;
 	only: string | undefined;

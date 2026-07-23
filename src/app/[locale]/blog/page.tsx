@@ -32,8 +32,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 		title: "Blog — Fernando Jr",
 		description: COPY[toLocale(segment)].description,
 		alternates: {
-			canonical: `/blog/${segment}`,
-			languages: { "pt-BR": "/blog/pt", "en-US": "/blog/en" },
+			canonical: `/${segment}/blog`,
+			languages: { "pt-BR": "/pt-br/blog", "en-US": "/en/blog" },
 		},
 	};
 }
@@ -60,7 +60,7 @@ export default async function BlogPage({ params }: PageProps) {
 						return (
 							<PostCard
 								key={post.slug}
-								href={`/blog/${segment}/${post.slug}`}
+								href={`/${segment}/blog/${post.slug}`}
 								title={variant.frontmatter.title}
 								description={variant.frontmatter.description}
 								date={variant.frontmatter.date}

@@ -5,14 +5,9 @@ import Link from "next/link";
 
 import { ProjectCard, type ProjectCardData } from "@/components/projects/project-card";
 import { useTranslation } from "@/lib/i18n";
-import { DEFAULT_LOCALE, type Locale } from "@/lib/i18n/routing";
+import { DEFAULT_LOCALE, toSegment, type Locale } from "@/lib/i18n/routing";
 import { useCurrentLanguage } from "@/lib/i18n/use-current-language";
 
-/**
- * The homepage has no locale in its URL, so both variants are rendered on the
- * server and picked here. Anything derived from the language has to come from
- * `useCurrentLanguage` — see the note in that hook.
- */
 export function FeaturedProjects({ byLocale }: { byLocale: Record<Locale, ProjectCardData[]> }) {
 	const { t } = useTranslation();
 	const locale = useCurrentLanguage();
@@ -27,7 +22,7 @@ export function FeaturedProjects({ byLocale }: { byLocale: Record<Locale, Projec
 			</div>
 
 			<Link
-				href="/projects"
+				href={`/${toSegment(locale)}/projects`}
 				className="inline-flex w-fit items-center gap-1.5 text-muted-foreground text-sm transition-colors hover:text-foreground"
 			>
 				{t("projectsViewAll")}

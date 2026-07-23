@@ -1,11 +1,6 @@
 /* eslint-disable @next/next/no-img-element -- next/image does not exist in the
    Satori runtime; raw <img> is the only supported element there. */
 
-/**
- * Satori (next/og) resolves neither CSS variables nor oklch, so the palette is
- * inlined here as hex. Values are the .dark tokens from globals.css converted
- * to sRGB — keep them in sync if those tokens change.
- */
 const COLOR = {
 	background: "#141414",
 	foreground: "#e6e2dc",
@@ -98,6 +93,5 @@ export const Blog = ({ title, excerpt, author, meta, avatar }: BlogProps) => (
 				<div style={{ color: COLOR.muted, display: "flex", fontSize: "24px" }}>{meta}</div>
 			</div>
 		</div>
-
 	</div>
 );

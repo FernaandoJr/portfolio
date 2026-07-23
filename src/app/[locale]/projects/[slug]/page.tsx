@@ -45,17 +45,16 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 	const variant = variantFor(project, toLocale(segment));
 	const { title, description, cover } = variant.frontmatter;
 
-	// The cover is the product shot, so it beats any card we could generate.
 	const images = cover ? [{ url: absoluteUrl(cover), alt: title }] : undefined;
 
 	return {
 		title: `${title} — Fernando Jr`,
 		description,
 		alternates: {
-			canonical: `/projects/${segment}/${slug}`,
+			canonical: `/${segment}/projects/${slug}`,
 			languages: {
-				"pt-BR": `/projects/pt/${slug}`,
-				"en-US": `/projects/en/${slug}`,
+				"pt-BR": `/pt-br/projects/${slug}`,
+				"en-US": `/en/projects/${slug}`,
 			},
 		},
 		openGraph: {
@@ -63,7 +62,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 			locale: HTML_LANG[toLocale(segment)],
 			title,
 			description,
-			url: `/projects/${segment}/${slug}`,
+			url: `/${segment}/projects/${slug}`,
 			...(images ? { images } : {}),
 		},
 		twitter: {
@@ -95,11 +94,15 @@ export default async function ProjectPage({ params }: PageProps) {
 		dateCreated: date,
 		keywords: stack.join(", "),
 		inLanguage: HTML_LANG[locale],
-		url: `${SITE_URL}/projects/${segment}/${slug}`,
+		url: `${SITE_URL}/${segment}/projects/${slug}`,
 		author: authors
 			.map((author) => findPerson(author.id))
 			.filter((person) => person !== undefined)
-			.map((person) => ({ "@type": "Person", name: person.name, url: person.url ?? person.github })),
+			.map((person) => ({
+				"@type": "Person",
+				name: person.name,
+				url: person.url ?? person.github,
+			})),
 		...(cover ? { image: absoluteUrl(cover) } : {}),
 	};
 
@@ -113,10 +116,10 @@ export default async function ProjectPage({ params }: PageProps) {
 			<LocalizedRouteSync locale={locale} />
 
 			<div className="flex items-center justify-between gap-4">
-				<BackLink href={`/projects/${segment}`} labelKey="projectsBack" />
+				<BackLink href={`/${segment}/projects`} labelKey="projectsBack" />
 				<CopyPageButton
-					markdownPath={`/projects/${segment}/${slug}/markdown`}
-					markdown={toMarkdown(variant, `/projects/${segment}/${slug}`)}
+					markdownPath={`/${segment}/projects/${slug}/markdown`}
+					markdown={toMarkdown(variant, `/${segment}/projects/${slug}`)}
 				/>
 			</div>
 

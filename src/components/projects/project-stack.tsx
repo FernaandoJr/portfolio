@@ -26,9 +26,7 @@ export function ProjectStack({ stack }: { stack: string[] }) {
 								className={"size-[22px] " + (skill.darkInvert ? "dark:invert" : "")}
 							/>
 						</TooltipTrigger>
-						<TooltipContent className="font-sans text-xs select-none">
-							{skill.label}
-						</TooltipContent>
+						<TooltipContent className="font-sans text-xs select-none">{skill.label}</TooltipContent>
 					</Tooltip>
 				);
 			})}

@@ -26,7 +26,6 @@ export function AuthorStack({
 		.filter((author) => author.person !== undefined)
 		.map(({ id, roleKey, person }) => ({
 			id,
-			// Seeded by id, so a person keeps the same avatar across every project.
 			node: <GradientAvatar seed={id} size={pixels} pattern="dither" radius={0} />,
 			label: roleKey ? `${person!.name} · ${t(roleKey)}` : person!.name,
 			href: person!.github ?? person!.url,
