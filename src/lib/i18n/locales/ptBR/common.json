@@ -25,7 +25,7 @@
 	"aboutSoon": "Em breve...",
 	"projectsTitle": "Projetos",
 	"projectsSoon": "Em breve...",
-	"languages": "Idioma",
+	"switchTo": "Mudar para {{language}}",
 	"english": "Inglês",
 	"portuguese": "Português",
 	"darkMode": "Modo escuro",

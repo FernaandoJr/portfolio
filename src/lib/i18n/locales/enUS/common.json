@@ -25,7 +25,7 @@
 	"aboutSoon": "Coming soon...",
 	"projectsTitle": "Projects",
 	"projectsSoon": "Coming soon...",
-	"languages": "Language",
+	"switchTo": "Switch to {{language}}",
 	"english": "English",
 	"portuguese": "Portuguese",
 	"darkMode": "Dark mode",
