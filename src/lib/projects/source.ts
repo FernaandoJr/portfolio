@@ -15,6 +15,8 @@ export const getProject = projects.get;
 export const getAllSlugs = projects.getAllSlugs;
 export const variantFor = projects.variantFor;
 
+export type { Project };
+
 export const FEATURED_LIMIT = 4;
 
 export async function getFeaturedProjects(): Promise<Project[]> {

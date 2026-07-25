@@ -8,6 +8,7 @@ import { BackToTop } from "@/components/blog/back-to-top";
 import { CopyPageButton } from "@/components/blog/copy-page-button";
 import { PostDate } from "@/components/blog/post-meta";
 import { PostScrubber } from "@/components/blog/post-scrubber";
+import { Localized } from "@/components/localized";
 import { mdxComponents } from "@/components/mdx/mdx-components";
 import { AuthorStack } from "@/components/projects/author-stack";
 import { ProjectLinks } from "@/components/projects/project-links";
@@ -19,8 +20,8 @@ import { SITE_URL } from "@/constants/profile";
 import { mdxOptions } from "@/lib/blog/mdx-options";
 import { extractToc } from "@/lib/blog/toc";
 import { toMarkdown } from "@/lib/content/to-markdown";
-import { DEFAULT_LOCALE, HTML_LANG } from "@/lib/i18n/routing";
-import { getAllProjects, getProject, variantFor } from "@/lib/projects/source";
+import { DEFAULT_LOCALE, HTML_LANG, type Locale } from "@/lib/i18n/routing";
+import { getAllProjects, getProject, variantFor, type Project } from "@/lib/projects/source";
 import { absoluteUrl } from "@/lib/seo";
 
 type PageProps = { params: Promise<{ slug: string }> };
@@ -31,50 +32,17 @@ export async function generateStaticParams() {
 	return projects.map((project) => ({ slug: project.slug }));
 }
 
-export default async function ProjectPage({ params }: PageProps) {
-	const { slug } = await params;
-
-	const project = await getProject(slug);
-	if (!project) notFound();
-
-	const variant = variantFor(project, DEFAULT_LOCALE);
+function ProjectBody({ project, locale }: { project: Project; locale: Locale }) {
+	const variant = variantFor(project, locale);
 	const { title, description, date, cover, status, stack, links, gallery, authors } =
 		variant.frontmatter;
-
-	const jsonLd = {
-		"@context": "https://schema.org",
-		"@type": "CreativeWork",
-		name: title,
-		description,
-		dateCreated: date,
-		keywords: stack.join(", "),
-		inLanguage: HTML_LANG[DEFAULT_LOCALE],
-		url: `${SITE_URL}/projects/${slug}`,
-		author: authors
-			.map((author) => findPerson(author.id))
-			.filter((person) => person !== undefined)
-			.map((person) => ({
-				"@type": "Person",
-				name: person.name,
-				url: person.url ?? person.github,
-			})),
-		...(cover ? { image: absoluteUrl(cover) } : {}),
-	};
+	const path = `/projects/${project.slug}`;
 
 	return (
 		<div className="flex flex-col gap-10">
-			<Script
-				id={`jsonld-project-${slug}`}
-				type="application/ld+json"
-				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-			/>
-
 			<div className="flex items-center justify-between gap-4">
 				<BackLink href="/projects" labelKey="projectsBack" />
-				<CopyPageButton
-					markdownPath={`/projects/${slug}/markdown`}
-					markdown={toMarkdown(variant, `/projects/${slug}`)}
-				/>
+				<CopyPageButton markdownPath={`${path}/markdown`} markdown={toMarkdown(variant, path)} />
 			</div>
 
 			<PostScrubber toc={extractToc(variant.body)} />
@@ -109,6 +77,55 @@ export default async function ProjectPage({ params }: PageProps) {
 					<MDXRemote source={variant.body} components={mdxComponents} options={mdxOptions} />
 				</div>
 			</article>
+		</div>
+	);
+}
+
+export default async function ProjectPage({ params }: PageProps) {
+	const { slug } = await params;
+
+	const project = await getProject(slug);
+	if (!project) notFound();
+
+	const { title, description, date, cover, stack, authors } = variantFor(
+		project,
+		DEFAULT_LOCALE
+	).frontmatter;
+
+	const jsonLd = {
+		"@context": "https://schema.org",
+		"@type": "CreativeWork",
+		name: title,
+		description,
+		dateCreated: date,
+		keywords: stack.join(", "),
+		inLanguage: HTML_LANG[DEFAULT_LOCALE],
+		url: `${SITE_URL}/projects/${slug}`,
+		author: authors
+			.map((author) => findPerson(author.id))
+			.filter((person) => person !== undefined)
+			.map((person) => ({
+				"@type": "Person",
+				name: person.name,
+				url: person.url ?? person.github,
+			})),
+		...(cover ? { image: absoluteUrl(cover) } : {}),
+	};
+
+	return (
+		<div className="flex flex-col gap-10">
+			<Script
+				id={`jsonld-project-${slug}`}
+				type="application/ld+json"
+				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+			/>
+
+			<Localized
+				variants={{
+					ptBR: <ProjectBody project={project} locale="ptBR" />,
+					enUS: <ProjectBody project={project} locale="enUS" />,
+				}}
+			/>
 
 			<BackToTop />
 		</div>

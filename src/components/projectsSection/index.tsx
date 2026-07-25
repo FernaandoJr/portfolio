@@ -1,13 +1,12 @@
+import { Localized } from "@/components/localized";
 import { FeaturedProjects } from "@/components/projects/featured-projects";
 import type { ProjectCardData } from "@/components/projects/project-card";
-import { DEFAULT_LOCALE } from "@/lib/i18n/routing";
-import { getFeaturedProjects, variantFor } from "@/lib/projects/source";
+import type { Locale } from "@/lib/i18n/routing";
+import { getFeaturedProjects, variantFor, type Project } from "@/lib/projects/source";
 
-export default async function ProjectsSection() {
-	const projects = await getFeaturedProjects();
-
+function Featured({ projects, locale }: { projects: Project[]; locale: Locale }) {
 	const cards = projects.map((project): ProjectCardData => {
-		const variant = variantFor(project, DEFAULT_LOCALE);
+		const variant = variantFor(project, locale);
 
 		return {
 			slug: project.slug,
@@ -21,4 +20,17 @@ export default async function ProjectsSection() {
 	});
 
 	return <FeaturedProjects projects={cards} />;
+}
+
+export default async function ProjectsSection() {
+	const projects = await getFeaturedProjects();
+
+	return (
+		<Localized
+			variants={{
+				ptBR: <Featured projects={projects} locale="ptBR" />,
+				enUS: <Featured projects={projects} locale="enUS" />,
+			}}
+		/>
+	);
 }
