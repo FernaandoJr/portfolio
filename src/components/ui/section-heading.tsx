@@ -1,8 +1,8 @@
 "use client";
 
 import { Link } from "lucide-react";
-import { useState } from "react";
 
+import { useTranslation } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
 type SectionHeadingProps = {
@@ -12,28 +12,26 @@ type SectionHeadingProps = {
 };
 
 export function SectionHeading({ id, children, className }: SectionHeadingProps) {
-	const [copied, setCopied] = useState(false);
+	const { t } = useTranslation();
 
-	const handleCopy = () => {
+	const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+		event.preventDefault();
 		const url = `${window.location.origin}${window.location.pathname}#${id}`;
 		navigator.clipboard.writeText(url);
 		window.history.pushState(null, "", `#${id}`);
-		setCopied(true);
-		setTimeout(() => setCopied(false), 2000);
 	};
 
 	return (
-		<div className={cn("group flex items-center gap-2", className)}>
-			<h2 id={id} className="text-3xl font-bold scroll-mt-36">
-				{children}
-			</h2>
-			<button
-				onClick={handleCopy}
-				aria-label="Copy link to section"
-				className="opacity-0 group-hover:opacity-100 transition-opacity text-muted-foreground/50 hover:text-muted-foreground cursor-pointer select-none"
+		<h2 id={id} className={cn("scroll-mt-36 font-bold text-3xl", className)}>
+			<a
+				href={`#${id}`}
+				onClick={handleClick}
+				aria-label={t("blogCopyLink")}
+				className="group inline-flex items-center gap-2 text-inherit no-underline"
 			>
-				<Link className={cn("size-4 transition-transform", copied && "text-green-500")} />
-			</button>
-		</div>
+				{children}
+				<Link className="size-4 shrink-0 text-muted-foreground/50 opacity-0 transition-opacity group-hover:opacity-100" />
+			</a>
+		</h2>
 	);
 }

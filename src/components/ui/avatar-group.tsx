@@ -76,7 +76,6 @@ export function AvatarGroup({
 									ease: EASE_OUT_CUBIC,
 								}
 					}
-					whileHover={shouldReduceMotion ? {} : { scale: 1.12 }}
 					onMouseEnter={() => setHoveredIdx(index)}
 					onMouseLeave={() => setHoveredIdx(null)}
 					onFocus={() => setHoveredIdx(index)}

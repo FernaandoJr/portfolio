@@ -17,28 +17,24 @@ type PostCardProps = {
 
 export function PostCard({ href, title, description, date, readingMinutes, cover }: PostCardProps) {
 	return (
-		<Card interactive className="gap-0 py-0">
+		<Card interactive className="group gap-0 py-0">
+			<Link href={href} aria-label={title} className="absolute inset-0 z-10 rounded-[inherit]" />
+
 			{cover && (
 				<div className="relative aspect-video w-full overflow-hidden rounded-t-[inherit] select-none">
-					<Link href={href} className="absolute inset-0" tabIndex={-1} aria-hidden>
-						<Image
-							src={cover}
-							alt={title}
-							fill
-							className="object-cover object-top transition-transform duration-300 hover:scale-[1.02]"
-							sizes="(max-width: 640px) 100vw, 50vw"
-							draggable={false}
-						/>
-					</Link>
+					<Image
+						src={cover}
+						alt={title}
+						fill
+						className="object-cover object-top transition-transform duration-300 group-hover:scale-[1.02]"
+						sizes="(max-width: 640px) 100vw, 50vw"
+						draggable={false}
+					/>
 				</div>
 			)}
 
 			<CardHeader className="pt-4 pb-0">
-				<CardTitle className="text-base">
-					<Link href={href} className="hover:text-muted-foreground transition-colors">
-						{title}
-					</Link>
-				</CardTitle>
+				<CardTitle className="text-base">{title}</CardTitle>
 			</CardHeader>
 
 			<CardContent className="flex flex-1 flex-col pt-2 pb-4">

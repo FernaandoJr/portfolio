@@ -127,6 +127,6 @@
 	"blogViewMarkdown": "View as Markdown",
 	"blogOpenIn": "Open in {{app}}",
 	"blogAiPrompt": "Read {{url}} so I can ask questions about it.",
-	"blogTocLabel": "Post sections",
+	"blogTocLabel": "On this page",
 	"blogBackToTop": "Back to top"
 }

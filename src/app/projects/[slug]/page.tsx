@@ -56,22 +56,21 @@ function ProjectBody({ project, locale }: { project: Project; locale: Locale }) 
 
 					<p className="text-muted-foreground leading-relaxed">{description}</p>
 
-					<div className="flex flex-wrap items-center justify-between gap-3">
-						<div className="flex items-center gap-3">
-							<AuthorStack authors={authors} size="sm" />
-							<PostDate
-								date={date}
-								className="font-serif text-muted-foreground/70 text-xs select-none"
-							/>
-						</div>
-
-						<ProjectStack stack={stack} />
+					<div className="flex items-center gap-3">
+						<AuthorStack authors={authors} size="sm" />
+						<PostDate
+							date={date}
+							className="font-serif text-muted-foreground/70 text-xs select-none"
+						/>
 					</div>
 				</header>
 
 				<ProjectShowcase cover={cover} title={title} images={gallery} />
 
-				<ProjectLinks repo={links.repo} live={links.live} />
+				<div className="flex flex-wrap items-center justify-between gap-3">
+					<ProjectStack stack={stack} />
+					<ProjectLinks repo={links.repo} live={links.live} />
+				</div>
 
 				<div className="prose prose-neutral max-w-none">
 					<MDXRemote source={variant.body} components={mdxComponents} options={mdxOptions} />

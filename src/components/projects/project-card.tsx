@@ -21,19 +21,23 @@ export type ProjectCardData = {
 
 export function ProjectCard({ project }: { project: ProjectCardData }) {
 	return (
-		<Card interactive className="gap-0 py-0">
+		<Card interactive className="group gap-0 py-0">
+			<Link
+				href={project.href}
+				aria-label={project.title}
+				className="absolute inset-0 z-10 rounded-[inherit]"
+			/>
+
 			{project.cover && (
 				<div className="relative aspect-video w-full overflow-hidden rounded-t-[inherit] select-none">
-					<Link href={project.href} className="absolute inset-0" tabIndex={-1} aria-hidden>
-						<Image
-							src={project.cover}
-							alt={project.title}
-							fill
-							className="object-cover object-top transition-transform duration-300 hover:scale-[1.02]"
-							sizes="(max-width: 640px) 100vw, 50vw"
-							draggable={false}
-						/>
-					</Link>
+					<Image
+						src={project.cover}
+						alt={project.title}
+						fill
+						className="object-cover object-top transition-transform duration-300 group-hover:scale-[1.02]"
+						sizes="(max-width: 640px) 100vw, 50vw"
+						draggable={false}
+					/>
 					{project.status !== "completed" && (
 						<div className="absolute top-3 left-4">
 							<ProjectStatusBadge status={project.status} overlay />
@@ -44,9 +48,7 @@ export function ProjectCard({ project }: { project: ProjectCardData }) {
 
 			<CardHeader className="pt-4 pb-0">
 				<CardTitle className="text-base">
-					<Link href={project.href} className="transition-colors hover:text-muted-foreground">
-						{project.title}
-					</Link>
+					{project.title}
 				</CardTitle>
 			</CardHeader>
 
@@ -54,7 +56,7 @@ export function ProjectCard({ project }: { project: ProjectCardData }) {
 				<p className="line-clamp-3 text-muted-foreground text-sm leading-relaxed">
 					{project.description}
 				</p>
-				<div className="mt-auto flex flex-wrap items-center gap-2.5 pt-3 select-none">
+				<div className="relative z-20 mt-auto flex w-fit flex-wrap items-center gap-2.5 pt-3 select-none">
 					{project.stack.map((tag) => {
 						const skill = skills.find((s) => s.label === tag);
 						if (!skill) return null;
