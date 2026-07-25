@@ -2,8 +2,6 @@ import { z } from "zod";
 
 import { LOCALES, type Locale } from "@/lib/i18n/routing";
 
-export { DEFAULT_LOCALE, isLocale, LOCALES, type Locale } from "@/lib/i18n/routing";
-
 const calendarDate = z
 	.union([z.string(), z.date()])
 	.transform((value) => (typeof value === "string" ? value : value.toISOString().slice(0, 10)))

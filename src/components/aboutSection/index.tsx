@@ -1,13 +1,11 @@
 "use client";
 
 import { useTranslation } from "@/lib/i18n";
-import { useSegment } from "@/lib/i18n/use-current-language";
 import { ArrowRightIcon } from "lucide-react";
 import Link from "next/link";
 
 export default function AboutSection() {
 	const { t } = useTranslation();
-	const segment = useSegment();
 
 	return (
 		<div className="flex flex-col gap-6">
@@ -30,7 +28,7 @@ export default function AboutSection() {
 			</ul>
 
 			<Link
-				href={`/${segment}/about`}
+				href="/about"
 				className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors w-fit group"
 			>
 				{t("readMyStory")}

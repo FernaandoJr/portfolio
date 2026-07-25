@@ -1,7 +1,6 @@
 "use client";
 
 import { useTranslation } from "@/lib/i18n";
-import { useSegment } from "@/lib/i18n/use-current-language";
 import { Heart } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -10,13 +9,12 @@ import { socials } from "@/constants/socials";
 
 export default function Footer() {
 	const { t } = useTranslation();
-	const segment = useSegment();
 
 	const navLinks = [
-		{ labelKey: "navAbout", href: `/${segment}#about` },
-		{ labelKey: "navProjects", href: `/${segment}#projects` },
-		{ labelKey: "experienceTitle", href: `/${segment}#experience` },
-		{ labelKey: "navBlog", href: `/${segment}/blog` },
+		{ labelKey: "navAbout", href: "/#about" },
+		{ labelKey: "navProjects", href: "/#projects" },
+		{ labelKey: "experienceTitle", href: "/#experience" },
+		{ labelKey: "navBlog", href: "/blog" },
 	];
 
 	return (

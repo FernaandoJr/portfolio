@@ -6,41 +6,24 @@ import {
 	DropdownMenuItem,
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import i18n, { useTranslation } from "@/lib/i18n";
-import { isLocale, isLocaleSegment, toSegment } from "@/lib/i18n/routing";
-import { useCurrentLanguage } from "@/lib/i18n/use-current-language";
+import { useTranslation } from "@/lib/i18n";
+import type { Locale } from "@/lib/i18n/routing";
+import { useLocaleStore } from "@/lib/i18n/store";
 import { cn } from "@/lib/utils";
 import { CheckIcon } from "lucide-react";
 import Image from "next/image";
-import { usePathname, useRouter } from "next/navigation";
 
-const languages = [
+const languages: { name: Locale; label: string; image: string }[] = [
 	{ name: "ptBR", label: "portuguese", image: "/pt-br.svg" },
 	{ name: "enUS", label: "english", image: "/en.svg" },
 ];
 
-function swapLocaleSegment(pathname: string, segment: string): string {
-	const parts = pathname.split("/");
-	if (parts[1] && isLocaleSegment(parts[1])) {
-		parts[1] = segment;
-		return parts.join("/");
-	}
-	return `/${segment}`;
-}
-
 export function LanguageSwitcher() {
 	const { t } = useTranslation();
-	const currentLanguage = useCurrentLanguage();
-	const pathname = usePathname();
-	const router = useRouter();
+	const locale = useLocaleStore((state) => state.locale);
+	const setLocale = useLocaleStore((state) => state.setLocale);
 
-	const selectedLang = languages.find((l) => l.name === currentLanguage) ?? languages[0]!;
-
-	function handleChange(lang: string) {
-		void i18n.changeLanguage(lang);
-		if (!isLocale(lang)) return;
-		router.push(swapLocaleSegment(pathname, toSegment(lang)));
-	}
+	const selectedLang = languages.find((l) => l.name === locale) ?? languages[0]!;
 
 	return (
 		<DropdownMenu modal={false}>
@@ -64,7 +47,7 @@ export function LanguageSwitcher() {
 					return (
 						<DropdownMenuItem
 							key={lang.name}
-							onClick={() => handleChange(lang.name)}
+							onClick={() => setLocale(lang.name)}
 							aria-checked={active}
 							className="gap-2 pr-2"
 						>

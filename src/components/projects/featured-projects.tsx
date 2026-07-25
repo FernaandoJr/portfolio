@@ -5,13 +5,9 @@ import Link from "next/link";
 
 import { ProjectCard, type ProjectCardData } from "@/components/projects/project-card";
 import { useTranslation } from "@/lib/i18n";
-import { DEFAULT_LOCALE, toSegment, type Locale } from "@/lib/i18n/routing";
-import { useCurrentLanguage } from "@/lib/i18n/use-current-language";
 
-export function FeaturedProjects({ byLocale }: { byLocale: Record<Locale, ProjectCardData[]> }) {
+export function FeaturedProjects({ projects }: { projects: ProjectCardData[] }) {
 	const { t } = useTranslation();
-	const locale = useCurrentLanguage();
-	const projects = byLocale[locale] ?? byLocale[DEFAULT_LOCALE];
 
 	return (
 		<div className="mt-8 flex flex-col gap-6">
@@ -22,7 +18,7 @@ export function FeaturedProjects({ byLocale }: { byLocale: Record<Locale, Projec
 			</div>
 
 			<Link
-				href={`/${toSegment(locale)}/projects`}
+				href="/projects"
 				className="inline-flex w-fit items-center gap-1.5 text-muted-foreground text-sm transition-colors hover:text-foreground"
 			>
 				{t("projectsViewAll")}

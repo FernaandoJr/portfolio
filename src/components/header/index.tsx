@@ -8,7 +8,6 @@ import { headerLinks } from "@/constants/header-links";
 import { useScroll } from "@/lib/use-scroll";
 import { cn } from "@/lib/utils";
 import { useTranslation } from "@/lib/i18n";
-import { useSegment } from "@/lib/i18n/use-current-language";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
@@ -22,7 +21,6 @@ export function Header({ disableSticky = false, forceBlur = false }: HeaderProps
 	const [open, setOpen] = useState(false);
 	const scrolled = useScroll(10);
 	const { t } = useTranslation();
-	const segment = useSegment();
 
 	useEffect(() => {
 		if (open) {
@@ -56,7 +54,7 @@ export function Header({ disableSticky = false, forceBlur = false }: HeaderProps
 
 			<nav className="relative mx-auto flex h-14 w-full max-w-3xl items-center justify-between px-6 lg:px-0 select-none">
 				<div className="flex items-center gap-5">
-					<Link href={`/${segment}`} className="flex items-center gap-2 rounded-md p-2">
+					<Link href="/" className="flex items-center gap-2 rounded-md p-2">
 						<span className="text-lg font-medium">FernaandoJr</span>
 					</Link>
 					<div className="hidden items-center gap-1 md:flex">
@@ -64,7 +62,7 @@ export function Header({ disableSticky = false, forceBlur = false }: HeaderProps
 							<Link
 								key={link.key}
 								className={cn(buttonVariants({ variant: "ghost" }), "rounded-md")}
-								href={`/${segment}${link.href}`}
+								href={link.href}
 							>
 								{t(link.key)}
 							</Link>
@@ -96,7 +94,7 @@ export function Header({ disableSticky = false, forceBlur = false }: HeaderProps
 						<Link
 							key={link.key}
 							className={cn(buttonVariants({ variant: "ghost" }), "justify-start")}
-							href={`/${segment}${link.href}`}
+							href={link.href}
 							onClick={() => setOpen(false)}
 						>
 							{t(link.key)}

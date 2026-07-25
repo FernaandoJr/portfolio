@@ -2,7 +2,9 @@ import matter from "gray-matter";
 import readingTime from "reading-time";
 import type { z } from "zod";
 
-import { isLocale, type BaseFrontmatter, type Variant } from "./types";
+import { isLocale } from "@/lib/i18n/routing";
+
+import type { BaseFrontmatter, Variant } from "./types";
 
 export const FILE_PATTERN = /^(.+)\.([A-Za-z]+)\.mdx$/;
 

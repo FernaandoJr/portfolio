@@ -7,7 +7,8 @@ import { GoogleGenAI } from "@google/genai";
 import { maskContent, unmaskContent } from "../src/lib/blog/mask";
 import { validateTranslation } from "../src/lib/blog/validate";
 import { fileNameFor, serializeVariant } from "../src/lib/content/parse";
-import type { BaseFrontmatter, Locale } from "../src/lib/content/types";
+import type { BaseFrontmatter } from "../src/lib/content/types";
+import type { Locale } from "../src/lib/i18n/routing";
 import { contentDir, hashOf, parseArgs, planJobs, type Job } from "./content-io";
 
 const MODEL = process.env.GEMINI_MODEL || "gemini-flash-latest";

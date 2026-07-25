@@ -6,13 +6,9 @@ import path from "node:path";
 import { cache } from "react";
 
 import { makeParser } from "./parse";
-import {
-	resolveVariant,
-	type BaseFrontmatter,
-	type Entry,
-	type Locale,
-	type Variant,
-} from "./types";
+import type { Locale } from "@/lib/i18n/routing";
+
+import { resolveVariant, type BaseFrontmatter, type Entry, type Variant } from "./types";
 import type { z } from "zod";
 
 export type Collection<F extends BaseFrontmatter> = {

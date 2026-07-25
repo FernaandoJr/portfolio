@@ -5,10 +5,10 @@ import { I18nProvider } from "@/components/providers/i18n-provider";
 import { QueryProvider } from "@/components/providers/query-provider";
 import { BGPattern } from "@/components/ui/bg-pattern";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { DEFAULT_LOCALE, HTML_LANG } from "@/lib/i18n/routing";
 import type { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
 import { Geist, JetBrains_Mono, Merriweather } from "next/font/google";
-import { cookies } from "next/headers";
 import "./globals.css";
 
 const geist = Geist({
@@ -51,20 +51,15 @@ export const metadata: Metadata = {
 	},
 };
 
-const htmlLang: Record<string, string> = { ptBR: "pt-BR", enUS: "en" };
-
-export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-	const cookieStore = await cookies();
-	const locale = cookieStore.get("NEXT_LOCALE")?.value ?? "enUS";
-
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
 	return (
 		<html
-			lang={htmlLang[locale] ?? "en"}
+			lang={HTML_LANG[DEFAULT_LOCALE]}
 			className={`${geist.variable} ${merriweather.variable} ${jetbrainsMono.variable} antialiased`}
 			suppressHydrationWarning
 		>
 			<body suppressHydrationWarning>
-				<I18nProvider locale={locale}>
+				<I18nProvider>
 					<QueryProvider>
 						<ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
 							<TooltipProvider>

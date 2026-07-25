@@ -1,27 +1,13 @@
 "use client";
 
 import { useTranslation } from "@/lib/i18n";
-
-const MONTH_KEYS = [
-	"monthJan",
-	"monthFeb",
-	"monthMar",
-	"monthApr",
-	"monthMay",
-	"monthJun",
-	"monthJul",
-	"monthAug",
-	"monthSep",
-	"monthOct",
-	"monthNov",
-	"monthDec",
-] as const;
+import { monthByNumber } from "@/lib/months";
 
 export function formatCalendarDate(date: string, t: (key: string) => string): string {
 	const [year, month, day] = date.split("-");
-	const key = MONTH_KEYS[Number(month) - 1];
-	if (!year || !day || !key) return date;
-	return `${day} ${t(key)} ${year}`;
+	const entry = monthByNumber(Number(month));
+	if (!year || !day || !entry) return date;
+	return `${day} ${t(entry.key)} ${year}`;
 }
 
 export function PostDate({ date, className }: { date: string; className?: string }) {

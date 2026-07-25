@@ -104,7 +104,6 @@ export function AvatarGroup({
 				</div>
 			)}
 
-			{}
 			<AnimatePresence>
 				{hoveredIdx !== null && visible[hoveredIdx] && (
 					<motion.span

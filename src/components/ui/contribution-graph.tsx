@@ -12,6 +12,7 @@ import {
 } from "react";
 
 import { groupByWeeks, type Activity, type Week } from "@/lib/contribution-calendar";
+import { MONTH_ABBREVIATIONS } from "@/lib/months";
 import { cn } from "@/lib/utils";
 
 export type { Activity };
@@ -31,23 +32,8 @@ type MonthLabel = {
 	label: string;
 };
 
-const DEFAULT_MONTH_LABELS = [
-	"Jan",
-	"Feb",
-	"Mar",
-	"Apr",
-	"May",
-	"Jun",
-	"Jul",
-	"Aug",
-	"Sep",
-	"Oct",
-	"Nov",
-	"Dec",
-];
-
 const DEFAULT_LABELS: Labels = {
-	months: DEFAULT_MONTH_LABELS,
+	months: MONTH_ABBREVIATIONS,
 	weekdays: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
 	totalCount: "{{count}} activities in {{year}}",
 	legend: { less: "Less", more: "More" },
@@ -89,7 +75,7 @@ const useContributionGraph = () => {
 
 const getMonthLabels = (
 	weeks: Week[],
-	monthNames: string[] = DEFAULT_MONTH_LABELS
+	monthNames: string[] = MONTH_ABBREVIATIONS
 ): MonthLabel[] => {
 	return weeks
 		.reduce<MonthLabel[]>((labels, week, weekIndex) => {

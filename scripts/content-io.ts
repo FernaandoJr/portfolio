@@ -4,8 +4,8 @@ import process from "node:process";
 
 import { computeSourceHash } from "../src/lib/blog/hash";
 import { parseVariant as parsePost } from "../src/lib/blog/parse";
-import type { BaseFrontmatter, Locale, Variant } from "../src/lib/content/types";
-import { LOCALES } from "../src/lib/content/types";
+import type { BaseFrontmatter, Variant } from "../src/lib/content/types";
+import { LOCALES, type Locale } from "../src/lib/i18n/routing";
 import { parseVariant as parseProject } from "../src/lib/projects/parse";
 
 export const COLLECTIONS = ["blog", "projects"] as const;

@@ -17,7 +17,7 @@ import {
 } from "@/components/ui/timeline";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { type Experience, experiences } from "@/constants/experience";
-import { translateDate } from "@/lib/utils";
+import { translateDate } from "@/lib/months";
 import { skills } from "@/constants/skills";
 
 function ExpandableText({ text }: { text: string }) {

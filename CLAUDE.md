@@ -103,11 +103,13 @@ Create commits only when explicitly asked. Never commit without a clear request.
 
 3. **Never change the folder structure** (`components/`, `constants/`, `lib/`, etc.) without being explicitly asked.
 
-4. **Never add code comments.** The code is self-documenting. Only add a comment when the _why_ is a non-obvious constraint or workaround.
+4. **Never add code comments. No exceptions.** Not even for non-obvious constraints, workarounds, or "why" explanations — those go in the PR description or commit message, never in the file. The only comments allowed in the codebase are tool-required directives (`eslint-disable`, `@ts-expect-error`, `// eslint-disable-next-line`) that change linter/compiler behavior.
 
 5. **Never refactor code outside the scope of what was asked.** A bug fix is a bug fix. A typo change is a typo change.
 
 6. **Never create `.md` documentation files** unless explicitly requested.
+
+7. **Never write normalizers, adapters, or dual-format compatibility functions.** When a shape, schema, or convention changes, migrate every call site to the new form directly — do not add a function that translates old-shape input into new-shape input (or vice versa) so both can coexist. There is exactly one implementation, matching the current decision; no legacy path is kept "just in case."
 
 7. **Never hardcode colors.** The design system uses `oklch` CSS variables (`--background`, `--foreground`, `--muted`, `--border`, etc.). Use Tailwind semantic classes (`bg-background`, `text-muted-foreground`, `border-border`).
 
