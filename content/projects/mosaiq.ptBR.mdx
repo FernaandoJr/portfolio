@@ -1,0 +1,71 @@
+---
+title: mosaiq
+description: Gerador de QR codes personalizáveis que roda 100% no browser — cores, módulos, olhos, logo, PIX e download em SVG, PNG e PDF, sem cadastro e sem servidor.
+date: 2026-08-24
+tags:
+  - Next.js
+  - TypeScript
+  - Tailwind
+cover: /projects/mosaiq/hero.png
+draft: false
+status: completed
+featured: 2
+stack:
+  - Next.js
+  - TypeScript
+  - Tailwind
+  - Vitest
+links:
+  repo: https://github.com/FernaandoJr/mosaiq
+  live: https://mosaiq.fernaandojr.dev
+gallery:
+  - src: /projects/mosaiq/editor.png
+    alt: Editor completo com templates de estilo e preview ao vivo
+authors:
+  - id: fernaandojr
+    roleKey: roleLead
+---
+
+A maioria dos geradores de QR é um formulário que devolve um PNG preto e branco. O mosaiq é o contrário: o QR é o produto. Você escolhe o conteúdo — URL, Wi-Fi, PIX, WhatsApp, contato, evento e mais nove kinds — e o estilo (cor, gradiente, formato de módulo, olhos, moldura, logo) enquanto o preview atualiza no browser. Download em SVG, PNG ou PDF. Sem login, sem API, sem banco.
+
+A landing não é um screenshot. O hero **é** o editor: digita a URL, troca o template, baixa. O shader de fundo reage às cores do estilo escolhido.
+
+## Encoding fechado, rendering aberto
+
+QR tem duas metades. Encoding é ISO/IEC 18004 — Reed-Solomon, seleção de máscara, versão da matriz. Isso é padrão fechado; reimplementar é convite a QR que não escaneia. A lib `qrcode` cuida disso.
+
+Rendering é onde o produto vive. Bibliotecas tipo `qr-code-styling` resolvem rápido e travam depois: os formatos de módulo são um enum fechado (`square | dots | rounded | classy | extra-rounded`). Formato novo exige fork. Fora do browser elas pedem `jsdom` + `canvas`.
+
+O `renderSvg` do mosaiq é uma função pura: matriz + estilo entra, string SVG sai. Sem DOM, sem `node:*`, sem canvas. Um formato de módulo novo é uma entrada no catálogo — hoje são 12 shapes de módulo, 16 de olho e 15 molduras. A mesma função alimenta o preview e o arquivo que a pessoa baixa.
+
+```ts title="render.ts"
+export function renderSvg(matrix: QrMatrix, style: QrStyle): string;
+```
+
+O custo assumido: o QA de leitura passa a ser nosso. Sem teste, um estilo agressivo chega no papel e não escaneia.
+
+## Round-trip como sinal de qualidade
+
+O teste que importa rasteriza o SVG, passa no `jsqr` e compara com o payload original. Roda para os 13 `CONTENT_KINDS` e para cada `moduleShape`. Se o round-trip quebra, o CI quebra. Inspeção visual não detecta esse erro.
+
+Logo no centro força ECC `H` no schema — correção de erro alta, senão o furo no meio come dados demais. O renderer ainda escava os módulos sob o logo para não desenhar módulo escuro por baixo da imagem.
+
+## PIX de verdade, não um atalho
+
+PIX não é uma URL. É EMV TLV com CRC-16/CCITT-FALSE, merchant account `BR.GOV.BCB.PIX`, moeda 986, e validação de CPF/CNPJ/e-mail/telefone/chave aleatória no schema. Um gerador que emite `pix.example.com/?key=` produz um QR que o app do banco recusa.
+
+O kind `pix` é um encoder próprio em `qr-core`, com o mesmo schema Zod que o formulário usa. Wi-Fi, MeCard, iCal, `bitcoin:` e `wa.me` seguem a mesma regra: o payload é o padrão, não um wrap nosso.
+
+## Um schema, três pacotes
+
+Monorepo Turborepo. `packages/domains` é a única fonte de tipos — `Content` é união discriminada por `kind`, `QrStyle` descreve o visual. `packages/qr-core` importa o schema, encoda e renderiza. `apps/web` é Next.js 16: landing, editor, i18n (pt/en) e dark mode. O web nunca duplica um Zod que já existe em domains; o core nunca importa `fs` nem `canvas`.
+
+## Cortar o backend
+
+A primeira versão do plano era um SaaS: QR dinâmico com slug, redirect, analytics de scan, better-auth, Mongo, PWA. Isso não está no repositório. O produto que existe é o gerador estático no cliente.
+
+QR dinâmico anônimo é superfície de phishing sem dono. Login, quota e dashboard são um produto diferente do gerador. Manter os ADRs do backend como vigentes ensinava a implementar uma API fantasma. Foram supersedidos: quando persistência voltar, será um ADR novo, não reativação silenciosa.
+
+## O que eu faria diferente
+
+Trataria o renderer como API versionada desde o dia 1. `styleVersion: 1` existe no schema, mas os IDs de shape ainda são strings soltas — um rename quebra QRs salvos (hoje não há QRs salvos; no dia em que houver, essa conta chega).

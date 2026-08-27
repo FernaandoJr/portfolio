@@ -1,0 +1,78 @@
+---
+title: mosaiq
+description: >-
+  Customizable QR code generator that runs 100% in the browser — colors,
+  modules, eyes, logo, PIX, and SVG/PNG/PDF download, with no sign-up and no
+  server.
+date: '2026-08-24'
+tags:
+  - Next.js
+  - TypeScript
+  - Tailwind
+cover: /projects/mosaiq/hero.png
+draft: false
+status: completed
+featured: 2
+stack:
+  - Next.js
+  - TypeScript
+  - Tailwind
+  - Vitest
+links:
+  repo: https://github.com/FernaandoJr/mosaiq
+  live: https://mosaiq.fernaandojr.dev
+gallery:
+  - src: /projects/mosaiq/editor.png
+    alt: Full editor with style templates and live preview
+authors:
+  - id: fernaandojr
+    roleKey: roleLead
+translatedFrom: ptBR
+sourceHash: 15940d03e8421716
+translatedBy: manual
+translatedAt: '2026-08-26T22:05:00.000Z'
+---
+
+Most QR generators are a form that returns a black-and-white PNG. mosaiq is the opposite: the QR is the product. You pick the content — URL, Wi-Fi, PIX, WhatsApp, contact, event, and nine more kinds — and the style (color, gradient, module shape, eyes, frame, logo) while the preview updates in the browser. Download as SVG, PNG or PDF. No login, no API, no database.
+
+The landing is not a screenshot. The hero **is** the editor: type a URL, switch the template, download. The background shader follows the colors of the style you picked.
+
+## Closed encoding, open rendering
+
+A QR has two halves. Encoding is ISO/IEC 18004 — Reed-Solomon, mask selection, matrix version. That standard is closed; reimplementing it is an invitation to codes that do not scan. The `qrcode` library handles it.
+
+Rendering is where the product lives. Libraries like `qr-code-styling` ship fast and lock you in: module shapes are a closed enum (`square | dots | rounded | classy | extra-rounded`). A new shape means a fork. Outside the browser they need `jsdom` + `canvas`.
+
+mosaiq's `renderSvg` is a pure function: matrix plus style in, SVG string out. No DOM, no `node:*`, no canvas. A new module shape is one catalog entry — today that is 12 module shapes, 16 eye shapes and 15 frames. The same function feeds the preview and the file the person downloads.
+
+```ts title="render.ts"
+export function renderSvg(matrix: QrMatrix, style: QrStyle): string;
+```
+
+The cost we took on: scan QA is ours. Without a test, an aggressive style makes it onto paper and does not scan.
+
+## Round-trip as the quality signal
+
+The test that matters rasterizes the SVG, runs it through `jsqr` and compares against the original payload. It runs for all 13 `CONTENT_KINDS` and every `moduleShape`. If the round-trip breaks, CI breaks. Visual inspection does not catch that failure.
+
+A centered logo forces ECC `H` in the schema — high error correction, otherwise the hole in the middle eats too much data. The renderer also excavates modules under the logo so a dark module is not drawn behind the image.
+
+## Real PIX, not a shortcut
+
+PIX is not a URL. It is EMV TLV with CRC-16/CCITT-FALSE, merchant account `BR.GOV.BCB.PIX`, currency 986, and CPF/CNPJ/email/phone/random-key validation in the schema. A generator that emits `pix.example.com/?key=` produces a QR the bank app rejects.
+
+The `pix` kind is its own encoder in `qr-core`, sharing the same Zod schema the form uses. Wi-Fi, MeCard, iCal, `bitcoin:` and `wa.me` follow the same rule: the payload is the standard, not a wrapper of ours.
+
+## One schema, three packages
+
+Turborepo monorepo. `packages/domains` is the only source of types — `Content` is a discriminated union on `kind`, `QrStyle` describes the look. `packages/qr-core` imports the schema, encodes and renders. `apps/web` is Next.js 16: landing, editor, i18n (pt/en) and dark mode. The web app never duplicates a Zod schema that already lives in domains; the core never imports `fs` or `canvas`.
+
+## Cutting the backend
+
+The first version of the plan was a SaaS: dynamic QR with slug, redirect, scan analytics, better-auth, Mongo, PWA. That product is not in the repository. What exists is the static generator in the client.
+
+Anonymous dynamic QR is a phishing surface with no owner. Login, quota and a dashboard are a different product from the generator. Keeping the backend ADRs as current taught agents to implement a ghost API. They were superseded: when persistence comes back, it will be a new ADR, not a silent reactivation.
+
+## What I would do differently
+
+I would treat the renderer as a versioned API from day one. `styleVersion: 1` exists in the schema, but shape IDs are still loose strings — a rename would break saved QRs (there are no saved QRs today; the day there are, that bill comes due).
