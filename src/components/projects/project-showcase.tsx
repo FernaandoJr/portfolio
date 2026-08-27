@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
+import { ChevronLeftIcon, ChevronRightIcon, XIcon } from "lucide-react";
 import Image from "next/image";
 import * as React from "react";
 
@@ -12,7 +12,7 @@ import {
 	CarouselPrevious,
 	type CarouselApi,
 } from "@/components/ui/carousel";
-import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogClose, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { useTranslation } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
@@ -155,48 +155,66 @@ export function ProjectShowcase({
 			</Carousel>
 
 			<Dialog open={lightbox !== null} onOpenChange={(open) => !open && setLightbox(null)}>
-				<DialogContent className="max-w-[calc(100%-2rem)] gap-3 sm:max-w-4xl">
+				<DialogContent
+					showCloseButton={false}
+					className="flex w-fit max-h-[calc(100dvh-1rem)] max-w-[calc(100vw-1rem)] flex-col gap-3 overflow-hidden p-1.5 sm:max-w-[calc(100vw-2rem)]"
+				>
 					<DialogTitle className="sr-only">{active?.alt ?? title}</DialogTitle>
 
 					{active && (
-						<div className="relative aspect-video w-full overflow-hidden rounded-lg">
+						<div className="overflow-hidden rounded-[max(0px,calc(var(--radius-xl)-0.375rem))]">
 							<Image
 								src={active.src}
 								alt={active.alt}
-								fill
-								sizes="(max-width: 1024px) 100vw, 896px"
-								className="object-contain"
+								width={1920}
+								height={1080}
+								sizes="96vw"
+								className="block h-auto max-h-[calc(100dvh-7rem)] w-auto max-w-[calc(100vw-3rem)] object-contain"
 								draggable={false}
 							/>
 						</div>
 					)}
 
 					<div className="flex items-center justify-between gap-4">
-						<p className="text-muted-foreground text-xs">{active?.alt}</p>
+						<p className="min-w-0 truncate text-muted-foreground text-xs">{active?.alt}</p>
 
-						{slides.length > 1 && (
-							<div className="flex items-center gap-1">
-								<button
-									type="button"
-									onClick={() => step(-1)}
-									aria-label={t("galleryPrevious")}
-									className="inline-flex cursor-pointer items-center justify-center rounded-md p-1.5 text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
-								>
-									<ChevronLeftIcon className="size-4" />
-								</button>
-								<span className="text-muted-foreground text-xs tabular-nums select-none">
-									{(lightbox ?? 0) + 1}/{slides.length}
-								</span>
-								<button
-									type="button"
-									onClick={() => step(1)}
-									aria-label={t("galleryNext")}
-									className="inline-flex cursor-pointer items-center justify-center rounded-md p-1.5 text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
-								>
-									<ChevronRightIcon className="size-4" />
-								</button>
-							</div>
-						)}
+						<div className="flex shrink-0 items-center gap-1">
+							{slides.length > 1 && (
+								<>
+									<button
+										type="button"
+										onClick={() => step(-1)}
+										aria-label={t("galleryPrevious")}
+										className="inline-flex cursor-pointer items-center justify-center rounded-md p-1.5 text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
+									>
+										<ChevronLeftIcon className="size-4" />
+									</button>
+									<span className="text-muted-foreground text-xs tabular-nums select-none">
+										{(lightbox ?? 0) + 1}/{slides.length}
+									</span>
+									<button
+										type="button"
+										onClick={() => step(1)}
+										aria-label={t("galleryNext")}
+										className="inline-flex cursor-pointer items-center justify-center rounded-md p-1.5 text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
+									>
+										<ChevronRightIcon className="size-4" />
+									</button>
+								</>
+							)}
+
+							<DialogClose
+								render={
+									<button
+										type="button"
+										aria-label={t("galleryClose")}
+										className="inline-flex cursor-pointer items-center justify-center rounded-md p-1.5 text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
+									/>
+								}
+							>
+								<XIcon className="size-4" />
+							</DialogClose>
+						</div>
 					</div>
 				</DialogContent>
 			</Dialog>
