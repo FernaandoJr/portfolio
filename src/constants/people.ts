@@ -16,9 +16,6 @@ export const people: Person[] = [
 		github: "https://github.com/FernaandoJr",
 		url: SITE_URL,
 	},
-	{ id: "marina-alves", name: "Marina Alves" },
-	{ id: "rafael-costa", name: "Rafael Costa" },
-	{ id: "beatriz-lima", name: "Beatriz Lima" },
 ];
 
 export function findPerson(id: string): Person | undefined {
