@@ -18,7 +18,7 @@ export async function generateMetadata({
 	const { title, description, date } = variantFor(post, DEFAULT_LOCALE).frontmatter;
 
 	return {
-		title: `${title} — Fernando Jr`,
+		title: `${title} | Fernando Jr`,
 		description,
 		alternates: { canonical: `/blog/${slug}` },
 		openGraph: {

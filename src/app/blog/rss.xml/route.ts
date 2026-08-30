@@ -5,7 +5,7 @@ import { DEFAULT_LOCALE, HTML_LANG } from "@/lib/i18n/routing";
 export const dynamic = "force-static";
 
 const CHANNEL_DESCRIPTION =
-	"Architecture decisions, expensive mistakes and what I would do differently — written while building.";
+	"Architecture decisions, expensive mistakes and what I would do differently. Written while building.";
 
 function escapeXml(value: string): string {
 	return value
@@ -42,7 +42,7 @@ export async function GET() {
 		'<?xml version="1.0" encoding="UTF-8"?>',
 		'<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">',
 		"  <channel>",
-		"    <title>Fernando Jr — Blog</title>",
+		"    <title>Fernando Jr | Blog</title>",
 		`    <link>${SITE_URL}/blog</link>`,
 		`    <description>${escapeXml(CHANNEL_DESCRIPTION)}</description>`,
 		`    <language>${HTML_LANG[DEFAULT_LOCALE]}</language>`,

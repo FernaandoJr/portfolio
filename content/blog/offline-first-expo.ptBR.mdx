@@ -85,7 +85,7 @@ Guardar um timestamp por campo custa alguns bytes e evita a pergunta mais chata 
 
 ## Onde a complexidade realmente mora
 
-Não é no algoritmo — é na **observabilidade**. Quando um técnico liga dizendo que perdeu dados, você precisa responder em minutos, não em dias.
+Não é no algoritmo. É na **observabilidade**. Quando um técnico liga dizendo que perdeu dados, você precisa responder em minutos, não em dias.
 
 O que salvou o projeto:
 
@@ -104,6 +104,6 @@ Nada disso é glamouroso. Tudo isso é o que faz o recurso ser confiável.
 
 ## O que eu faria diferente
 
-Começaria pela camada de sincronização, não pela UI. A modelagem offline vaza para absolutamente tudo — schema, navegação, estados de loading, telas de erro. Tratar isso como "a gente resolve depois" é garantir um refactor caro.
+Começaria pela camada de sincronização, não pela UI. A modelagem offline vaza para absolutamente tudo: schema, navegação, estados de loading, telas de erro. Tratar isso como "a gente resolve depois" é garantir um refactor caro.
 
 Se quiser ver isso na prática em código aberto, o [AstroVista](https://github.com/FernaandoJr/astrovista) tem uma versão bem mais simples da mesma ideia.

@@ -94,7 +94,7 @@ Storing a timestamp per field costs a few bytes and avoids support's most annoyi
 
 ## Where the complexity really lives
 
-It's not in the algorithm — it's in **observability**. When a technician calls saying they lost data, you need to answer in minutes, not days.
+It's not in the algorithm. It's in **observability**. When a technician calls saying they lost data, you need to answer in minutes, not days.
 
 What saved the project:
 
@@ -113,6 +113,6 @@ None of this is glamorous. All of this is what makes the feature reliable.
 
 ## What I would do differently
 
-I would start with the sync layer, not the UI. Offline modeling leaks into absolutely everything — schema, navigation, loading states, error screens. Treating this as "we'll deal with it later" guarantees an expensive refactor.
+I would start with the sync layer, not the UI. Offline modeling leaks into absolutely everything: schema, navigation, loading states, error screens. Treating this as "we'll deal with it later" guarantees an expensive refactor.
 
 If you want to see this in practice in open source, [AstroVista](https://github.com/FernaandoJr/astrovista) has a much simpler version of the same idea.

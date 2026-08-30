@@ -1,7 +1,7 @@
 ---
 title: mosaiq
 description: >-
-  Customizable QR code generator that runs 100% in the browser — colors,
+  Customizable QR code generator that runs 100% in the browser. Colors,
   modules, eyes, logo, PIX, and SVG/PNG/PDF download, with no sign-up and no
   server.
 date: '2026-08-24'
@@ -43,17 +43,17 @@ translatedBy: manual
 translatedAt: '2026-08-26T22:05:00.000Z'
 ---
 
-Most QR generators are a form that returns a black-and-white PNG. mosaiq is the opposite: the QR is the product. You pick the content — URL, Wi-Fi, PIX, WhatsApp, contact, event, and nine more kinds — and the style (color, gradient, module shape, eyes, frame, logo) while the preview updates in the browser. Download as SVG, PNG or PDF. No login, no API, no database.
+Most QR generators are a form that returns a black-and-white PNG. mosaiq is the opposite: the QR is the product. You pick the content (URL, Wi-Fi, PIX, WhatsApp, contact, event, and nine more kinds) and the style (color, gradient, module shape, eyes, frame, logo) while the preview updates in the browser. Download as SVG, PNG or PDF. No login, no API, no database.
 
 The landing is not a screenshot. The hero **is** the editor: type a URL, switch the template, download. The background shader follows the colors of the style you picked.
 
 ## Closed encoding, open rendering
 
-A QR has two halves. Encoding is ISO/IEC 18004 — Reed-Solomon, mask selection, matrix version. That standard is closed; reimplementing it is an invitation to codes that do not scan. The `qrcode` library handles it.
+A QR has two halves. Encoding is ISO/IEC 18004: Reed-Solomon, mask selection, matrix version. That standard is closed; reimplementing it is an invitation to codes that do not scan. The `qrcode` library handles it.
 
 Rendering is where the product lives. Libraries like `qr-code-styling` ship fast and lock you in: module shapes are a closed enum (`square | dots | rounded | classy | extra-rounded`). A new shape means a fork. Outside the browser they need `jsdom` + `canvas`.
 
-mosaiq's `renderSvg` is a pure function: matrix plus style in, SVG string out. No DOM, no `node:*`, no canvas. A new module shape is one catalog entry — today that is 12 module shapes, 16 eye shapes and 15 frames. The same function feeds the preview and the file the person downloads.
+mosaiq's `renderSvg` is a pure function: matrix plus style in, SVG string out. No DOM, no `node:*`, no canvas. A new module shape is one catalog entry. Today that is 12 module shapes, 16 eye shapes and 15 frames. The same function feeds the preview and the file the person downloads.
 
 ```ts title="render.ts"
 export function renderSvg(matrix: QrMatrix, style: QrStyle): string;
@@ -65,7 +65,7 @@ The cost we took on: scan QA is ours. Without a test, an aggressive style makes 
 
 The test that matters rasterizes the SVG, runs it through `jsqr` and compares against the original payload. It runs for all 13 `CONTENT_KINDS` and every `moduleShape`. If the round-trip breaks, CI breaks. Visual inspection does not catch that failure.
 
-A centered logo forces ECC `H` in the schema — high error correction, otherwise the hole in the middle eats too much data. The renderer also excavates modules under the logo so a dark module is not drawn behind the image.
+A centered logo forces ECC `H` in the schema. High error correction, otherwise the hole in the middle eats too much data. The renderer also excavates modules under the logo so a dark module is not drawn behind the image.
 
 ## Real PIX, not a shortcut
 
@@ -75,7 +75,7 @@ The `pix` kind is its own encoder in `qr-core`, sharing the same Zod schema the 
 
 ## One schema, three packages
 
-Turborepo monorepo. `packages/domains` is the only source of types — `Content` is a discriminated union on `kind`, `QrStyle` describes the look. `packages/qr-core` imports the schema, encodes and renders. `apps/web` is Next.js 16: landing, editor, i18n (pt/en) and dark mode. The web app never duplicates a Zod schema that already lives in domains; the core never imports `fs` or `canvas`.
+Turborepo monorepo. `packages/domains` is the only source of types. `Content` is a discriminated union on `kind`, `QrStyle` describes the look. `packages/qr-core` imports the schema, encodes and renders. `apps/web` is Next.js 16: landing, editor, i18n (pt/en) and dark mode. The web app never duplicates a Zod schema that already lives in domains; the core never imports `fs` or `canvas`.
 
 ## Cutting the backend
 
@@ -85,4 +85,4 @@ Anonymous dynamic QR is a phishing surface with no owner. Login, quota and a das
 
 ## What I would do differently
 
-I would treat the renderer as a versioned API from day one. `styleVersion: 1` exists in the schema, but shape IDs are still loose strings — a rename would break saved QRs (there are no saved QRs today; the day there are, that bill comes due).
+I would treat the renderer as a versioned API from day one. `styleVersion: 1` exists in the schema, but shape IDs are still loose strings. A rename would break saved QRs (there are no saved QRs today; the day there are, that bill comes due).

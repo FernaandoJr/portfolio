@@ -21,7 +21,7 @@ export async function generateMetadata({
 	const images = cover ? [{ url: absoluteUrl(cover), alt: title }] : undefined;
 
 	return {
-		title: `${title} — Fernando Jr`,
+		title: `${title} | Fernando Jr`,
 		description,
 		alternates: { canonical: `/projects/${slug}` },
 		openGraph: {

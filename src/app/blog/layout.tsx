@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-	title: "Blog — Fernando Jr",
+	title: "Blog | Fernando Jr",
 	description:
-		"Architecture decisions, expensive mistakes and what I would do differently — written while building.",
+		"Architecture decisions, expensive mistakes and what I would do differently. Written while building.",
 	alternates: { canonical: "/blog" },
 };
 

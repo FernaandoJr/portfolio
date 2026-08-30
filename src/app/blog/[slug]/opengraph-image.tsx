@@ -5,7 +5,7 @@ import { getAllPosts, getPost, variantFor } from "@/lib/blog/source";
 import { DEFAULT_LOCALE } from "@/lib/i18n/routing";
 import { monthByNumber } from "@/lib/months";
 
-export const alt = "Fernando Jr — blog post";
+export const alt = "Fernando Jr blog post";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
