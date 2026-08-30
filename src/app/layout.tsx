@@ -1,6 +1,6 @@
 import Footer from "@/components/footer";
 import { Header } from "@/components/header";
-import { SITE_URL } from "@/constants/profile";
+import { SITE_DESCRIPTION, SITE_NAME, SITE_TITLE, SITE_URL } from "@/constants/profile";
 import { I18nProvider } from "@/components/providers/i18n-provider";
 import { QueryProvider } from "@/components/providers/query-provider";
 import { BGPattern } from "@/components/ui/bg-pattern";
@@ -28,25 +28,25 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
 	metadataBase: new URL(SITE_URL),
-	title: "Fernando Jr — Full Stack Developer",
-	description:
-		"Portfolio de Fernando Junior, desenvolvedor Full Stack baseado em São Paulo. TypeScript, React, Next.js, Node.js e mobile com Expo.",
+	title: {
+		default: SITE_TITLE,
+		template: `%s | ${SITE_NAME}`,
+	},
+	description: SITE_DESCRIPTION,
 	authors: [{ name: "Fernando Junior", url: SITE_URL }],
 	creator: "Fernando Junior",
 	openGraph: {
-		title: "Fernando Jr — Full Stack Developer",
-		description:
-			"Portfolio de Fernando Junior, desenvolvedor Full Stack baseado em São Paulo. TypeScript, React, Next.js, Node.js e mobile com Expo.",
+		title: SITE_TITLE,
+		description: SITE_DESCRIPTION,
 		url: SITE_URL,
-		siteName: "Fernando Jr",
+		siteName: SITE_NAME,
 		locale: "pt_BR",
 		type: "website",
 	},
 	twitter: {
 		card: "summary",
-		title: "Fernando Jr — Full Stack Developer",
-		description:
-			"Portfolio de Fernando Junior, desenvolvedor Full Stack baseado em São Paulo. TypeScript, React, Next.js, Node.js e mobile com Expo.",
+		title: SITE_TITLE,
+		description: SITE_DESCRIPTION,
 		creator: "@FernaandoJr",
 	},
 };

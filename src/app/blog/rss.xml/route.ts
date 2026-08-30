@@ -1,4 +1,4 @@
-import { SITE_URL } from "@/constants/profile";
+import { SITE_NAME, SITE_URL } from "@/constants/profile";
 import { getAllPosts, variantFor } from "@/lib/blog/source";
 import { DEFAULT_LOCALE, HTML_LANG } from "@/lib/i18n/routing";
 
@@ -42,7 +42,7 @@ export async function GET() {
 		'<?xml version="1.0" encoding="UTF-8"?>',
 		'<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">',
 		"  <channel>",
-		"    <title>Fernando Jr | Blog</title>",
+		`    <title>${SITE_NAME} | Blog</title>`,
 		`    <link>${SITE_URL}/blog</link>`,
 		`    <description>${escapeXml(CHANNEL_DESCRIPTION)}</description>`,
 		`    <language>${HTML_LANG[DEFAULT_LOCALE]}</language>`,

@@ -260,7 +260,7 @@ export const ContributionGraphFooter = ({ className, ...props }: ContributionGra
 );
 
 export type ContributionGraphTotalCountProps = Omit<HTMLAttributes<HTMLDivElement>, "children"> & {
-	children?: (props: { totalCount: number; year: number }) => ReactNode;
+	children?: (props: { totalCount: number }) => ReactNode;
 };
 
 export const ContributionGraphTotalCount = ({
@@ -269,7 +269,7 @@ export const ContributionGraphTotalCount = ({
 	...props
 }: ContributionGraphTotalCountProps) => {
 	const { totalCount, year, labels } = useContributionGraph();
-	if (children) return <>{children({ totalCount, year })}</>;
+	if (children) return <>{children({ totalCount })}</>;
 	return (
 		<div className={cn("text-muted-foreground", className)} {...props}>
 			{labels.totalCount
