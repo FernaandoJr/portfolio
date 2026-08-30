@@ -115,12 +115,6 @@ export const skills: Skill[] = [
 		href: "https://mui.com",
 	},
 	{
-		id: "genexus",
-		label: "GeneXus",
-		icon: "/icons/skills/genexus.png",
-		href: "https://www.genexus.com",
-	},
-	{
 		id: "mongodb",
 		label: "MongoDB",
 		icon: "/icons/skills/mongodb.svg",
