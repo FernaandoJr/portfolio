@@ -10,21 +10,24 @@ export function SocialLinks() {
 		<div className="flex items-center gap-2 my-4">
 			{socials.map((social) => (
 				<Tooltip key={social.label}>
-					<TooltipTrigger className="inline-flex items-center justify-center rounded-md p-2 opacity-50 hover:opacity-100 hover:bg-accent transition-all">
-						<Link
-							href={social.href}
-							target="_blank"
-							rel="noopener noreferrer"
-							aria-label={social.label}
-						>
-							<Image
-								src={social.icon}
-								alt={social.label}
-								width={16}
-								height={16}
-								className="dark:invert"
+					<TooltipTrigger
+						render={
+							<Link
+								href={social.href}
+								target="_blank"
+								rel="noopener noreferrer"
+								aria-label={social.label}
+								className="inline-flex items-center justify-center rounded-md p-2 opacity-50 hover:opacity-100 hover:bg-accent transition-all"
 							/>
-						</Link>
+						}
+					>
+						<Image
+							src={social.icon}
+							alt=""
+							width={16}
+							height={16}
+							className="dark:invert"
+						/>
 					</TooltipTrigger>
 					<TooltipContent>{social.label}</TooltipContent>
 				</Tooltip>
