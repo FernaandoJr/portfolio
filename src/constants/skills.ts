@@ -190,3 +190,16 @@ export const skills: Skill[] = [
 		href: "https://openai.com/codex",
 	},
 ];
+
+export const experienceOnlySkills: Skill[] = [
+	{
+		id: "genexus",
+		label: "GeneXus",
+		icon: "/icons/skills/genexus.png",
+		href: "https://www.genexus.com",
+	},
+];
+
+export function findStackIcon(label: string): Skill | undefined {
+	return skills.find((s) => s.label === label) ?? experienceOnlySkills.find((s) => s.label === label);
+}

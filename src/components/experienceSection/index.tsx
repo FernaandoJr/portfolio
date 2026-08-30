@@ -18,7 +18,7 @@ import {
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { type Experience, experiences } from "@/constants/experience";
 import { translateDate } from "@/lib/months";
-import { skills } from "@/constants/skills";
+import { findStackIcon } from "@/constants/skills";
 
 function ExpandableText({ text }: { text: string }) {
 	const { t } = useTranslation();
@@ -157,7 +157,7 @@ function ExperienceCard({ exp }: { exp: Experience }) {
 
 				<div className="mt-3 flex flex-wrap items-center gap-2.5 select-none">
 					{exp.stack.map((tag) => {
-						const skill = skills.find((s) => s.label === tag);
+						const skill = findStackIcon(tag);
 						if (!skill) return null;
 						return (
 							<Tooltip key={tag}>
