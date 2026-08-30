@@ -55,7 +55,7 @@
 	"aboutCreator": "Creator of",
 	"aboutAstroVista": "AstroVista",
 	"aboutAstroVistaDesc": "an open source project that archives NASA's daily astronomy images.",
-	"githubContributions": "{{count}} contributions in {{year}} on",
+	"githubContributions": "{{count}} contributions in the last year on",
 	"githubContributionsError": "Could not load GitHub contributions.",
 	"githubContributionTooltip": "{{count}} contribution on {{date}}",
 	"githubContributionTooltip_plural": "{{count}} contributions on {{date}}",

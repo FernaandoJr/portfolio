@@ -119,11 +119,10 @@ export function GithubHeatmap() {
 
 			<ContributionGraphFooter className="px-2">
 				<ContributionGraphTotalCount>
-					{({ totalCount, year }) => (
+					{({ totalCount }) => (
 						<div className="text-muted-foreground text-xs select-none">
 							{t("githubContributions", {
 								count: totalCount.toLocaleString("en"),
-								year,
 							})}{" "}
 							<a
 								className="text-foreground underline underline-offset-2 hover:text-muted-foreground transition-colors"

@@ -55,7 +55,7 @@
 	"aboutCreator": "Criador do",
 	"aboutAstroVista": "AstroVista",
 	"aboutAstroVistaDesc": "projeto open source que arquiva diariamente as imagens da NASA.",
-	"githubContributions": "{{count}} contribuições em {{year}} no",
+	"githubContributions": "{{count}} contribuições no último ano no",
 	"githubContributionsError": "Não foi possível carregar as contribuições do GitHub.",
 	"githubContributionTooltip": "{{count}} contribuição em {{date}}",
 	"githubContributionTooltip_plural": "{{count}} contribuições em {{date}}",

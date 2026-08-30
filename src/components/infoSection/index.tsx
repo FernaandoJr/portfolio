@@ -3,7 +3,6 @@
 import { useTranslation } from "@/lib/i18n";
 import { AnimatePresence, motion } from "framer-motion";
 import { CheckIcon, MailIcon, MapPinIcon } from "lucide-react";
-import Image from "next/image";
 import { useState } from "react";
 
 import SkillsSection from "@/components/skillsSection";
@@ -25,20 +24,9 @@ export default function InfoSection() {
 
 	return (
 		<>
-			<div className="flex flex-row items-center gap-4">
-				<Image
-					src="/pfp_greninja.png"
-					alt="Fernando Jr"
-					width={75}
-					height={66}
-					className="h-20 w-auto"
-					style={{ imageRendering: "pixelated" }}
-					unoptimized
-				/>
-				<div className="flex flex-col gap-0.5">
-					<p className="text-3xl font-bold">{NAME}</p>
-					<RotatingSubtitle />
-				</div>
+			<div className="flex flex-col gap-0.5">
+				<p className="text-3xl font-bold">{NAME}</p>
+				<RotatingSubtitle />
 			</div>
 
 			<div className="flex flex-col sm:flex-row sm:flex-wrap gap-y-6 sm:gap-x-12 justify-start my-12">
