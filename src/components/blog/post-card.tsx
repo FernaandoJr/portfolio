@@ -1,8 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 
+import { PostCover } from "@/components/blog/post-cover";
 import { PostMeta } from "@/components/blog/post-meta";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/new-card";
 
@@ -12,26 +12,22 @@ type PostCardProps = {
 	description: string;
 	date: string;
 	readingMinutes: number;
-	cover?: string | undefined;
+	cover: string;
 };
 
-export function PostCard({ href, title, description, date, readingMinutes, cover }: PostCardProps) {
+export function PostCard({
+	href,
+	title,
+	description,
+	date,
+	readingMinutes,
+	cover,
+}: PostCardProps) {
 	return (
 		<Card interactive className="group gap-0 py-0">
 			<Link href={href} aria-label={title} className="absolute inset-0 z-10 rounded-[inherit]" />
 
-			{cover && (
-				<div className="relative aspect-video w-full overflow-hidden rounded-t-[inherit] select-none">
-					<Image
-						src={cover}
-						alt={title}
-						fill
-						className="object-cover object-top transition-transform duration-300 group-hover:scale-[1.02]"
-						sizes="(max-width: 640px) 100vw, 50vw"
-						draggable={false}
-					/>
-				</div>
-			)}
+			<PostCover src={cover} alt={title} />
 
 			<CardHeader className="pt-4 pb-0">
 				<CardTitle className="text-base">{title}</CardTitle>

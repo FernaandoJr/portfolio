@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-import { usePublicDnsIfLoopback } from "@/lib/dns";
+import { preferPublicDnsIfLoopback } from "@/lib/dns";
 
 type MongooseCache = { conn: typeof mongoose | null; promise: Promise<typeof mongoose> | null };
 
@@ -11,7 +11,7 @@ globalWithMongoose.mongoose = cached;
 export async function connectDB(): Promise<typeof mongoose> {
 	if (cached.conn) return cached.conn;
 	if (!cached.promise) {
-		usePublicDnsIfLoopback();
+		preferPublicDnsIfLoopback();
 		cached.promise = mongoose.connect(process.env.MONGODB_URI!).catch((err) => {
 			cached.promise = null;
 			throw err;
