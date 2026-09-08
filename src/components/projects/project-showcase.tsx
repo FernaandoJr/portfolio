@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronLeftIcon, ChevronRightIcon, XIcon } from "lucide-react";
+import { RiArrowLeftSLine, RiArrowRightSLine, RiCloseLine } from "@remixicon/react";
 import Image from "next/image";
 import * as React from "react";
 
@@ -12,7 +12,12 @@ import {
 	CarouselPrevious,
 	type CarouselApi,
 } from "@/components/ui/carousel";
-import { Dialog, DialogClose, DialogContent, DialogTitle } from "@/components/ui/dialog";
+import {
+	Dialog,
+	DialogClose,
+	DialogContent,
+	DialogTitle,
+} from "@/components/ui/modal";
 import { useTranslation } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
@@ -108,7 +113,7 @@ export function ProjectShowcase({
 								type="button"
 								onClick={() => setLightbox(index)}
 								aria-label={image.alt}
-								className="relative block aspect-video w-full cursor-zoom-in overflow-hidden rounded-xl border border-border select-none"
+								className="relative block aspect-video w-full cursor-zoom-in overflow-hidden rounded-xl border border-stroke-soft-200 select-none"
 							>
 								<Image
 									src={image.src}
@@ -127,12 +132,14 @@ export function ProjectShowcase({
 				{slides.length > 1 && (
 					<>
 						<CarouselPrevious
-							variant="ghost"
-							className="inset-y-0 left-3 my-auto translate-y-0 cursor-pointer border-0 bg-black/40 text-white opacity-0 backdrop-blur-sm transition-opacity hover:bg-black/60 hover:text-white group-hover/carousel:opacity-100 focus-visible:opacity-100 active:not-aria-[haspopup]:translate-y-0"
+							variant="neutral"
+							mode="ghost"
+							className="inset-y-0 left-3 my-auto size-9 translate-y-0 cursor-pointer border-0 bg-black/40 text-white opacity-0 backdrop-blur-sm transition-opacity hover:bg-black/60 hover:text-white group-hover/carousel:opacity-100 focus-visible:opacity-100"
 						/>
 						<CarouselNext
-							variant="ghost"
-							className="inset-y-0 right-3 my-auto translate-y-0 cursor-pointer border-0 bg-black/40 text-white opacity-0 backdrop-blur-sm transition-opacity hover:bg-black/60 hover:text-white group-hover/carousel:opacity-100 focus-visible:opacity-100 active:not-aria-[haspopup]:translate-y-0"
+							variant="neutral"
+							mode="ghost"
+							className="inset-y-0 right-3 my-auto size-9 translate-y-0 cursor-pointer border-0 bg-black/40 text-white opacity-0 backdrop-blur-sm transition-opacity hover:bg-black/60 hover:text-white group-hover/carousel:opacity-100 focus-visible:opacity-100"
 						/>
 
 						<div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 items-center gap-2 rounded-full bg-black/30 px-2.5 py-1.5 opacity-0 backdrop-blur-sm transition-opacity group-hover/carousel:opacity-100 focus-within:opacity-100">
@@ -156,13 +163,13 @@ export function ProjectShowcase({
 
 			<Dialog open={lightbox !== null} onOpenChange={(open) => !open && setLightbox(null)}>
 				<DialogContent
-					showCloseButton={false}
+					showClose={false}
 					className="flex w-fit max-h-[calc(100dvh-1rem)] max-w-[calc(100vw-1rem)] flex-col gap-3 overflow-hidden p-1.5 sm:max-w-[calc(100vw-2rem)]"
 				>
 					<DialogTitle className="sr-only">{active?.alt ?? title}</DialogTitle>
 
 					{active && (
-						<div className="overflow-hidden rounded-[max(0px,calc(var(--radius-xl)-0.375rem))]">
+						<div className="overflow-hidden rounded-20">
 							<Image
 								src={active.src}
 								alt={active.alt}
@@ -175,8 +182,8 @@ export function ProjectShowcase({
 						</div>
 					)}
 
-					<div className="flex items-center justify-between gap-4">
-						<p className="min-w-0 truncate text-muted-foreground text-xs">{active?.alt}</p>
+					<div className="flex items-center justify-between gap-4 px-2 pb-1">
+						<p className="min-w-0 truncate text-text-sub-600 text-xs">{active?.alt}</p>
 
 						<div className="flex shrink-0 items-center gap-1">
 							{slides.length > 1 && (
@@ -185,34 +192,32 @@ export function ProjectShowcase({
 										type="button"
 										onClick={() => step(-1)}
 										aria-label={t("galleryPrevious")}
-										className="inline-flex cursor-pointer items-center justify-center rounded-md p-1.5 text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
+										className="inline-flex cursor-pointer items-center justify-center rounded-md p-1.5 text-text-sub-600 transition-colors hover:bg-bg-weak-50 hover:text-text-strong-950"
 									>
-										<ChevronLeftIcon className="size-4" />
+										<RiArrowLeftSLine className="size-4" />
 									</button>
-									<span className="text-muted-foreground text-xs tabular-nums select-none">
+									<span className="text-text-sub-600 text-xs tabular-nums select-none">
 										{(lightbox ?? 0) + 1}/{slides.length}
 									</span>
 									<button
 										type="button"
 										onClick={() => step(1)}
 										aria-label={t("galleryNext")}
-										className="inline-flex cursor-pointer items-center justify-center rounded-md p-1.5 text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
+										className="inline-flex cursor-pointer items-center justify-center rounded-md p-1.5 text-text-sub-600 transition-colors hover:bg-bg-weak-50 hover:text-text-strong-950"
 									>
-										<ChevronRightIcon className="size-4" />
+										<RiArrowRightSLine className="size-4" />
 									</button>
 								</>
 							)}
 
-							<DialogClose
-								render={
-									<button
-										type="button"
-										aria-label={t("galleryClose")}
-										className="inline-flex cursor-pointer items-center justify-center rounded-md p-1.5 text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
-									/>
-								}
-							>
-								<XIcon className="size-4" />
+							<DialogClose asChild>
+								<button
+									type="button"
+									aria-label={t("galleryClose")}
+									className="inline-flex cursor-pointer items-center justify-center rounded-md p-1.5 text-text-sub-600 transition-colors hover:bg-bg-weak-50 hover:text-text-strong-950"
+								>
+									<RiCloseLine className="size-4" />
+								</button>
 							</DialogClose>
 						</div>
 					</div>

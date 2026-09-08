@@ -42,11 +42,11 @@ function PostBody({ post, locale }: { post: Post; locale: Locale }) {
 			<article className="flex flex-col gap-8">
 				<header className="flex flex-col gap-3">
 					<h1 className="text-3xl font-bold leading-tight">{title}</h1>
-					<p className="text-muted-foreground leading-relaxed">{description}</p>
+					<p className="text-text-sub-600 leading-relaxed">{description}</p>
 					<PostMeta date={date} readingMinutes={variant.readingMinutes} />
 				</header>
 
-				<div className="prose prose-neutral max-w-none">
+				<div className="prose max-w-none">
 					<MDXRemote source={variant.body} components={mdxComponents} options={mdxOptions} />
 				</div>
 			</article>

@@ -12,5 +12,5 @@ export function BlogIntro() {
 export function BlogEmptyState() {
 	const { t } = useTranslation();
 
-	return <p className="text-muted-foreground text-sm">{t("blogEmpty")}</p>;
+	return <p className="text-text-sub-600 text-sm">{t("blogEmpty")}</p>;
 }

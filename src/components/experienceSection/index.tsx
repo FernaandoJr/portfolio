@@ -4,9 +4,9 @@ import { useTranslation } from "@/lib/i18n";
 import Image from "next/image";
 import { useCallback, useState } from "react";
 
-import { ChevronDown, ExternalLink, Infinity as InfinityIcon } from "lucide-react";
+import { RiArrowDownSLine, RiExternalLinkLine, RiInfinityLine } from "@remixicon/react";
 
-import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/new-hover-card";
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 import {
 	Timeline,
 	TimelineConnector,
@@ -33,7 +33,7 @@ function ExpandableText({ text }: { text: string }) {
 		<div className="mt-3">
 			<p
 				ref={ref}
-				className={`text-sm text-muted-foreground leading-relaxed ${expanded ? "" : "line-clamp-2"}`}
+				className={`text-sm text-text-sub-600 leading-relaxed ${expanded ? "" : "line-clamp-2"}`}
 			>
 				{text}
 			</p>
@@ -41,10 +41,10 @@ function ExpandableText({ text }: { text: string }) {
 				<Tooltip>
 					<TooltipTrigger
 						onClick={() => setExpanded((v) => !v)}
-						className="mt-0.5 text-xs text-muted-foreground/50 hover:text-muted-foreground transition-colors cursor-pointer inline-flex items-center gap-0.5 select-none"
+						className="mt-0.5 text-xs text-text-sub-600/50 hover:text-text-sub-600 transition-colors cursor-pointer inline-flex items-center gap-0.5 select-none"
 					>
 						{expanded ? t("showLess") : t("showMore")}
-						<ChevronDown
+						<RiArrowDownSLine
 							className={`size-3 transition-transform duration-200 ${expanded ? "rotate-180" : ""}`}
 						/>
 					</TooltipTrigger>
@@ -89,7 +89,7 @@ function ExperienceCard({ exp }: { exp: Experience }) {
 									href={exp.companyInfo.url}
 									target="_blank"
 									rel="noopener noreferrer"
-									className="font-medium text-foreground leading-snug cursor-pointer hover:text-foreground/70 transition-colors"
+									className="font-medium text-text-strong-950 leading-snug cursor-pointer hover:text-text-strong-950/70 transition-colors"
 								>
 									{t(exp.roleKey)}
 								</a>
@@ -108,7 +108,7 @@ function ExperienceCard({ exp }: { exp: Experience }) {
 														className="size-7 object-contain"
 													/>
 												) : (
-													<span className="text-xs font-bold text-muted-foreground">
+													<span className="text-xs font-bold text-text-sub-600">
 														{exp.companyInfo.name.charAt(0)}
 													</span>
 												)}
@@ -121,7 +121,7 @@ function ExperienceCard({ exp }: { exp: Experience }) {
 											rel="noopener noreferrer"
 											className="text-[color:var(--hc-foreground)] opacity-40 hover:opacity-100 transition-opacity"
 										>
-											<ExternalLink className="size-3.5" />
+											<RiExternalLinkLine className="size-3.5" />
 										</a>
 									</div>
 									<p className="text-[13px] leading-5 opacity-60">{t(exp.companyInfo.descKey)}</p>
@@ -129,16 +129,16 @@ function ExperienceCard({ exp }: { exp: Experience }) {
 							</HoverCardContent>
 						</HoverCard>
 					) : (
-						<span className="font-medium text-foreground leading-snug">{t(exp.roleKey)}</span>
+						<span className="font-medium text-text-strong-950 leading-snug">{t(exp.roleKey)}</span>
 					)}
-					<span className="text-muted-foreground/70 text-xs font-serif shrink-0 mt-[3px] flex items-center gap-1 select-none">
+					<span className="text-text-sub-600/70 text-xs font-serif shrink-0 mt-[3px] flex items-center gap-1 select-none">
 						{translateDate(exp.startDate, t)}
 						{" · "}
-						{exp.endDate ? translateDate(exp.endDate, t) : <InfinityIcon className="size-3.5" />}
+						{exp.endDate ? translateDate(exp.endDate, t) : <RiInfinityLine className="size-3.5" />}
 					</span>
 				</div>
 
-				<p className="mt-0.5 text-xs text-muted-foreground/60">
+				<p className="mt-0.5 text-xs text-text-sub-600/60">
 					{t(modalityKey[exp.modality])}, {t(typeKey[exp.type])}
 				</p>
 
@@ -147,9 +147,9 @@ function ExperienceCard({ exp }: { exp: Experience }) {
 					{exp.bulletKeys.map((key) => (
 						<li
 							key={key}
-							className="flex items-start gap-2 text-sm text-muted-foreground leading-relaxed"
+							className="flex items-start gap-2 text-sm text-text-sub-600 leading-relaxed"
 						>
-							<span className="mt-[7px] size-1 shrink-0 rounded-full bg-muted-foreground/40" />
+							<span className="mt-[7px] size-1 shrink-0 rounded-full bg-text-sub-600/40" />
 							{t(key)}
 						</li>
 					))}

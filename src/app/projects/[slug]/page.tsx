@@ -54,13 +54,13 @@ function ProjectBody({ project, locale }: { project: Project; locale: Locale }) 
 						{status !== "completed" && <ProjectStatusBadge status={status} />}
 					</div>
 
-					<p className="text-muted-foreground leading-relaxed">{description}</p>
+					<p className="text-text-sub-600 leading-relaxed">{description}</p>
 
 					<div className="flex items-center gap-3">
 						<AuthorStack authors={authors} size="sm" />
 						<PostDate
 							date={date}
-							className="font-serif text-muted-foreground/70 text-xs select-none"
+							className="font-serif text-text-sub-600/70 text-xs select-none"
 						/>
 					</div>
 				</header>
@@ -72,7 +72,7 @@ function ProjectBody({ project, locale }: { project: Project; locale: Locale }) 
 					<ProjectLinks repo={links.repo} live={links.live} />
 				</div>
 
-				<div className="prose prose-neutral max-w-none">
+				<div className="prose max-w-none">
 					<MDXRemote source={variant.body} components={mdxComponents} options={mdxOptions} />
 				</div>
 			</article>

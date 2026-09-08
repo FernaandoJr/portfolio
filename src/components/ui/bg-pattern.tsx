@@ -27,14 +27,14 @@ type BGPatternProps = React.ComponentProps<"div"> & {
 };
 
 const maskClasses: Record<BGMaskType, string> = {
-	"fade-edges": "[mask-image:radial-gradient(ellipse_at_center,var(--background),transparent)]",
-	"fade-center": "[mask-image:radial-gradient(ellipse_at_center,transparent,var(--background))]",
-	"fade-top": "[mask-image:linear-gradient(to_bottom,transparent,var(--background))]",
-	"fade-bottom": "[mask-image:linear-gradient(to_bottom,var(--background),transparent)]",
-	"fade-left": "[mask-image:linear-gradient(to_right,transparent,var(--background))]",
-	"fade-right": "[mask-image:linear-gradient(to_right,var(--background),transparent)]",
-	"fade-x": "[mask-image:linear-gradient(to_right,transparent,var(--background),transparent)]",
-	"fade-y": "[mask-image:linear-gradient(to_bottom,transparent,var(--background),transparent)]",
+	"fade-edges": "[mask-image:radial-gradient(ellipse_at_center,var(--color-bg-white-0),transparent)]",
+	"fade-center": "[mask-image:radial-gradient(ellipse_at_center,transparent,var(--color-bg-white-0))]",
+	"fade-top": "[mask-image:linear-gradient(to_bottom,transparent,var(--color-bg-white-0))]",
+	"fade-bottom": "[mask-image:linear-gradient(to_bottom,var(--color-bg-white-0),transparent)]",
+	"fade-left": "[mask-image:linear-gradient(to_right,transparent,var(--color-bg-white-0))]",
+	"fade-right": "[mask-image:linear-gradient(to_right,var(--color-bg-white-0),transparent)]",
+	"fade-x": "[mask-image:linear-gradient(to_right,transparent,var(--color-bg-white-0),transparent)]",
+	"fade-y": "[mask-image:linear-gradient(to_bottom,transparent,var(--color-bg-white-0),transparent)]",
 	none: "",
 };
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRightIcon } from "lucide-react";
+import { RiArrowRightLine } from "@remixicon/react";
 import Link from "next/link";
 
 import { ProjectCard, type ProjectCardData } from "@/components/projects/project-card";
@@ -19,10 +19,10 @@ export function FeaturedProjects({ projects }: { projects: ProjectCardData[] }) 
 
 			<Link
 				href="/projects"
-				className="inline-flex w-fit items-center gap-1.5 text-muted-foreground text-sm transition-colors hover:text-foreground"
+				className="inline-flex w-fit items-center gap-1.5 text-text-sub-600 text-sm transition-colors hover:text-text-strong-950"
 			>
 				{t("projectsViewAll")}
-				<ArrowRightIcon className="size-3.5" />
+				<RiArrowRightLine className="size-3.5" />
 			</Link>
 		</div>
 	);

@@ -1,7 +1,7 @@
 "use client";
 
 import { useReducedMotion } from "framer-motion";
-import { MoveUpIcon } from "lucide-react";
+import { RiArrowUpLine } from "@remixicon/react";
 
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "@/lib/i18n";
@@ -17,14 +17,15 @@ export function BackToTop() {
 	return (
 		<div className="flex justify-end">
 			<Button
-				variant="ghost"
-				size="icon-lg"
+				variant="neutral"
+				mode="ghost"
+				size="xsmall"
 				onClick={scrollToTop}
 				aria-label={t("blogBackToTop")}
 				title={t("blogBackToTop")}
-				className="cursor-pointer text-muted-foreground"
+				className="size-9 cursor-pointer p-0 text-text-sub-600"
 			>
-				<MoveUpIcon className="size-4" />
+				<RiArrowUpLine className="size-4" />
 			</Button>
 		</div>
 	);

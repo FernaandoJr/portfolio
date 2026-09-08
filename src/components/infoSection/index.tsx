@@ -2,7 +2,7 @@
 
 import { useTranslation } from "@/lib/i18n";
 import { AnimatePresence, motion } from "framer-motion";
-import { CheckIcon, MailIcon, MapPinIcon } from "lucide-react";
+import { RiCheckLine, RiMailLine, RiMapPinLine } from "@remixicon/react";
 import { useState } from "react";
 
 import SkillsSection from "@/components/skillsSection";
@@ -31,15 +31,15 @@ export default function InfoSection() {
 
 			<div className="flex flex-col sm:flex-row sm:flex-wrap gap-y-6 sm:gap-x-12 justify-start my-12">
 				<div className="flex flex-col gap-2">
-					<p className="text-muted-foreground uppercase font-bold text-sm">{t("location")}</p>
+					<p className="text-text-sub-600 uppercase font-bold text-sm">{t("location")}</p>
 					<div className="flex items-center gap-2">
-						<MapPinIcon className="size-4 text-foreground" />
-						<p className="text-foreground uppercase font-normal text-sm">{LOCATION}</p>
+						<RiMapPinLine className="size-4 text-text-strong-950" />
+						<p className="text-text-strong-950 uppercase font-normal text-sm">{LOCATION}</p>
 					</div>
 				</div>
 
 				<div className="flex flex-col gap-2">
-					<p className="text-muted-foreground uppercase font-bold text-sm">{t("email")}</p>
+					<p className="text-text-sub-600 uppercase font-bold text-sm">{t("email")}</p>
 					<button onClick={copyEmail} className="flex items-center gap-2 cursor-pointer group">
 						<div className="relative size-4">
 							<AnimatePresence mode="wait" initial={false}>
@@ -52,14 +52,14 @@ export default function InfoSection() {
 									className="absolute inset-0 flex"
 								>
 									{copied ? (
-										<CheckIcon className="size-4 text-foreground" />
+										<RiCheckLine className="size-4 text-text-strong-950" />
 									) : (
-										<MailIcon className="size-4 text-foreground" />
+										<RiMailLine className="size-4 text-text-strong-950" />
 									)}
 								</motion.span>
 							</AnimatePresence>
 						</div>
-						<p className="text-foreground uppercase font-normal text-sm group-hover:underline underline-offset-2">
+						<p className="text-text-strong-950 uppercase font-normal text-sm group-hover:underline underline-offset-2">
 							{EMAIL}
 						</p>
 					</button>

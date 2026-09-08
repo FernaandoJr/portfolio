@@ -22,10 +22,11 @@ export function LanguageSwitcher({ className }: { className?: string }) {
 
 	return (
 		<Button
-			variant="link"
-			size="icon"
+			variant="neutral"
+			mode="ghost"
+			size="xsmall"
 			aria-label={t("switchTo", { language: t(next.label) })}
-			className={cn("cursor-pointer", className)}
+			className={cn("size-9 cursor-pointer p-0", className)}
 			onClick={() => setLocale(current.next)}
 		>
 			<Image

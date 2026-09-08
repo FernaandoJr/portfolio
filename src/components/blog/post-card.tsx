@@ -4,7 +4,7 @@ import Link from "next/link";
 
 import { PostCover } from "@/components/blog/post-cover";
 import { PostMeta } from "@/components/blog/post-meta";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/new-card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 type PostCardProps = {
 	href: string;
@@ -34,7 +34,7 @@ export function PostCard({
 			</CardHeader>
 
 			<CardContent className="flex flex-1 flex-col pt-2 pb-4">
-				<p className="text-muted-foreground text-sm leading-relaxed line-clamp-3">{description}</p>
+				<p className="text-text-sub-600 text-sm leading-relaxed line-clamp-3">{description}</p>
 				<div className="mt-auto pt-3">
 					<PostMeta date={date} readingMinutes={readingMinutes} />
 				</div>

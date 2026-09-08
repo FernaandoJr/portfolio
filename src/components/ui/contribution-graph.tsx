@@ -40,11 +40,11 @@ const DEFAULT_LABELS: Labels = {
 };
 
 const THEME = cn(
-	'data-[level="0"]:fill-muted-foreground/10',
-	'data-[level="1"]:fill-muted-foreground/25',
-	'data-[level="2"]:fill-muted-foreground/45',
-	'data-[level="3"]:fill-muted-foreground/65',
-	'data-[level="4"]:fill-muted-foreground/85'
+	'data-[level="0"]:fill-text-sub-600/10',
+	'data-[level="1"]:fill-text-sub-600/25',
+	'data-[level="2"]:fill-text-sub-600/45',
+	'data-[level="3"]:fill-text-sub-600/65',
+	'data-[level="4"]:fill-text-sub-600/85'
 );
 
 type ContributionGraphContextType = {
@@ -226,7 +226,7 @@ export const ContributionGraphCalendar = ({
 			>
 				<title>{title}</title>
 				{!hideMonthLabels && (
-					<g className="fill-current selection:fill-current text-muted-foreground text-[11px] font-semibold select-none">
+					<g className="fill-current selection:fill-current text-text-sub-600 text-[11px] font-semibold select-none">
 						{monthLabels.map(({ label, weekIndex }) => (
 							<text
 								dominantBaseline="hanging"
@@ -271,7 +271,7 @@ export const ContributionGraphTotalCount = ({
 	const { totalCount, year, labels } = useContributionGraph();
 	if (children) return <>{children({ totalCount })}</>;
 	return (
-		<div className={cn("text-muted-foreground", className)} {...props}>
+		<div className={cn("text-text-sub-600", className)} {...props}>
 			{labels.totalCount
 				? labels.totalCount
 						.replace("{{count}}", String(totalCount))
@@ -294,7 +294,7 @@ export const ContributionGraphLegend = ({
 
 	return (
 		<div className={cn("ml-auto flex items-center gap-0.5 select-none", className)} {...props}>
-			<span className="mr-1 text-muted-foreground text-xs">{labels.legend?.less ?? "Less"}</span>
+			<span className="mr-1 text-text-sub-600 text-xs">{labels.legend?.less ?? "Less"}</span>
 			{new Array(maxLevel + 1).fill(undefined).map((_, level) =>
 				children ? (
 					<Fragment key={level}>{children({ level })}</Fragment>
@@ -312,7 +312,7 @@ export const ContributionGraphLegend = ({
 					</svg>
 				)
 			)}
-			<span className="ml-1 text-muted-foreground text-xs">{labels.legend?.more ?? "More"}</span>
+			<span className="ml-1 text-text-sub-600 text-xs">{labels.legend?.more ?? "More"}</span>
 		</div>
 	);
 };

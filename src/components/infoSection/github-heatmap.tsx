@@ -41,7 +41,7 @@ export function GithubHeatmap() {
 								{Array.from({ length: 7 }).map((_, d) => (
 									<div
 										key={d}
-										className="bg-muted animate-pulse"
+										className="bg-bg-weak-50 animate-pulse"
 										style={{ width: 11, height: 11 }}
 									/>
 								))}
@@ -50,10 +50,10 @@ export function GithubHeatmap() {
 					</div>
 				</div>
 				<div className="px-2 flex flex-wrap gap-1 whitespace-nowrap sm:gap-x-4">
-					<div className="h-3 w-48 rounded bg-muted animate-pulse" />
+					<div className="h-3 w-48 rounded bg-bg-weak-50 animate-pulse" />
 					<div className="ml-auto flex items-center gap-1">
 						{Array.from({ length: 5 }).map((_, i) => (
-							<div key={i} className="bg-muted animate-pulse" style={{ width: 11, height: 11 }} />
+							<div key={i} className="bg-bg-weak-50 animate-pulse" style={{ width: 11, height: 11 }} />
 						))}
 					</div>
 				</div>
@@ -64,8 +64,8 @@ export function GithubHeatmap() {
 	if (error) {
 		return (
 			<div className="py-4 flex flex-col gap-1">
-				<p className="text-sm text-muted-foreground">{t("githubContributionsError")}</p>
-				<p className="text-xs text-muted-foreground/60 font-mono">{error.message}</p>
+				<p className="text-sm text-text-sub-600">{t("githubContributionsError")}</p>
+				<p className="text-xs text-text-sub-600/60 font-mono">{error.message}</p>
 			</div>
 		);
 	}
@@ -89,17 +89,15 @@ export function GithubHeatmap() {
 			>
 				{({ activity, dayIndex, weekIndex }) => (
 					<Tooltip>
-						<TooltipTrigger
-							render={
-								<g>
-									<ContributionGraphBlock
-										activity={activity}
-										dayIndex={dayIndex}
-										weekIndex={weekIndex}
-									/>
-								</g>
-							}
-						/>
+						<TooltipTrigger asChild>
+							<g>
+								<ContributionGraphBlock
+									activity={activity}
+									dayIndex={dayIndex}
+									weekIndex={weekIndex}
+								/>
+							</g>
+						</TooltipTrigger>
 						<TooltipContent className="font-sans select-none">
 							<p>
 								{t(
@@ -120,12 +118,12 @@ export function GithubHeatmap() {
 			<ContributionGraphFooter className="px-2">
 				<ContributionGraphTotalCount>
 					{({ totalCount }) => (
-						<div className="text-muted-foreground text-xs select-none">
+						<div className="text-text-sub-600 text-xs select-none">
 							{t("githubContributions", {
 								count: totalCount.toLocaleString("en"),
 							})}{" "}
 							<a
-								className="text-foreground underline underline-offset-2 hover:text-muted-foreground transition-colors"
+								className="text-text-strong-950 underline underline-offset-2 hover:text-text-sub-600 transition-colors"
 								href="https://github.com/FernaandoJr"
 								target="_blank"
 								rel="noopener noreferrer"

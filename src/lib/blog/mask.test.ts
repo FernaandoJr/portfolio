@@ -10,7 +10,7 @@ function roundTrip(body: string): string {
 describe("maskContent", () => {
 	it("round-trips a document unchanged", () => {
 		const body = [
-			"import { Card } from '@/components/ui/new-card';",
+			"import { Card } from '@/components/ui/card';",
 			"",
 			"# Título",
 			"",

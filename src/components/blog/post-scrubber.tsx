@@ -1,6 +1,6 @@
 "use client";
 
-import { Icon } from "@iconify/react";
+import { RiAlignLeft } from "@remixicon/react";
 import * as React from "react";
 
 import { TocRail, type TocRailItem } from "@/components/ui/toc-rail";
@@ -70,8 +70,8 @@ export function PostScrubber({ toc }: PostScrubberProps) {
 
 	return (
 		<div className="fixed top-24 right-10 z-30 hidden w-56 select-none min-[1500px]:block">
-			<h3 className="mb-3 inline-flex items-center gap-1.5 text-muted-foreground text-sm">
-				<Icon icon="lucide:align-left" className="size-4" />
+			<h3 className="mb-3 inline-flex items-center gap-1.5 text-text-sub-600 text-sm">
+				<RiAlignLeft className="size-4" />
 				{t("blogTocLabel")}
 			</h3>
 

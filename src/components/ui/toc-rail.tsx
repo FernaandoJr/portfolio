@@ -127,7 +127,7 @@ export function TocRail({
 			{geometry && (
 				<svg
 					aria-hidden="true"
-					className="pointer-events-none absolute top-0 left-0 text-primary"
+					className="pointer-events-none absolute top-0 left-0 text-primary-base"
 					style={{ width: geometry.width, height: geometry.height }}
 				>
 					<path
@@ -167,7 +167,7 @@ export function TocRail({
 							event.preventDefault();
 							onSelect(item.id);
 						}}
-						className="relative py-1.5 text-muted-foreground text-sm transition-colors first:pt-0 last:pb-0 hover:text-foreground data-[active=true]:text-primary"
+						className="relative py-1.5 text-text-sub-600 text-sm transition-colors first:pt-0 last:pb-0 hover:text-text-strong-950 data-[active=true]:text-primary-base"
 						style={{ paddingInlineStart: itemOffset(item.depth) }}
 					>
 						{breaksAbove && (
@@ -190,7 +190,7 @@ export function TocRail({
 									fill="none"
 									stroke="currentColor"
 									strokeWidth={1}
-									className="text-foreground/10"
+									className="text-text-strong-950/10"
 								/>
 							</svg>
 						)}

@@ -1,7 +1,6 @@
 "use client";
 
-import { CheckIcon, CopyIcon } from "lucide-react";
-import Image from "next/image";
+import { RiCheckLine } from "@remixicon/react";
 import * as React from "react";
 
 import { useTranslation } from "@/lib/i18n";
@@ -36,48 +35,28 @@ const LANGUAGE_LABEL: Record<string, string> = {
 	yml: "YAML",
 };
 
-const LANGUAGE_ICON: Record<string, string> = {
-	bash: "shell",
-	css: "brackets-purple",
-	docker: "docker",
-	dockerfile: "docker",
-	go: "go",
-	graphql: "graphql",
-	html: "code-orange",
-	java: "java",
-	js: "js",
-	json: "brackets-yellow",
-	jsx: "react",
-	markdown: "markdown",
-	md: "markdown",
-	mdx: "mdx",
-	prisma: "prisma",
-	py: "python",
-	python: "python",
-	rs: "rust",
-	rust: "rust",
-	sh: "shell",
-	shell: "shell",
-	sql: "database",
-	svelte: "svelte",
-	toml: "gear",
-	ts: "ts",
-	tsx: "react-ts",
-	txt: "text",
-	plaintext: "text",
-	vue: "vue",
-	xml: "xml",
-	yaml: "yaml",
-	yml: "yaml",
-};
-
 function labelFor(language: string): string {
 	return LANGUAGE_LABEL[language.toLowerCase()] ?? language.toUpperCase();
 }
 
-function iconFor(language: string): string | null {
-	const icon = LANGUAGE_ICON[language.toLowerCase()];
-	return icon ? `/icons/lang/${icon}.svg` : null;
+function CopyIcon({ className }: { className?: string }) {
+	return (
+		<svg
+			xmlns="http://www.w3.org/2000/svg"
+			fill="none"
+			viewBox="0 0 20 20"
+			className={className}
+			aria-hidden
+		>
+			<path
+				stroke="currentColor"
+				strokeLinecap="round"
+				strokeLinejoin="round"
+				strokeWidth="1.25"
+				d="M7.892 7.892V4.81a.81.81 0 0 1 .81-.81h6.487a.81.81 0 0 1 .811.81v6.487a.81.81 0 0 1-.81.811h-3.082m-.81-4.216H4.81a.81.81 0 0 0-.811.81v6.487a.81.81 0 0 0 .81.811h6.487a.81.81 0 0 0 .811-.81V8.702a.81.81 0 0 0-.81-.811Z"
+			/>
+		</svg>
+	);
 }
 
 type CodeCardProps = {
@@ -104,65 +83,44 @@ export function CodeCard({ language, title, children, className }: CodeCardProps
 		setCopied(true);
 	}
 
-	const showHeader = Boolean(language ?? title);
-	const icon = language ? iconFor(language) : null;
-
-	const copyButton = (
-		<button
-			type="button"
-			onClick={copy}
-			aria-label={t("blogCopyCode")}
-			className={cn(
-				"inline-flex size-7 shrink-0 cursor-pointer items-center justify-center rounded-md border border-border bg-background/80 text-muted-foreground opacity-0 backdrop-blur-sm transition-[color,opacity] hover:text-foreground focus-visible:opacity-100 group-hover:opacity-100",
-				!showHeader && "absolute top-2.5 right-2.5"
-			)}
-		>
-			<span className="t-icon-swap" data-state={copied ? "b" : "a"} aria-hidden>
-				<span className="t-icon" data-icon="a">
-					<CopyIcon className="size-3.5" />
-				</span>
-				<span className="t-icon" data-icon="b">
-					<CheckIcon className="size-3.5 text-green-500" />
-				</span>
-			</span>
-		</button>
-	);
+	const label = title ?? (language ? labelFor(language) : undefined);
 
 	return (
 		<div
 			ref={ref}
-			data-rehype-pretty-code-figure=""
 			className={cn(
-				"not-prose group relative my-6 overflow-hidden rounded-lg border border-border bg-card",
+				"component-source not-prose my-4 flex flex-col gap-2 rounded-20 bg-bg-weak-50 p-2 md:my-6 md:gap-3 md:p-3",
 				className
 			)}
 		>
-			{showHeader ? (
-				<div className="flex items-center gap-2.5 border-border border-b py-1.5 pr-1.5 pl-3 select-none">
-					{language &&
-						(icon ? (
-							<Image
-								src={icon}
-								alt={labelFor(language)}
-								width={16}
-								height={16}
-								className="size-4 shrink-0"
-							/>
-						) : (
-							<span className="rounded border border-border bg-background px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground uppercase leading-none tracking-wide">
-								{labelFor(language)}
-							</span>
-						))}
-					{title && (
-						<span className="truncate font-mono text-muted-foreground text-xs">{title}</span>
-					)}
-					<span className="ml-auto flex items-center">{copyButton}</span>
-				</div>
-			) : (
-				copyButton
-			)}
+			<div className="flex w-full items-center justify-between gap-3 px-2">
+				{label ? (
+					<span className="truncate font-mono text-paragraph-xs font-medium tracking-normal text-text-sub-600 md:text-paragraph-sm">
+						{label}
+					</span>
+				) : (
+					<span />
+				)}
+				<button
+					type="button"
+					onClick={copy}
+					aria-label={t("blogCopyCode")}
+					className="inline-flex size-6 shrink-0 cursor-pointer items-center justify-center text-text-sub-600 transition-colors hover:text-text-strong-950"
+				>
+					<span className="t-icon-swap size-6" data-state={copied ? "b" : "a"} aria-hidden>
+						<span className="t-icon" data-icon="a">
+							<CopyIcon className="size-6" />
+						</span>
+						<span className="t-icon" data-icon="b">
+							<RiCheckLine className="size-6 text-green-500" />
+						</span>
+					</span>
+				</button>
+			</div>
 
-			{children}
+			<div className="relative max-h-[600px] overflow-auto rounded-[11px] bg-bg-white-0 text-paragraph-xs font-medium leading-5 tracking-normal shadow-regular-xs md:text-paragraph-sm md:leading-[22px] [&_code]:py-4 [&_code]:pr-4">
+				{children}
+			</div>
 		</div>
 	);
 }

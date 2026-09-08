@@ -4,7 +4,7 @@ import Link from "next/link";
 
 import { CodeCard } from "@/components/mdx/code-block";
 import { PostHeading } from "@/components/mdx/post-heading";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/new-card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
 function isExternal(href: string): boolean {
@@ -31,7 +31,7 @@ function PostImage({
 			width={width}
 			height={height}
 			sizes="(max-width: 768px) 100vw, 768px"
-			className={cn("rounded-lg border border-border", className)}
+			className={cn("rounded-lg border border-stroke-soft-200", className)}
 			style={{ width: "100%", height: "auto" }}
 		/>
 	);

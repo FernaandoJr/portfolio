@@ -47,9 +47,9 @@ export function Header({ disableSticky = false, forceBlur = false }: HeaderProps
 				aria-hidden
 				className={cn(
 					"pointer-events-none absolute inset-x-0 top-0 -bottom-16 transition-opacity duration-500 ease-out",
-					"bg-linear-to-b from-background/85 via-background/60 to-transparent",
+					"bg-linear-to-b from-bg-white-0/85 via-bg-white-0/60 to-transparent",
 					"supports-[backdrop-filter]:backdrop-blur-lg",
-					"[mask-image:linear-gradient(to_bottom,var(--background)_45%,transparent)]",
+					"[mask-image:linear-gradient(to_bottom,var(--color-bg-white-0)_45%,transparent)]",
 					(scrolled && !disableSticky) || forceBlur ? "opacity-100" : "opacity-0"
 				)}
 			/>
@@ -71,7 +71,11 @@ export function Header({ disableSticky = false, forceBlur = false }: HeaderProps
 						{headerLinks.map((link) => (
 							<Link
 								key={link.key}
-								className={cn(buttonVariants({ variant: "ghost" }), "rounded-md")}
+								className={buttonVariants({
+									variant: "neutral",
+									mode: "ghost",
+									size: "small",
+								}).root({ class: "rounded-md" })}
 								href={link.href}
 							>
 								{t(link.key)}
@@ -86,10 +90,11 @@ export function Header({ disableSticky = false, forceBlur = false }: HeaderProps
 				</div>
 
 				<Button
-					size="icon"
-					variant="outline"
+					variant="neutral"
+					mode="stroke"
+					size="xsmall"
 					onClick={() => setOpen(!open)}
-					className="md:hidden"
+					className="size-9 p-0 md:hidden"
 					aria-expanded={open}
 					aria-controls="mobile-menu"
 					aria-label={t("openMenu")}
@@ -103,7 +108,11 @@ export function Header({ disableSticky = false, forceBlur = false }: HeaderProps
 					{headerLinks.map((link) => (
 						<Link
 							key={link.key}
-							className={cn(buttonVariants({ variant: "ghost" }), "justify-start")}
+							className={buttonVariants({
+								variant: "neutral",
+								mode: "ghost",
+								size: "small",
+							}).root({ class: "justify-start" })}
 							href={link.href}
 							onClick={() => setOpen(false)}
 						>
@@ -129,7 +138,7 @@ function MobileMenu({ open, children, className, ...props }: MobileMenuProps) {
 		<div
 			id="mobile-menu"
 			className={cn(
-				"bg-background/95 supports-[backdrop-filter]:bg-background/50 backdrop-blur-lg",
+				"bg-bg-white-0/95 supports-[backdrop-filter]:bg-bg-white-0/50 backdrop-blur-lg",
 				"fixed top-14 right-0 bottom-0 left-0 z-40 flex flex-col overflow-hidden border-y md:hidden"
 			)}
 		>

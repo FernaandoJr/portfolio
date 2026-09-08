@@ -66,7 +66,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
 								<BGPattern
 									variant="grid"
 									mask="fade-edges"
-									fill="color-mix(in oklch, var(--border) 40%, transparent)"
+									fill="color-mix(in oklch, var(--color-stroke-soft-200) 40%, transparent)"
 									size={96}
 									className="fixed"
 								/>
@@ -76,7 +76,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
 								</div>
 								<Footer />
 								<div className="pointer-events-none fixed inset-x-0 bottom-0 z-50" aria-hidden>
-									<div className="h-24 bg-linear-to-b from-transparent to-background [mask-image:linear-gradient(to_top,var(--background)_25%,transparent)] backdrop-blur-[1px]" />
+									<div className="h-24 bg-linear-to-b from-transparent to-bg-white-0 [mask-image:linear-gradient(to_top,var(--color-bg-white-0)_25%,transparent)] backdrop-blur-[1px]" />
 								</div>
 							</TooltipProvider>
 						</ThemeProvider>

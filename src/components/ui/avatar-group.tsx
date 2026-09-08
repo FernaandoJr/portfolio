@@ -52,7 +52,7 @@ export function AvatarGroup({
 					{...(item.href ? { target: "_blank", rel: "noopener noreferrer" } : {})}
 					aria-label={item.label}
 					className={cn(
-						"relative block overflow-hidden rounded-full bg-background",
+						"relative block overflow-hidden rounded-full bg-bg-white-0",
 						item.href && "cursor-pointer",
 						avatarClassName
 					)}
@@ -61,7 +61,7 @@ export function AvatarGroup({
 						height: size + ring * 2,
 						borderWidth: ring,
 						borderStyle: "solid",
-						borderColor: "var(--background)",
+						borderColor: "var(--color-bg-white-0)",
 						marginLeft: index === 0 ? 0 : -overlap,
 						zIndex: hoveredIdx === index ? 20 : visible.length - index,
 					}}
@@ -87,13 +87,13 @@ export function AvatarGroup({
 
 			{extraCount > 0 && (
 				<div
-					className="flex items-center justify-center rounded-full bg-muted font-medium text-muted-foreground"
+					className="flex items-center justify-center rounded-full bg-bg-weak-50 font-medium text-text-sub-600"
 					style={{
 						width: size + ring * 2,
 						height: size + ring * 2,
 						borderWidth: ring,
 						borderStyle: "solid",
-						borderColor: "var(--background)",
+						borderColor: "var(--color-bg-white-0)",
 						marginLeft: -overlap,
 						fontSize: size * 0.32,
 						zIndex: 0,
@@ -111,7 +111,7 @@ export function AvatarGroup({
 						animate={{ y: 0, opacity: 1, scale: 1 }}
 						exit={{ y: 6, opacity: 0, scale: 0.9 }}
 						transition={{ type: "spring", stiffness: 400, damping: 24 }}
-						className="pointer-events-none absolute z-30 -translate-x-1/2 rounded-md bg-primary px-2 py-1 font-medium text-primary-foreground text-xs whitespace-nowrap shadow-lg"
+						className="pointer-events-none absolute z-30 -translate-x-1/2 rounded-md bg-primary-base px-2 py-1 font-medium text-primary-foreground text-xs whitespace-nowrap shadow-lg"
 						style={{
 							bottom: size + ring * 2 + 6,
 							left: hoveredIdx * (size + ring * 2 - overlap) + (size + ring * 2) / 2,

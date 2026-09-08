@@ -1,6 +1,6 @@
 "use client";
 
-import { Link } from "lucide-react";
+import { RiLink } from "@remixicon/react";
 
 import { useTranslation } from "@/lib/i18n";
 
@@ -31,7 +31,7 @@ export function PostHeading({ as: Tag, id, children }: PostHeadingProps) {
 				className="group inline-flex items-center gap-2 text-inherit no-underline"
 			>
 				{children}
-				<Link className="size-4 shrink-0 text-muted-foreground/50 opacity-0 transition-opacity group-hover:opacity-100" />
+				<RiLink className="size-4 shrink-0 text-text-sub-600/50 opacity-0 transition-opacity group-hover:opacity-100" />
 			</a>
 		</Tag>
 	);

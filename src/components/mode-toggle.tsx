@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
-import { Moon, Sun } from "lucide-react";
+import { RiMoonLine, RiSunLine } from "@remixicon/react";
 import { useTheme } from "next-themes";
 import * as React from "react";
 
@@ -17,8 +17,13 @@ export function ModeToggle({ className }: { className?: string }) {
 
 	if (!mounted) {
 		return (
-			<Button variant="link" size="icon" className={cn("cursor-pointer", className)}>
-				<Moon className="h-[1.2rem] w-[1.2rem]" />
+			<Button
+				variant="neutral"
+				mode="ghost"
+				size="xsmall"
+				className={cn("size-9 cursor-pointer p-0", className)}
+			>
+				<RiMoonLine className="size-[1.2rem]" />
 				<span className="sr-only">Toggle theme</span>
 			</Button>
 		);
@@ -26,9 +31,10 @@ export function ModeToggle({ className }: { className?: string }) {
 
 	return (
 		<Button
-			variant="link"
-			size="icon"
-			className={cn("cursor-pointer", className)}
+			variant="neutral"
+			mode="ghost"
+			size="xsmall"
+			className={cn("size-9 cursor-pointer p-0", className)}
 			onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
 		>
 			<motion.div
@@ -42,8 +48,8 @@ export function ModeToggle({ className }: { className?: string }) {
 					bounce: 0.1,
 				}}
 			>
-				<Sun className="h-[1.2rem] w-[1.2rem] dark:hidden" />
-				<Moon className="hidden h-[1.2rem] w-[1.2rem] dark:block" />
+				<RiSunLine className="size-[1.2rem] dark:hidden" />
+				<RiMoonLine className="hidden size-[1.2rem] dark:block" />
 			</motion.div>
 			<span className="sr-only">Toggle theme</span>
 		</Button>

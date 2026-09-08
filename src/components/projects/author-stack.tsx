@@ -1,6 +1,5 @@
 "use client";
 
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { AvatarGroup, type AvatarGroupItem } from "@/components/ui/avatar-group";
 import { people } from "@/constants/people";
 import { useTranslation } from "@/lib/i18n";
@@ -47,17 +46,15 @@ export function AuthorStack({
 			return {
 				id,
 				node: (
-					<Avatar className="size-full">
-						<AvatarFallback
-							className={cn(
-								"font-semibold leading-none",
-								AVATAR_COLORS[index % AVATAR_COLORS.length]
-							)}
-							style={{ fontSize: pixels * 0.4 }}
-						>
-							{initialsOf(person.name)}
-						</AvatarFallback>
-					</Avatar>
+					<div
+						className={cn(
+							"flex size-full items-center justify-center font-semibold leading-none",
+							AVATAR_COLORS[index % AVATAR_COLORS.length]
+						)}
+						style={{ fontSize: pixels * 0.4 }}
+					>
+						{initialsOf(person.name)}
+					</div>
 				),
 				label: roleKey ? `${person.name} · ${t(roleKey)}` : person.name,
 				href: person.github ?? person.url,

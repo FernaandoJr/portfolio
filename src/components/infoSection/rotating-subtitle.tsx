@@ -28,7 +28,7 @@ export function RotatingSubtitle() {
 	const current = phrases[index]!;
 
 	return (
-		<div className="inline-grid font-base align-baseline text-base text-muted-foreground">
+		<div className="inline-grid font-base align-baseline text-base text-text-sub-600">
 			{phrases.map((phrase, i) => (
 				<span
 					key={i}

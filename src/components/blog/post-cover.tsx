@@ -13,7 +13,7 @@ export function PostCover({ src, alt, className }: PostCoverProps) {
 		<div
 			aria-hidden
 			className={cn(
-				"relative aspect-video w-full overflow-hidden rounded-t-[inherit] bg-muted select-none",
+				"relative aspect-video w-full overflow-hidden rounded-t-[inherit] bg-bg-weak-50 select-none",
 				className
 			)}
 		>

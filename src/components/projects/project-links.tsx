@@ -1,11 +1,10 @@
 "use client";
 
-import { Icon } from "@iconify/react";
+import { RiExternalLinkLine, RiGithubLine } from "@remixicon/react";
 import Link from "next/link";
 
 import { buttonVariants } from "@/components/ui/button";
 import { useTranslation } from "@/lib/i18n";
-import { cn } from "@/lib/utils";
 
 export function ProjectLinks({
 	repo,
@@ -25,9 +24,13 @@ export function ProjectLinks({
 					href={repo}
 					target="_blank"
 					rel="noopener noreferrer"
-					className={cn(buttonVariants({ variant: "secondary", size: "sm" }), "gap-1.5")}
+					className={buttonVariants({
+						variant: "neutral",
+						mode: "stroke",
+						size: "small",
+					}).root({ class: "gap-1.5" })}
 				>
-					<Icon icon="mdi:github" className="size-4" />
+					<RiGithubLine className="size-4" />
 					{t("viewOnGitHub")}
 				</Link>
 			)}
@@ -36,9 +39,13 @@ export function ProjectLinks({
 					href={live}
 					target="_blank"
 					rel="noopener noreferrer"
-					className={cn(buttonVariants({ variant: "default", size: "sm" }), "gap-1.5")}
+					className={buttonVariants({
+						variant: "primary",
+						mode: "filled",
+						size: "small",
+					}).root({ class: "gap-1.5" })}
 				>
-					<Icon icon="lucide:external-link" className="size-4" />
+					<RiExternalLinkLine className="size-4" />
 					{t("viewSite")}
 				</Link>
 			)}

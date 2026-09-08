@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslation } from "@/lib/i18n";
-import { Heart } from "lucide-react";
+import { RiHeartFill } from "@remixicon/react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -25,7 +25,7 @@ export default function Footer() {
 						<Link
 							key={link.href}
 							href={link.href}
-							className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+							className="text-sm text-text-sub-600 hover:text-text-strong-950 transition-colors"
 						>
 							{t(link.labelKey)}
 						</Link>
@@ -40,7 +40,7 @@ export default function Footer() {
 							target="_blank"
 							rel="noopener noreferrer"
 							aria-label={social.label}
-							className="text-muted-foreground hover:text-foreground transition-colors"
+							className="text-text-sub-600 hover:text-text-strong-950 transition-colors"
 						>
 							<Image
 								src={social.icon}
@@ -54,7 +54,7 @@ export default function Footer() {
 				</div>
 
 				<div className="flex items-center justify-between w-full">
-					<span className="text-xs text-muted-foreground/50 select-none flex items-center gap-1.5">
+					<span className="text-xs text-text-sub-600/50 select-none flex items-center gap-1.5">
 						<Link
 							href="https://github.com/fernaandojr/portfolio"
 							target="_blank"
@@ -71,8 +71,8 @@ export default function Footer() {
 							/>
 						</Link>
 					</span>
-					<span className="text-xs text-muted-foreground/50 select-none flex items-center gap-1">
-						{t("footerMadeWith")} <Heart className="size-3 fill-red-500 text-red-500" />
+					<span className="text-xs text-text-sub-600/50 select-none flex items-center gap-1">
+						{t("footerMadeWith")} <RiHeartFill className="size-3 fill-red-500 text-red-500" />
 					</span>
 				</div>
 			</div>

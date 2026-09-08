@@ -2,7 +2,7 @@
 
 import { useTranslation } from "@/lib/i18n";
 import { TIMEZONE } from "@/constants/profile";
-import { ClockIcon } from "lucide-react";
+import { RiTimeLine } from "@remixicon/react";
 import { useEffect, useState } from "react";
 
 function getTime() {
@@ -26,10 +26,10 @@ export function LocalTime() {
 
 	return (
 		<div className="flex flex-col gap-2">
-			<p className="text-muted-foreground uppercase font-bold text-sm">{t("localTime")}</p>
+			<p className="text-text-sub-600 uppercase font-bold text-sm">{t("localTime")}</p>
 			<div className="flex items-center gap-2">
-				<ClockIcon className="size-4 text-foreground" />
-				<p className="text-foreground uppercase font-normal text-sm">{time}</p>
+				<RiTimeLine className="size-4 text-text-strong-950" />
+				<p className="text-text-strong-950 uppercase font-normal text-sm">{time}</p>
 			</div>
 		</div>
 	);

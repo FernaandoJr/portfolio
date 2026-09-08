@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { ProjectStatusBadge } from "@/components/projects/project-status";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/new-card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { skills } from "@/constants/skills";
 import type { ProjectStatus } from "@/lib/projects/types";
@@ -53,7 +53,7 @@ export function ProjectCard({ project }: { project: ProjectCardData }) {
 			</CardHeader>
 
 			<CardContent className="flex flex-1 flex-col pt-2 pb-4">
-				<p className="line-clamp-3 text-muted-foreground text-sm leading-relaxed">
+				<p className="line-clamp-3 text-text-sub-600 text-sm leading-relaxed">
 					{project.description}
 				</p>
 				<div className="relative z-20 mt-auto flex w-fit flex-wrap items-center gap-2.5 pt-3 select-none">

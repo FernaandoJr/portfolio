@@ -24,7 +24,7 @@ export function PostMeta({ date, readingMinutes }: { date: string; readingMinute
 	const { t } = useTranslation();
 
 	return (
-		<div className="flex items-center gap-2 text-muted-foreground/70 text-xs font-serif select-none">
+		<div className="flex items-center gap-2 text-text-sub-600/70 text-xs font-serif select-none">
 			<PostDate date={date} />
 			<span>·</span>
 			<span>{t("blogReadingTime", { count: readingMinutes })}</span>

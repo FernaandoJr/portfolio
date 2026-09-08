@@ -12,5 +12,5 @@ export function ProjectsIntro() {
 export function ProjectsEmptyState() {
 	const { t } = useTranslation();
 
-	return <p className="text-muted-foreground text-sm">{t("projectsEmpty")}</p>;
+	return <p className="text-text-sub-600 text-sm">{t("projectsEmpty")}</p>;
 }
