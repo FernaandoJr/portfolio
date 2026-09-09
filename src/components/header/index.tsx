@@ -9,7 +9,6 @@ import { NAME } from "@/constants/profile";
 import { useScroll } from "@/lib/use-scroll";
 import { cn } from "@/lib/utils";
 import { useTranslation } from "@/lib/i18n";
-import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
@@ -56,16 +55,12 @@ export function Header({ disableSticky = false, forceBlur = false }: HeaderProps
 
 			<nav className="relative mx-auto flex h-14 w-full max-w-3xl items-center justify-between px-6 lg:px-0 select-none">
 				<div className="flex items-center gap-5">
-					<Link href="/" className="flex items-center rounded-md" aria-label={NAME}>
-						<Image
-							src="/pfp_greninja.png"
-							alt=""
-							width={75}
-							height={66}
-							className="h-8 w-auto"
-							style={{ imageRendering: "pixelated" }}
-							unoptimized
-						/>
+					<Link
+						href="/"
+						className="text-label-sm font-medium tracking-tight"
+						aria-label={NAME}
+					>
+						{NAME}
 					</Link>
 					<div className="hidden items-center gap-1 md:flex">
 						{headerLinks.map((link) => (
