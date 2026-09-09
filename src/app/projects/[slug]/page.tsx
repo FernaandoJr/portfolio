@@ -49,28 +49,29 @@ function ProjectBody({ project, locale }: { project: Project; locale: Locale }) 
 
 			<article className="flex flex-col gap-8">
 				<header className="flex flex-col gap-4">
-					<div className="flex flex-wrap items-center gap-3">
-						<h1 className="text-3xl font-bold leading-tight">{title}</h1>
-						{status !== "completed" && <ProjectStatusBadge status={status} />}
+					<div className="flex flex-wrap items-center justify-between gap-3">
+						<div className="flex flex-wrap items-center gap-3">
+							<h1 className="text-3xl font-bold leading-tight">{title}</h1>
+							{status !== "completed" && <ProjectStatusBadge status={status} />}
+						</div>
+						<ProjectLinks repo={links.repo} live={links.live} />
 					</div>
 
 					<p className="text-text-sub-600 leading-relaxed">{description}</p>
 
-					<div className="flex items-center gap-3">
-						<AuthorStack authors={authors} size="sm" />
-						<PostDate
-							date={date}
-							className="font-serif text-text-sub-600/70 text-xs select-none"
-						/>
+					<div className="flex flex-wrap items-center justify-between gap-3">
+						<div className="flex items-center gap-3">
+							<AuthorStack authors={authors} size="sm" />
+							<PostDate
+								date={date}
+								className="font-serif text-text-sub-600/70 text-xs select-none"
+							/>
+						</div>
+						<ProjectStack stack={stack} />
 					</div>
 				</header>
 
 				<ProjectShowcase cover={cover} title={title} images={gallery} />
-
-				<div className="flex flex-wrap items-center justify-between gap-3">
-					<ProjectStack stack={stack} />
-					<ProjectLinks repo={links.repo} live={links.live} />
-				</div>
 
 				<div className="prose max-w-none">
 					<MDXRemote source={variant.body} components={mdxComponents} options={mdxOptions} />
