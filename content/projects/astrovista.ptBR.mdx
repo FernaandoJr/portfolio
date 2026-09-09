@@ -32,16 +32,22 @@ authors:
 
 O AstroVista foi o primeiro projeto grande quando eu comecei a programar. Eu queria testar React com Next.js e consumir uma API de verdade. Pesquisei várias APIs públicas pensando em algo simples para começar, e acabei caindo numa bem legal, mantida pela NASA: o APOD, Astronomy Picture of the Day.
 
-Desde 1995 a NASA publica uma imagem por dia. Cada entrada traz a foto (ou vídeo), uma explicação e o crédito de quem fez o registro. A API oficial já deixa visitar dias passados: o dia anterior, o antecessor daquele, e assim por diante. Um de cada vez. Eu queria o arquivo inteiro.
+Desde 1995 a NASA publica uma imagem por dia. Cada entrada traz a foto (ou vídeo), uma explicação e o crédito de quem fez o registro. A API oficial já deixa visitar dias passados: o dia anterior, o antecessor daquele, e assim por diante. Um de cada vez. Eu queria o arquivo inteiro. Guardar tudo desde o início e poder olhar quando quisesse.
 
 ## Arquivo no meu banco
 
-Guardei tudo no MongoDB. Com os dados em casa eu filtro, pesquiso e uso o que precisar sem rate limit a cada request. A premissa é uma galeria: achar visualmente a imagem de um dia específico.
+Guardei tudo no MongoDB. Com os dados em casa eu filtro, pesquiso e uso o que precisar sem rate limit a cada request. Posso montar a galeria do meu jeito.
+
+A premissa é uma galeria. Achar visualmente a imagem de um dia específico, com busca e filtros, sem pedir a NASA a cada clique. Favoritos também ficam no app. Um job diário puxa a imagem nova. O site só lê o banco.
 
 ## Open source até parar de ser o ponto
 
-No começo eu queria open source. Divulguei para ver se alguém apreciava. Apareceu interesse, alguns curiosos, mas ninguém chegou para ajudar de fato. Eu parei de empurrar isso e foquei numa aplicação que eu gostasse e tivesse orgulho de apresentar. Foi aí que o AstroVista virou o que é hoje.
+No começo eu queria open source. Divulguei para ver se alguém apreciava. Apareceu interesse, alguns curiosos, mas ninguém chegou para ajudar de fato.
+
+Eu parei de empurrar isso e foquei numa aplicação que eu gostasse e tivesse orgulho de apresentar. Foi aí que o AstroVista virou o que é hoje.
 
 ## Simples de propósito
 
-Ainda é um projeto simples. Nada muito complexo, mas cumpre o papel: o registro completo do APOD, visual mais moderno que outros sites no mesmo espaço, navegação mais fácil, busca e filtros. Um job diário puxa a imagem nova. O site só lê o banco.
+Ainda é um projeto simples. Nada muito complexo, mas cumpre o papel: o registro completo do APOD desde 1995, fotos e vídeos, navegação mais fácil que outros sites no mesmo espaço.
+
+Visual mais moderno, busca, filtros e favoritos. Faz o que promete.

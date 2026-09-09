@@ -32,23 +32,29 @@ authors:
   - id: fernaandojr
     roleKey: roleLead
 translatedFrom: ptBR
-sourceHash: 2dd07458308f3c19
+sourceHash: b8d47de012b8ac61
 translatedBy: manual
-translatedAt: '2026-09-09T13:30:00.000Z'
+translatedAt: '2026-09-09T14:40:00.000Z'
 ---
 
 AstroVista was the first big project I started when I began programming. I wanted to try React with Next.js and hit a real API. I looked through several public APIs for something simple to start with, and landed on a good one maintained by NASA: APOD, Astronomy Picture of the Day.
 
-Since 1995 NASA has published one image a day. Each entry brings the photo (or video), an explanation, and credit for whoever made the record. Their API already lets you visit past days: the previous day, the one before that, and so on. One at a time. I wanted the whole archive.
+Since 1995 NASA has published one image a day. Each entry brings the photo (or video), an explanation, and credit for whoever made the record. Their official API already lets you visit past days: the previous day, the one before that, and so on. One at a time. I wanted the whole archive. Store everything from the start and look whenever I wanted.
 
 ## Archive in my database
 
-I stored everything in MongoDB. With the data at home I filter, search, and use what I need without a rate limit on every request. The premise is a gallery: find the image for a specific day visually.
+I stored everything in MongoDB. With the data at home I filter, search, and use what I need without a rate limit on every request. I can build the gallery my way.
+
+The premise is a gallery. Find the image for a specific day visually, with search and filters, without asking NASA on every click. Favorites live in the app too. A daily job pulls the new image. The site only reads the database.
 
 ## Open source until that stopped being the point
 
-At first I wanted it open source. I shared it to see if anyone would care. Interest showed up, a few curious people, but nobody actually came to help. I stopped pushing that and focused on an app I liked and would be proud to show. That's when AstroVista became what it is today.
+At first I wanted it open source. I shared it to see if anyone would care. Interest showed up, a few curious people, but nobody actually came to help.
+
+I stopped pushing that and focused on an app I liked and would be proud to show. That's when AstroVista became what it is today.
 
 ## Simple on purpose
 
-It's still a simple project. Nothing too complex, but it does the job: the full APOD record, a more modern look than other sites in the same space, easier navigation, search and filters. A daily job pulls the new image. The site only reads the database.
+It's still a simple project. Nothing too complex, but it does the job: the full APOD record since 1995, photos and videos, easier navigation than other sites in the same space.
+
+A more modern look, search, filters, and favorites. It does what it promises.
