@@ -1,8 +1,9 @@
 ---
 title: AstroVista
 description: >-
-  Open source app that explores NASA's space images and videos, archiving daily
-  APOD images dating back to 1995.
+  Visual archive of NASA's APOD since 1995. Gallery, search, and filters on a
+  database I own, so a specific day's image is easy to find without hitting the
+  API.
 date: '2024-11-20'
 tags:
   - Next.js
@@ -31,45 +32,23 @@ authors:
   - id: fernaandojr
     roleKey: roleLead
 translatedFrom: ptBR
-sourceHash: 6365d82aba75556d
+sourceHash: 2dd07458308f3c19
 translatedBy: manual
-translatedAt: '2026-07-22T18:41:01.187Z'
+translatedAt: '2026-09-09T13:30:00.000Z'
 ---
 
-Since 1995 NASA has published one image a day on APOD (Astronomy Picture of the Day). That is more than ten thousand images, each with an explanation written by astronomers. The official API exists, but it is slow, has an aggressive rate limit and is useless for browsing: you ask for a date and you get a date.
+AstroVista was the first big project I started when I began programming. I wanted to try React with Next.js and hit a real API. I looked through several public APIs for something simple to start with, and landed on a good one maintained by NASA: APOD, Astronomy Picture of the Day.
 
-AstroVista turns that into a browsable archive, with search, date filtering and a gallery.
+Since 1995 NASA has published one image a day. Each entry brings the photo (or video), an explanation, and credit for whoever made the record. Their API already lets you visit past days: the previous day, the one before that, and so on. One at a time. I wanted the whole archive.
 
-## The problem with the official API
+## Archive in my database
 
-Hitting NASA's API on every request had three practical problems:
+I stored everything in MongoDB. With the data at home I filter, search, and use what I need without a rate limit on every request. The premise is a gallery: find the image for a specific day visually.
 
-- **Rate limit.** The free key allows 1000 requests per hour. A paginated gallery burns through that in minutes.
-- **Latency.** Between 800ms and 3s per call, with no caching on their side.
-- **No search.** There is no full-text search endpoint. Only by date.
+## Open source until that stopped being the point
 
-The fix was to stop calling NASA on the user's path.
+At first I wanted it open source. I shared it to see if anyone would care. Interest showed up, a few curious people, but nobody actually came to help. I stopped pushing that and focused on an app I liked and would be proud to show. That's when AstroVista became what it is today.
 
-## Sync as the only writer
+## Simple on purpose
 
-A daily job fetches new images and upserts them into MongoDB. The app reads **only** from the database. It never calls NASA during a request.
-
-```ts title="sync.ts"
-const existing = await Apod.findOne({ date }).lean();
-if (existing) return { skipped: true };
-
-const data = await fetchApod(date);
-await Apod.updateOne({ date }, { $set: data }, { upsert: true });
-```
-
-That changed the shape of the app entirely: response time became the time of an indexed Mongo query, and the rate limit stopped existing as a concept.
-
-## Why Hono and not a Next route
-
-The backend is a separate Hono service. The reason was not performance. It was the sync job. It has to run outside the request cycle, with a long timeout and retries, and Next Route Handlers on serverless are hostile to that.
-
-Splitting it also made the API reusable: today the same endpoint feeds the site and a bot that posts the picture of the day.
-
-## What I would do differently
-
-I would store the images in my own bucket from day one. AstroVista serves NASA's URLs directly, and older images occasionally disappear from their server. The record survives, the image does not.
+It's still a simple project. Nothing too complex, but it does the job: the full APOD record, a more modern look than other sites in the same space, easier navigation, search and filters. A daily job pulls the new image. The site only reads the database.
