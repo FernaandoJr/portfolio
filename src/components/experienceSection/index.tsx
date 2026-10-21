@@ -98,7 +98,7 @@ function ExperienceCard({ exp }: { exp: Experience }) {
 								<div className="space-y-2">
 									<div className="flex items-center justify-between">
 										<div className="flex items-center gap-2">
-											<div className="size-7 shrink-0 flex items-center justify-center rounded-md border border-[color:var(--hc-border)] p-0.5">
+											<div className="size-7 shrink-0 flex items-center justify-center rounded-md border border-stroke-soft-200 p-0.5 dark:border-stroke-soft-100/40">
 												{exp.companyInfo.logo ? (
 													<Image
 														src={exp.companyInfo.logo}

@@ -34,7 +34,7 @@
 		"hast-util-to-string": "^3.0.1",
 		"i18next": "^25.3.2",
 		"mongoose": "^9.7.0",
-		"next": "16.2.0",
+		"next": "16.4.2",
 		"next-mdx-remote-client": "^2.1.11",
 		"next-themes": "^0.4.6",
 		"postcss": "^8.5.15",
@@ -57,7 +57,7 @@
 	"devDependencies": {
 		"@eslint/js": "^9.39.1",
 		"@google/genai": "^2.13.0",
-		"@next/eslint-plugin-next": "^16.2.0",
+		"@next/eslint-plugin-next": "^16.4.2",
 		"@tailwindcss/postcss": "^4.3.3",
 		"@tailwindcss/typography": "^0.5.20",
 		"@types/hast": "^3.0.5",

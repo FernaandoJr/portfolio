@@ -4,6 +4,7 @@ export const SITE_TITLE = "Fernando Jr | Full Stack Developer";
 export const SITE_DESCRIPTION =
 	"Portfolio de Fernando Junior, desenvolvedor Full Stack baseado em São Paulo. TypeScript, React, Next.js e Node.js.";
 export const NAME = "FernaandoJr";
+export const FULL_NAME = "Fernando Divino de Moraes Júnior";
 export const EMAIL = "fernaando.divino@gmail.com";
 export const LOCATION = "São Paulo, Brazil";
 export const TIMEZONE = "America/Sao_Paulo";

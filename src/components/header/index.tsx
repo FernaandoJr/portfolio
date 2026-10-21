@@ -3,6 +3,7 @@
 import { MenuToggleIcon } from "@/components/header/menu-toggle-icon";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { ModeToggle } from "@/components/mode-toggle";
+import { Logo } from "@/components/logo";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { headerLinks } from "@/constants/header-links";
 import { NAME } from "@/constants/profile";
@@ -10,7 +11,7 @@ import { useScroll } from "@/lib/use-scroll";
 import { cn } from "@/lib/utils";
 import { useTranslation } from "@/lib/i18n";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { createPortal } from "react-dom";
 
 interface HeaderProps {
@@ -22,17 +23,6 @@ export function Header({ disableSticky = false, forceBlur = false }: HeaderProps
 	const [open, setOpen] = useState(false);
 	const scrolled = useScroll(10);
 	const { t } = useTranslation();
-
-	useEffect(() => {
-		if (open) {
-			document.body.style.overflow = "hidden";
-		} else {
-			document.body.style.overflow = "";
-		}
-		return () => {
-			document.body.style.overflow = "";
-		};
-	}, [open]);
 
 	return (
 		<header
@@ -55,12 +45,9 @@ export function Header({ disableSticky = false, forceBlur = false }: HeaderProps
 
 			<nav className="relative mx-auto flex h-14 w-full max-w-3xl items-center justify-between px-6 lg:px-0 select-none">
 				<div className="flex items-center gap-5">
-					<Link
-						href="/"
-						className="text-label-sm font-medium tracking-tight"
-						aria-label={NAME}
-					>
-						{NAME}
+					<Link href="/" className="flex items-center gap-2 text-text-strong-950" aria-label={NAME}>
+						<Logo className="size-5" />
+						<span className="text-label-sm font-medium tracking-tight">{NAME}</span>
 					</Link>
 					<div className="hidden items-center gap-1 md:flex">
 						{headerLinks.map((link) => (
@@ -98,8 +85,8 @@ export function Header({ disableSticky = false, forceBlur = false }: HeaderProps
 				</Button>
 			</nav>
 
-			<MobileMenu open={open} className="flex flex-col justify-between gap-2 overflow-y-auto">
-				<div className="grid w-full flex-col gap-y-2">
+			<MobileMenu open={open}>
+				<div className="flex flex-col gap-2">
 					{headerLinks.map((link) => (
 						<Link
 							key={link.key}
@@ -114,10 +101,10 @@ export function Header({ disableSticky = false, forceBlur = false }: HeaderProps
 							{t(link.key)}
 						</Link>
 					))}
-				</div>
-				<div className="flex items-center gap-2 p-1">
-					<LanguageSwitcher />
-					<ModeToggle />
+					<div className="flex items-center gap-2 pt-1">
+						<LanguageSwitcher />
+						<ModeToggle />
+					</div>
 				</div>
 			</MobileMenu>
 		</header>
@@ -134,14 +121,14 @@ function MobileMenu({ open, children, className, ...props }: MobileMenuProps) {
 			id="mobile-menu"
 			className={cn(
 				"bg-bg-white-0/95 supports-[backdrop-filter]:bg-bg-white-0/50 backdrop-blur-lg",
-				"fixed top-14 right-0 bottom-0 left-0 z-40 flex flex-col overflow-hidden border-y md:hidden"
+				"fixed top-14 right-0 left-0 z-40 border-b border-stroke-soft-200 md:hidden"
 			)}
 		>
 			<div
 				data-slot={open ? "open" : "closed"}
 				className={cn(
 					"data-[slot=open]:animate-in data-[slot=open]:zoom-in-97 ease-out",
-					"size-full p-4",
+					"mx-auto w-full max-w-3xl px-6 py-3 lg:px-0",
 					className
 				)}
 				{...props}

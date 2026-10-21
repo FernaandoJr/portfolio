@@ -7,7 +7,7 @@ import Link from "next/link";
 
 export function SocialLinks() {
 	return (
-		<div className="my-4 flex items-center gap-2">
+		<div className="my-4 flex items-center gap-2 select-none">
 			{socials.map((social) => (
 				<Tooltip key={social.label}>
 					<TooltipTrigger asChild>

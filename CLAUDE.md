@@ -4,7 +4,7 @@
 
 **Fernando Junior** (`FernaandoJr`) — Fullstack Developer based in São Paulo, Brazil.
 
-- **Experience:** 2+ years, currently working full-time at Dolphin Sistemas (since May 2025) building AgroCRM — a production monorepo with MVVM architecture, React, Expo (offline-first mobile), and strong DX practices.
+- **Experience:** 3+ years at Dolphin Sistemas (Sep 2024 – Oct 2026) as Backend, Frontend and then Full Stack Developer on AgroCRM — a production monorepo with MVVM architecture, React, Expo (offline-first mobile), Go back-end services, and strong DX practices. Currently open to new opportunities.
 - **Stack fluency:** TypeScript, React, Next.js, Expo, Tailwind CSS, shadcn/ui, Hono, Node.js, Bun.
 - **Work style:** Detail-obsessed. Prioritizes visual quality and polish over delivery speed, especially in this portfolio project.
 - **This project's purpose:** Personal showcase and learning lab — not production-critical. Decisions favor craft and exploration over pragmatism.

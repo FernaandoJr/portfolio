@@ -6,7 +6,7 @@ import { RiCheckLine, RiMailLine, RiMapPinLine } from "@remixicon/react";
 import { useState } from "react";
 
 import SkillsSection from "@/components/skillsSection";
-import { EMAIL, LOCATION, NAME } from "@/constants/profile";
+import { EMAIL, FULL_NAME, LOCATION } from "@/constants/profile";
 import { GithubHeatmap } from "./github-heatmap";
 import { LocalTime } from "./local-time";
 import { RotatingSubtitle } from "./rotating-subtitle";
@@ -25,7 +25,7 @@ export default function InfoSection() {
 	return (
 		<>
 			<div className="flex flex-col gap-0.5">
-				<p className="text-3xl font-bold">{NAME}</p>
+				<p className="text-3xl font-bold">{FULL_NAME}</p>
 				<RotatingSubtitle />
 			</div>
 

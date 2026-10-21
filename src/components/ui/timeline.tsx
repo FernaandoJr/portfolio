@@ -26,7 +26,7 @@ TimelineItem.displayName = "TimelineItem";
 
 const TimelineSide = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
 	({ className, ...props }, ref) => (
-		<div ref={ref} className={cn("flex flex-col items-center", className)} {...props} />
+		<div ref={ref} className={cn("flex h-full flex-col items-center", className)} {...props} />
 	)
 );
 TimelineSide.displayName = "TimelineSide";
@@ -46,7 +46,7 @@ const TimelineIndicator = React.forwardRef<HTMLDivElement, TimelineIndicatorProp
 			data-slot="timeline-indicator"
 			{...props}
 		>
-			<div className={cn("size-2.5 rounded-full", current ? "bg-green-500" : "bg-border")} />
+			<div className={cn("size-2.5 rounded-full", current ? "bg-green-500" : "bg-stroke-soft-200")} />
 			{current && <span className="absolute inset-0 rounded-full bg-green-400/70 animate-ping" />}
 		</div>
 	)
@@ -57,7 +57,7 @@ const TimelineConnector = React.forwardRef<HTMLDivElement, React.HTMLAttributes<
 	({ className, ...props }, ref) => (
 		<div
 			ref={ref}
-			className={cn("mt-1.5 -mb-1.5 w-px flex-1 bg-border/50", className)}
+			className={cn("mt-1.5 -mb-1.5 w-px flex-1 bg-stroke-soft-200", className)}
 			data-slot="timeline-connector"
 			{...props}
 		/>

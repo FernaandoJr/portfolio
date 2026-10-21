@@ -27,6 +27,12 @@ export const skills: Skill[] = [
 		href: "https://java.com",
 	},
 	{
+		id: "go",
+		label: "Go",
+		icon: "/icons/skills/go.svg",
+		href: "https://go.dev",
+	},
+	{
 		id: "nodejs",
 		label: "Node.js",
 		icon: "/icons/skills/nodejs.svg",
@@ -40,7 +46,7 @@ export const skills: Skill[] = [
 	},
 	{
 		id: "react",
-		label: "React",
+		label: "React/React Native",
 		icon: "/icons/skills/react.svg",
 		href: "https://react.dev",
 	},
@@ -201,5 +207,7 @@ export const experienceOnlySkills: Skill[] = [
 ];
 
 export function findStackIcon(label: string): Skill | undefined {
-	return skills.find((s) => s.label === label) ?? experienceOnlySkills.find((s) => s.label === label);
+	return (
+		skills.find((s) => s.label === label) ?? experienceOnlySkills.find((s) => s.label === label)
+	);
 }

@@ -19,7 +19,7 @@ function Card({ className, interactive, children, ...props }: CardProps) {
 		>
 			<div
 				data-slot="card-inner"
-				className="m-0.5 flex min-h-0 flex-1 flex-col overflow-hidden rounded-2xl border border-stroke-soft-200 bg-bg-white-0 dark:border-stroke-soft-100/40 dark:bg-[#0c0c0c]"
+				className="m-0.5 flex min-h-0 flex-1 flex-col overflow-hidden rounded-2xl border border-stroke-soft-200 bg-bg-white-0 dark:border-stroke-soft-100/40"
 			>
 				{children}
 			</div>

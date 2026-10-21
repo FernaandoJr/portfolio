@@ -1,6 +1,7 @@
 "use client";
 
 import { useTranslation } from "@/lib/i18n";
+import { useEffect, useMemo } from "react";
 
 import {
 	ContributionGraph,
@@ -12,7 +13,11 @@ import {
 	type Activity,
 } from "@/components/ui/contribution-graph";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
-import { useGithubContributions } from "@/hooks/use-github-contributions";
+import {
+	GITHUB_CONTRIBUTIONS_ENDPOINT,
+	GithubContributionsError,
+	useGithubContributions,
+} from "@/hooks/use-github-contributions";
 
 function generateEmptyYear(): Activity[] {
 	const end = new Date();
@@ -30,6 +35,19 @@ function generateEmptyYear(): Activity[] {
 export function GithubHeatmap() {
 	const { t } = useTranslation();
 	const { data, isLoading, error } = useGithubContributions();
+
+	useEffect(() => {
+		if (!error) return;
+
+		const status = error instanceof GithubContributionsError ? error.status : null;
+
+		console.error(
+			`[github-heatmap] Could not load GitHub contributions from ${GITHUB_CONTRIBUTIONS_ENDPOINT}. Rendering an empty calendar instead.`,
+			{ status, reason: error.message }
+		);
+	}, [error]);
+
+	const displayData = useMemo(() => (data?.length ? data : generateEmptyYear()), [data]);
 
 	if (isLoading) {
 		return (
@@ -53,24 +71,17 @@ export function GithubHeatmap() {
 					<div className="h-3 w-48 rounded bg-bg-weak-50 animate-pulse" />
 					<div className="ml-auto flex items-center gap-1">
 						{Array.from({ length: 5 }).map((_, i) => (
-							<div key={i} className="bg-bg-weak-50 animate-pulse" style={{ width: 11, height: 11 }} />
+							<div
+								key={i}
+								className="bg-bg-weak-50 animate-pulse"
+								style={{ width: 11, height: 11 }}
+							/>
 						))}
 					</div>
 				</div>
 			</div>
 		);
 	}
-
-	if (error) {
-		return (
-			<div className="py-4 flex flex-col gap-1">
-				<p className="text-sm text-text-sub-600">{t("githubContributionsError")}</p>
-				<p className="text-xs text-text-sub-600/60 font-mono">{error.message}</p>
-			</div>
-		);
-	}
-
-	const displayData = data?.length ? data : generateEmptyYear();
 
 	return (
 		<ContributionGraph
@@ -82,6 +93,10 @@ export function GithubHeatmap() {
 			labels={{ legend: { less: t("less"), more: t("more") } }}
 			aria-label="GitHub Contributions Graph"
 		>
+			{error ? (
+				<p className="px-2 text-xs text-text-sub-600/80">{t("githubContributionsError")}</p>
+			) : null}
+
 			<ContributionGraphCalendar
 				className="no-scrollbar px-2"
 				title="GitHub Contributions"
