@@ -10,12 +10,12 @@ export type ProjectAuthor = { id: string; roleKey?: string | undefined };
 const PIXELS = { default: 34, sm: 26 } as const;
 
 const AVATAR_COLORS = [
-	"bg-avatar-1/20 text-avatar-1",
-	"bg-avatar-2/20 text-avatar-2",
-	"bg-avatar-3/20 text-avatar-3",
-	"bg-avatar-4/20 text-avatar-4",
-	"bg-avatar-5/20 text-avatar-5",
-	"bg-avatar-6/20 text-avatar-6",
+	"bg-feature-base/30 text-feature-dark dark:text-purple-200",
+	"bg-verified-base/30 text-verified-dark dark:text-sky-200",
+	"bg-away-base/30 text-away-dark dark:text-yellow-200",
+	"bg-success-base/30 text-success-dark dark:text-green-200",
+	"bg-highlighted-base/30 text-highlighted-dark dark:text-pink-200",
+	"bg-stable-base/30 text-stable-dark dark:text-teal-200",
 ] as const;
 
 function initialsOf(name: string): string {

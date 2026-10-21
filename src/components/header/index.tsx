@@ -45,9 +45,8 @@ export function Header({ disableSticky = false, forceBlur = false }: HeaderProps
 
 			<nav className="relative mx-auto flex h-14 w-full max-w-3xl items-center justify-between px-6 lg:px-0 select-none">
 				<div className="flex items-center gap-5">
-					<Link href="/" className="flex items-center gap-2 text-text-strong-950" aria-label={NAME}>
+					<Link href="/" className="flex items-center text-text-strong-950" aria-label={NAME}>
 						<Logo className="size-5" />
-						<span className="text-label-sm font-medium tracking-tight">{NAME}</span>
 					</Link>
 					<div className="hidden items-center gap-1 md:flex">
 						{headerLinks.map((link) => (
@@ -73,7 +72,7 @@ export function Header({ disableSticky = false, forceBlur = false }: HeaderProps
 
 				<Button
 					variant="neutral"
-					mode="stroke"
+					mode="ghost"
 					size="xsmall"
 					onClick={() => setOpen(!open)}
 					className="size-9 p-0 md:hidden"

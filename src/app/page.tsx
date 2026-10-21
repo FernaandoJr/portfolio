@@ -13,24 +13,18 @@ export default function Home() {
 			</section>
 
 			<section id="about">
-				<div className="w-full max-w-3xl mx-auto px-6 lg:px-0">
-					<TranslatedSectionHeading id="about" tKey="aboutTitle" className="mb-6" />
-					<AboutSection />
-				</div>
+				<TranslatedSectionHeading id="about" tKey="aboutTitle" className="mb-6" />
+				<AboutSection />
 			</section>
 
 			<section id="projects">
-				<div className="w-full max-w-3xl mx-auto px-6 lg:px-0">
-					<TranslatedSectionHeading id="projects" tKey="projectsTitle" />
-					<ProjectsSection />
-				</div>
+				<TranslatedSectionHeading id="projects" tKey="projectsTitle" />
+				<ProjectsSection />
 			</section>
 
 			<section id="experience">
-				<div className="w-full max-w-3xl mx-auto px-6 lg:px-0">
-					<TranslatedSectionHeading id="experience" tKey="experienceTitle" />
-					<ExperienceSection />
-				</div>
+				<TranslatedSectionHeading id="experience" tKey="experienceTitle" />
+				<ExperienceSection />
 			</section>
 
 			<QuoteSection />

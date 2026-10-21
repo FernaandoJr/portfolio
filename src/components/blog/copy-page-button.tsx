@@ -76,7 +76,7 @@ export function CopyPageButton({ markdownPath, markdown }: CopyPageButtonProps) 
 				{copied ? t("blogCopiedPage") : t("blogCopyPage")}
 			</button>
 
-			<DropdownMenu>
+			<DropdownMenu modal={false}>
 				<DropdownMenuTrigger
 					aria-label={t("blogPageActions")}
 					className="inline-flex cursor-pointer items-center justify-center rounded-r-md border-l border-stroke-soft-200 px-1.5 py-2 text-text-sub-600 transition-colors hover:text-text-strong-950 focus-visible:outline-none"
@@ -84,7 +84,7 @@ export function CopyPageButton({ markdownPath, markdown }: CopyPageButtonProps) 
 					<RiArrowDownSLine className="size-3.5" />
 				</DropdownMenuTrigger>
 
-				<DropdownMenuContent align="end" className="min-w-48">
+				<DropdownMenuContent align="end" className="w-max">
 					<DropdownMenuItem asChild>
 						<a href={markdownPath} target="_blank" rel="noopener noreferrer">
 							<Icon icon="simple-icons:markdown" className="size-4" />
