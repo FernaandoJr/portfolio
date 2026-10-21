@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { makeParser, serializeVariant } from "./parse";
+import { makeParser } from "./parse";
 import { projectFrontmatterSchema } from "@/lib/projects/types";
 
 const parseProject = makeParser(projectFrontmatterSchema, "projects");
@@ -67,36 +67,5 @@ Corpo.
 		expect(() => parseProject("broken.ptBR.mdx", "---\ntitle: only\n---\n")).toThrow(
 			/content\/projects\/broken\.ptBR\.mdx/
 		);
-	});
-});
-
-describe("serializeVariant", () => {
-	it("round-trips fields the base schema does not know about", () => {
-		const source = parseProject("astrovista.ptBR.mdx", raw);
-		expect(source).not.toBeNull();
-
-		const translated = serializeVariant(
-			{
-				...source!.frontmatter,
-				title: "AstroVista",
-				description: "APOD archive",
-				translatedFrom: "ptBR" as const,
-				sourceHash: "abc123",
-			},
-			"Case study body."
-		);
-
-		const reparsed = parseProject("astrovista.enUS.mdx", translated);
-
-		expect(reparsed?.frontmatter.description).toBe("APOD archive");
-		expect(reparsed?.frontmatter.translatedFrom).toBe("ptBR");
-		expect(reparsed?.frontmatter.status).toBe("wip");
-		expect(reparsed?.frontmatter.featured).toBe(1);
-		expect(reparsed?.frontmatter.stack).toEqual(["Next.js", "Hono"]);
-		expect(reparsed?.frontmatter.links.repo).toBe("https://github.com/FernaandoJr/AstroVista");
-		expect(reparsed?.frontmatter.gallery).toEqual([
-			{ src: "/projects/astrovista/home.webp", alt: "Tela inicial" },
-		]);
-		expect(reparsed?.frontmatter.authors).toEqual([{ id: "fernaandojr", roleKey: "roleLead" }]);
 	});
 });

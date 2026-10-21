@@ -1,6 +1,6 @@
 import GithubSlugger from "github-slugger";
 
-import { normalizeNewlines } from "./hash";
+import { normalizeNewlines } from "./normalize";
 
 export type TocEntry = {
 	id: string;

@@ -15,9 +15,6 @@ export const baseFrontmatterSchema = z.object({
 	cover: z.string().optional(),
 	draft: z.boolean().default(false),
 	translatedFrom: z.enum(LOCALES).optional(),
-	sourceHash: z.string().optional(),
-	translatedBy: z.string().optional(),
-	translatedAt: z.string().optional(),
 });
 
 export type BaseFrontmatter = z.infer<typeof baseFrontmatterSchema>;
