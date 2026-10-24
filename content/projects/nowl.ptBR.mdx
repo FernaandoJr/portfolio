@@ -1,0 +1,92 @@
+---
+title: Nowl
+description: >-
+  Leitor RSVP no navegador: cole um texto longo e leia uma palavra por vez, com
+  pivô de reconhecimento (ORP) fixo e ritmo inteligente. Sem cadastro, sem
+  servidor, nada sai do seu browser.
+date: 2026-08-31
+tags:
+  - Next.js
+  - TypeScript
+  - Tailwind
+  - React
+  - RSVP
+  - Leitura
+cover: /projects/nowl/hero.webp
+draft: false
+status: completed
+featured: 3
+stack:
+  - Next.js 16
+  - TypeScript
+  - Tailwind 4
+  - React 19
+links:
+  repo: https://github.com/FernaandoJr/nowl
+  live: https://nowl.fernaandojr.dev
+gallery:
+  - src: /projects/nowl/hero.webp
+    alt: Tela inicial do Nowl com o texto colado e o botão de começar
+authors:
+  - id: fernaandojr
+    roleKey: roleLead
+---
+
+Nowl é um **leitor RSVP** (Rapid Serial Visual Presentation) que roda inteiro no navegador. A ideia é simples: em vez de varrer a página com os olhos, o texto é projetado uma palavra por vez em um ponto fixo, e o olho para de se mover. O resultado é uma leitura mais rápida sem esforço consciente de "ler mais rápido".
+
+## Por que existe
+
+Todo gerador de QR, todo leitor de RSS, todo app de notas tem um equivalente. Leitor RSVP, por outro lado, quase não existe fora de apps nativos pagos. Os que existem em web são pesados, pedem conta ou mandam o texto pra um servidor. O Nowl resolve o que eu queria: **colar um texto, ler, fechar** — e nada sai do browser.
+
+## Como funciona
+
+O motor é pequeno e independente da UI:
+
+```
+tokenize → orp → pacing → useReader
+```
+
+- **tokenize** — divide o texto em chunks legíveis, partindo palavras muito longas
+- **orp** — encontra a letra-pivô (optimal recognition point) de cada chunk, destacada em cor de tema
+- **pacing** — calcula o tempo de permanência de cada chunk (palavras longas e pontuação ganham mais tempo)
+- **useReader** — a máquina de estados por trás da view (play/pause, velocidade, fim)
+
+## Funcionalidades
+
+- **Pivô ORP fixo** — toda palavra aterrissa com o ponto de reconhecimento no centro, em cor de tema
+- **Ritmo inteligente** — palavras longas e pontuação ganham tempo extra de dwell
+- **Controle de velocidade** — número de 100 a 700 (padrão 250), mudado por setas ou slider
+- **Histórico** — último texto + até 20 leituras anteriores, tudo em `localStorage`
+- **Tema claro/escuro**, com padrão do sistema
+- **PT e EN** trocados por cookie, sem locale na URL
+
+## Armazenamento
+
+Tudo vive no `localStorage`, no seu navegador:
+
+| Chave | O que guarda |
+|---|---|
+| `now:v1` | Texto atual + velocidade |
+| `now:history` | Últimas 20 leituras iniciadas |
+| `NEXT_LOCALE` | `pt` ou `en` |
+
+Línguas sem espaços (CJK) ficam fora do escopo: o RSVP depende de fronteiras de palavras.
+
+## Stack
+
+- **Next.js 16** com App Router
+- **TypeScript strict**
+- **Tailwind 4**
+- **React 19**
+- **next-intl** para PT/EN via cookie
+- **OpenNext** para deploy no Cloudflare Workers
+
+## Deploy
+
+Roda em Cloudflare Workers via OpenNext. Qualquer host Node que rode `pnpm build && pnpm start` também funciona.
+
+## Próximos passos
+
+- Suporte a línguas sem espaços (CJK)
+- Exportação de leituras como arquivo
+- Modo de foco para textos muito longos (livros inteiros)

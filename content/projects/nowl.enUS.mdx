@@ -1,0 +1,103 @@
+---
+title: Nowl
+description: >-
+  In-browser RSVP reader: paste a long text and read one word at a time, with a
+  fixed recognition point (ORP) and smart pacing. No account, no server, nothing
+  leaves your browser.
+date: 2026-08-31
+tags:
+  - Next.js
+  - TypeScript
+  - Tailwind
+  - React
+  - RSVP
+  - Reading
+cover: /projects/nowl/hero.webp
+draft: false
+status: completed
+featured: 3
+stack:
+  - Next.js 16
+  - TypeScript
+  - Tailwind 4
+  - React 19
+links:
+  repo: https://github.com/FernaandoJr/nowl
+  live: https://nowl.fernaandojr.dev
+gallery:
+  - src: /projects/nowl/hero.webp
+    alt: Nowl home screen with the pasted text and the start button
+authors:
+  - id: fernaandojr
+    roleKey: roleLead
+---
+
+Nowl is an **RSVP reader** (Rapid Serial Visual Presentation) that runs entirely
+in the browser. The idea is simple: instead of scanning the page with your eyes,
+the text is projected one word at a time onto a fixed point, and the eye stops
+moving. The result is faster reading without consciously trying to "read faster."
+
+## Why it exists
+
+Every QR generator, RSS reader, and notes app has equivalents. RSVP readers, on
+the other hand, barely exist outside of paid native apps. The web ones are
+heavy, require accounts, or send the text to a server. Nowl solves what I wanted:
+**paste a text, read, close** — and nothing leaves the browser.
+
+## How it works
+
+The engine is small and independent of the UI:
+
+```
+tokenize → orp → pacing → useReader
+```
+
+- **tokenize** — splits the text into readable chunks, chopping overlong words
+- **orp** — finds the pivot letter (optimal recognition point) of each chunk,
+  highlighted in the theme color
+- **pacing** — computes the dwell time per chunk (long words and punctuation get
+  extra time)
+- **useReader** — the state machine behind the view (play/pause, speed, end)
+
+## Features
+
+- **Fixed ORP pivot** — every word lands with its recognition point in the center,
+  in theme color
+- **Smart pacing** — long words and punctuation get extra dwell time
+- **Speed control** — a number from 100 to 700 (default 250), changed with arrow
+  keys or slider
+- **History** — last text plus up to 20 previous readings, all in `localStorage`
+- **Light and dark theme**, with system default
+- **PT and EN** switched by cookie, no locale in the URL
+
+## Storage
+
+Everything lives in `localStorage`, in your browser only:
+
+| Key | What |
+|---|---|
+| `now:v1` | Current text + speed |
+| `now:history` | Last 20 started readings |
+| `NEXT_LOCALE` | `pt` or `en` |
+
+Languages without spaces (CJK) are out of scope: RSVP relies on word boundaries.
+
+## Stack
+
+- **Next.js 16** with App Router
+- **TypeScript strict**
+- **Tailwind 4**
+- **React 19**
+- **next-intl** for PT/EN via cookie
+- **OpenNext** for deploy on Cloudflare Workers
+
+## Deploy
+
+Runs on Cloudflare Workers via OpenNext. Any Node host that runs
+`pnpm build && pnpm start` also works.
+
+## Next steps
+
+- Support for languages without spaces (CJK)
+- Export readings as a file
+- Focus mode for very long texts (whole books)
