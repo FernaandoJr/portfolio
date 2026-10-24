@@ -35,7 +35,7 @@ function Fallback() {
 				width: "100%",
 			}}
 		>
-			fernaandojr.dev
+			www.fernaandojr.dev
 		</div>
 	);
 }
